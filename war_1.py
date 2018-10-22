@@ -13,6 +13,8 @@ function list:
 # red_army action list, blue_army action list. action space {u,d,l,r,s}
     mp_map.step()
 # return reward_red, reward_blue, done.
+    my_map.get_state()
+# return map
 
 """
 
@@ -44,6 +46,7 @@ class Army(object):
         self.id=id
         self.team=team
         self.life=life
+        self.win_p=1
 
 
 class WarMap(tk.Tk, object):
@@ -71,17 +74,19 @@ class WarMap(tk.Tk, object):
             pass
 
     def _init_map(self):
+        self.red_army=[]
+        self.blue_army=[]
         for i in range(self.map_h):
             for j in range(self.map_w):
                 self.env_map[i][j]=0
         # init army information
         for i in range(self.red_num):
-            a = Army(i,3,i,1,'live')
+            a = Army(i,0,i,1,'live')
             self.red_army.append(a)
             x,y=self.red_army[i].x,self.red_army[i].y
             self.env_map[y][x]=1
         for i in range(self.blue_num):
-            a = Army(i+9,self.map_h-1,2,'live')
+            a = Army(i+1,self.map_h-1,2,'live')
             self.blue_army.append(a)
             x,y=self.blue_army[i].x,self.blue_army[i].y
             self.env_map[y][x] = 2
@@ -174,24 +179,138 @@ class WarMap(tk.Tk, object):
                     self.move_one(action_red[i],1,i)
 
     def flash_draw(self):
-        for i in range(len(self.red_army_draw)):
-            self.map.delete(self.red_army_draw[i])
-        for i in range(len(self.blue_army_draw)):
-            self.map.delete(self.blue_army_draw[i])
-        for i in range(self.map_h):
-            for j in range(self.map_w):
-                if self.env_map[i][j]==1:
-                    self.red_army_draw.append(self.map.create_rectangle(j*UNIT_PIX,
-                    i*UNIT_PIX,(j+1)*UNIT_PIX,(i+1)*UNIT_PIX,fill='red'))
-                elif self.env_map[i][j]==2:
-                    self.blue_army_draw.append(self.map.create_rectangle(j * UNIT_PIX,
+        if self.draw_pic:
+            for i in range(len(self.red_army_draw)):
+                self.map.delete(self.red_army_draw[i])
+            for i in range(len(self.blue_army_draw)):
+                self.map.delete(self.blue_army_draw[i])
+            for i in range(self.map_h):
+                for j in range(self.map_w):
+                    if self.env_map[i][j]==1:
+                        self.red_army_draw.append(self.map.create_rectangle(j*UNIT_PIX,
+                        i*UNIT_PIX,(j+1)*UNIT_PIX,(i+1)*UNIT_PIX,fill='red'))
+                    elif self.env_map[i][j]==2:
+                        self.blue_army_draw.append(self.map.create_rectangle(j * UNIT_PIX,
                                                                    i * UNIT_PIX, (j + 1) * UNIT_PIX, (i + 1) * UNIT_PIX,
                                                                    fill='blue'))
+        else:
+            pass
 
     def fight(self):
-        pass
+        # compute red win probability
+        for i in range(self.red_num):
+            self.red_army[i].win_p=1
+            if self.red_army[i].life!='live':
+                pass
+            else:
+                x,y=self.red_army[i].x,self.red_army[i].y
+                neighbor=[]
+                neighbor.append([x-1,y])
+                neighbor.append([x+1, y])
+                neighbor.append([x , y+1])
+                neighbor.append([x, y-1])
+                if x==0:
+                    neighbor.remove([x-1,y])
+                if x==self.map_w-1:
+                    neighbor.remove([x+1,y])
+                if y==0:
+                    neighbor.remove([x,y-1])
+                if y==self.map_h-1:
+                    neighbor.remove([x,y+1])
+                for s in range(len(neighbor)):
+                    if self.env_map[neighbor[s][1]][neighbor[s][0]]==1:
+                        self.red_army[i].win_p=self.red_army[i].win_p+0.25/3
+                    elif self.env_map[neighbor[s][1]][neighbor[s][0]]==2:
+                        self.red_army[i].win_p = self.red_army[i].win_p - 0.25
+        # compute blue win probability
+        for i in range(self.blue_num):
+            self.blue_army[i].win_p=1
+            if self.blue_army[i].life!='live':
+                pass
+            else:
+                x,y=self.blue_army[i].x,self.blue_army[i].y
+                neighbor2=[]
+                neighbor2.append([x-1,y])
+                neighbor2.append([x+1, y])
+                neighbor2.append([x , y+1])
+                neighbor2.append([x, y-1])
+                if x==0:
+                    neighbor2.remove([x-1,y])
+                if x==self.map_w-1:
+                    neighbor2.remove([x+1,y])
+                if y==0:
+                    neighbor2.remove([x,y-1])
+                if y==self.map_h-1:
+                    neighbor2.remove([x,y+1])
+                for s in range(len(neighbor2)):
+                    if self.env_map[neighbor2[s][1]][neighbor2[s][0]]==2:
+                        self.blue_army[i].win_p=self.blue_army[i].win_p+0.25/3
+                    elif self.env_map[neighbor2[s][1]][neighbor2[s][0]]==1:
+                        self.blue_army[i].win_p = self.blue_army[i].win_p-0.25
+
+    def fight_result(self):
+        red_killed,blue_killed=0,0
+        # red fight result
+        for i in range(self.red_num):
+            if self.red_army[i].life!='live':
+                pass
+            else:
+                win_pro=random.random()
+                x,y=self.red_army[i].x,self.red_army[i].y
+                # army lost fight
+                if win_pro>self.red_army[i].win_p:
+                    self.red_army[i].life='dead'
+                    self.env_map[y][x]=0
+                    red_killed=red_killed+1
+        # blue fight result
+        for i in range(self.blue_num):
+            if self.blue_army[i].life!='live':
+                pass
+            else:
+                win_pro=random.random()
+                x,y=self.blue_army[i].x,self.blue_army[i].y
+                # army lost fight
+                if win_pro>self.blue_army[i].win_p:
+                    self.blue_army[i].life='dead'
+                    self.env_map[y][x]=0
+                    blue_killed=blue_killed+1
+        return red_killed,blue_killed
+
+    def end_battle(self):
+        red_lived,blue_lived=0,0
+        for i in range(self.red_num):
+            if self.red_army[i].life=='live':
+                red_lived=red_lived+1
+        for i in range(self.blue_num):
+            if self.blue_army[i].life=='live':
+                blue_lived=blue_lived+1
+        return red_lived,blue_lived
+
+    def get_state(self):
+        return self.env_map
 
     def step(self):
         time.sleep(0.5)
+        self.fight()
+        red_killed,blue_killed=self.fight_result()
+        red_lived, blue_lived=self.end_battle()
         self.flash_draw()
-        self.update()
+        if self.draw_pic:
+            self.update()
+
+        # reward function
+        if red_lived==0 or blue_lived==0:
+            reward_red,reward_blue=red_lived,blue_lived
+            self._init_map()
+            done = True
+            if red_lived!=0:
+                #print('red',red_lived,blue_lived)
+                pass
+            else:
+                #print('blue',red_lived,blue_lived)
+                pass
+            time.sleep(0)
+        else:
+            reward_red, reward_blue=blue_killed,red_killed
+            done = False
+        return reward_red,reward_blue,done
