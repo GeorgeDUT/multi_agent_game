@@ -1,12 +1,15 @@
 from war_1 import *
 from red_brain import *
-import tensorflow as tf
+from blue_brain import *
 
 
-def train_naive_brain(my_map,episode,red_win):
+def train_naive_brain(my_map,episode,red_win,blue_win):
     for step in range(1000):
         s=my_map.get_state()
         t_x,t_y=find_target(s)
+
+        t_x_blue,t_y_blue=find_target_blue(s)
+
         red_action=[]
         blue_action=[]
         for i in range(my_map.red_num):
@@ -14,6 +17,7 @@ def train_naive_brain(my_map,episode,red_win):
             red_action.append(a)
         for i in range(my_map.blue_num):
             b=np.random.choice(['u','d','l','r','s'])
+            # b=goto_target_blue(my_map.blue_army[i].x,my_map.blue_army[i].y,t_x_blue,t_y_blue)
             blue_action.append(b)
 
         my_map.move(red_action,blue_action)
@@ -29,9 +33,11 @@ def train_naive_brain(my_map,episode,red_win):
 def update():
     all=0
     red_win=[]
+    blue_win=[]
     red_win.append(0)
-    for episode in range(300):
-        train_naive_brain(my_map,episode,red_win)
+    blue_win.append(0)
+    for episode in range(200):
+        train_naive_brain(my_map,episode,red_win,blue_win)
     '''
 
         my_map.move(a, b)
@@ -45,7 +51,7 @@ def update():
         
 
 if __name__ == "__main__":
-    my_map = WarMap(13,6,12,10,True)
+    my_map = WarMap(30,30,28,28,True)
     if my_map.draw_pic:
         my_map.after(10,update)
         my_map.mainloop()

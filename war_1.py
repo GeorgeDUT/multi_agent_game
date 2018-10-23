@@ -290,7 +290,7 @@ class WarMap(tk.Tk, object):
         return self.env_map
 
     def step(self):
-        time.sleep(0.5)
+        time.sleep(0.08)
         self.fight()
         red_killed,blue_killed=self.fight_result()
         red_lived, blue_lived=self.end_battle()
