@@ -16,7 +16,7 @@ def train_naive_brain(my_map,episode,red_win,blue_win):
             a=goto_target(my_map.red_army[i].x,my_map.red_army[i].y,t_x,t_y)
             red_action.append(a)
         for i in range(my_map.blue_num):
-            b=np.random.choice(['u','d','l','r','s'])
+            b=np.random.choice(['u','u','u','u','u'])
             # b=goto_target_blue(my_map.blue_army[i].x,my_map.blue_army[i].y,t_x_blue,t_y_blue)
             blue_action.append(b)
 

@@ -34,7 +34,7 @@ else:
 
 MAP_W = 5
 MAP_H = 5
-UNIT_PIX = 25
+UNIT_PIX = 20
 R_ARMY_NUM = 5
 B_ARMY_NUM = 5
 
@@ -86,7 +86,7 @@ class WarMap(tk.Tk, object):
             x,y=self.red_army[i].x,self.red_army[i].y
             self.env_map[y][x]=1
         for i in range(self.blue_num):
-            a = Army(i+1,self.map_h-1,2,'live')
+            a = Army(i+1,self.map_h-3,2,'live')
             self.blue_army.append(a)
             x,y=self.blue_army[i].x,self.blue_army[i].y
             self.env_map[y][x] = 2
