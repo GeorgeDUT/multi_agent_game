@@ -49,6 +49,14 @@ class Army(object):
         self.win_p=1
 
 
+class OutInfo(object):
+    def __init__(self, h, w, red_num, blue_num):
+        self.env_map=np.zeros(shape=(h,w))
+        self.red_num=red_num
+        self.blue_num=blue_num
+        self.army_loc=np.zeros((red_num+blue_num)*4)
+
+
 class WarMap(tk.Tk, object):
     def __init__(self, w=MAP_W, h=MAP_H, red=R_ARMY_NUM, blue=B_ARMY_NUM, draw_pic=False):
         self.draw_pic = draw_pic
@@ -287,10 +295,26 @@ class WarMap(tk.Tk, object):
         return red_lived,blue_lived
 
     def get_state(self):
-        return self.env_map
+        info=OutInfo(self.map_h,self.map_w,self.red_num,self.blue_num)
+        info.env_map=self.env_map
+        for i in range(info.red_num):
+            if self.red_army[i].life!='live':
+                x,y,id,team=-1,-1,1,1
+            else:
+                x,y,id,team=self.red_army[i].x,self.red_army[i].y,i,1
+            info.army_loc[i*4],info.army_loc[i*4+1],info.army_loc[i*4+2],info.army_loc[i*4+3]=x,y,id,team
+        for i in range(info.blue_num):
+            if self.blue_army[i].life!='live':
+                x, y, id, team = -1, -1, 1, 1
+            else:
+                x, y, id, team = self.blue_army[i].x,self.blue_army[i].y,i,2
+                info.army_loc[(i+self.red_num)*4+0], info.army_loc[(i+self.red_num)*4+1], \
+                info.army_loc[(i+self.red_num)*4+2], info.army_loc[(i+self.red_num)*4+3]=x,y,id,team
+
+        return info
 
     def step(self):
-        time.sleep(0.08)
+        time.sleep(0)
         self.fight()
         red_killed,blue_killed=self.fight_result()
         red_lived, blue_lived=self.end_battle()
@@ -311,6 +335,7 @@ class WarMap(tk.Tk, object):
                 pass
             time.sleep(0)
         else:
-            reward_red, reward_blue=blue_killed,red_killed
+            # reward_red, reward_blue=blue_killed,red_killed
+            reward_red, reward_blue=0,0
             done = False
         return reward_red,reward_blue,done
