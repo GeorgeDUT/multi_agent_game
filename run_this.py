@@ -68,6 +68,7 @@ def train_naive_brain(my_map,episode,red_win,blue_win):
         blue_action=[]
         for i in range(my_map.red_num):
             a=goto_target(my_map.red_army[i].x,my_map.red_army[i].y,t_x,t_y)
+            a=np.random.choice(['u','d','l','r','s'])
             red_action.append(a)
         for i in range(my_map.blue_num):
             b=np.random.choice(['u','d','l','r','s'])
@@ -80,8 +81,9 @@ def train_naive_brain(my_map,episode,red_win,blue_win):
             if red!=0:
                 red_win[0]=red_win[0]+1
                 print('red win:',red_win[0]*1.0/(episode+1))
+            if red==0 and blue==0:
+                print('draw')
             break
-
 
 
 def update():
@@ -91,8 +93,8 @@ def update():
     red_win.append(0)
     blue_win.append(0)
     for episode in range(5000):
-        # train_naive_brain(my_map,episode,red_win,blue_win)
-        train_dqn_brain(my_map,episode,red_win,blue_win)
+        train_naive_brain(my_map,episode,red_win,blue_win)
+        # train_dqn_brain(my_map,episode,red_win,blue_win)
     '''
 
         my_map.move(a, b)
