@@ -6,3 +6,4 @@
 __pycache__/blue_brain.cpython-36.pyc
 __pycache__/red_brain.cpython-36.pyc
 *.pyc
+.idea/workspace.xml
