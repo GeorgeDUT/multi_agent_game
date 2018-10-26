@@ -34,7 +34,7 @@ else:
     from tkinter import *
     import tkinter as tk
 
-
+print('this is war_2: surround')
 MAP_W = 5
 MAP_H = 5
 UNIT_PIX = 20

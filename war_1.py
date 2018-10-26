@@ -38,7 +38,7 @@ UNIT_PIX = 20
 R_ARMY_NUM = 5
 B_ARMY_NUM = 5
 
-
+print('this is war_1: surround')
 class Army(object):
     def __init__(self,x=0,y=0,id=0,team=0,life='live'):
         self.x=x
