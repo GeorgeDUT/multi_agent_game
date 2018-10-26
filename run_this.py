@@ -1,4 +1,5 @@
 from war_1 import *
+from war_2 import *
 from red_brain import *
 from blue_brain import *
 from compiler.ast import flatten
@@ -29,14 +30,17 @@ def num_to_action(num_action,action_space,agent_num):
 
 
 def train_dqn_brain(my_map,episode,red_win,blue_win):
-    for step in range(1000):
+    for step in range(99999):
+        if episode>200:
+            # time.sleep(0.1)
+            pass
         obs_red=my_map.get_state()
         action_red_num=RL_red.choose_action(obs_red.army_loc)
         action_red=num_to_action(action_red_num,5,my_map.red_num)
         '''blue action'''
         action_blue=[]
         for i in range(my_map.blue_num):
-            b = np.random.choice(['u', 'd', 'l', 'r', 's'])
+            b = np.random.choice(['d', 'd', 'd', 'd', 'd'])
             # t_x_blue,t_y_blue=find_target_blue(s.env_map)
             # b=goto_target_blue(my_map.blue_army[i].x,my_map.blue_army[i].y,t_x_blue,t_y_blue)
             action_blue.append(b)
@@ -45,7 +49,8 @@ def train_dqn_brain(my_map,episode,red_win,blue_win):
         red,blue,done=my_map.step()
         obs_red_=my_map.get_state()
         RL_red.store_transition(obs_red.army_loc,action_red_num,red,obs_red_.army_loc)
-        if(step>200)and(step%5==0):
+
+        if(episode>5)and(step%5==0):
             RL_red.learn()
 
         obs_red=obs_red_
@@ -53,7 +58,9 @@ def train_dqn_brain(my_map,episode,red_win,blue_win):
         if done:
             if red!=0:
                 red_win[0]=red_win[0]+1
-                print('red win:',red_win[0]*1.0/(episode+1))
+                print('red win:',red_win[0]*1.0/(episode+1),'step',step)
+            if red==0:
+                print(my_map.env_map)
             break
 
 
@@ -68,10 +75,10 @@ def train_naive_brain(my_map,episode,red_win,blue_win):
         blue_action=[]
         for i in range(my_map.red_num):
             a=goto_target(my_map.red_army[i].x,my_map.red_army[i].y,t_x,t_y)
-            a=np.random.choice(['u','d','l','r','s'])
+            # a=np.random.choice(['u','d','l','r','s'])
             red_action.append(a)
         for i in range(my_map.blue_num):
-            b=np.random.choice(['u','d','l','r','s'])
+            b=np.random.choice(['u','d','s','l','r'])
             # b=goto_target_blue(my_map.blue_army[i].x,my_map.blue_army[i].y,t_x_blue,t_y_blue)
             blue_action.append(b)
 
@@ -80,7 +87,7 @@ def train_naive_brain(my_map,episode,red_win,blue_win):
         if done:
             if red!=0:
                 red_win[0]=red_win[0]+1
-                print('red win:',red_win[0]*1.0/(episode+1))
+                print('red win:',red_win[0]*1.0/(episode+1),'step',step)
             if red==0 and blue==0:
                 print('draw')
             break
@@ -92,9 +99,9 @@ def update():
     blue_win=[]
     red_win.append(0)
     blue_win.append(0)
-    for episode in range(5000):
-        train_naive_brain(my_map,episode,red_win,blue_win)
-        # train_dqn_brain(my_map,episode,red_win,blue_win)
+    for episode in range(1000):
+        # train_naive_brain(my_map,episode,red_win,blue_win)
+        train_dqn_brain(my_map,episode,red_win,blue_win)
     '''
 
         my_map.move(a, b)
@@ -108,8 +115,7 @@ def update():
         
 
 if __name__ == "__main__":
-    num_to_action(76,5,3)
-    my_map = WarMap(4,6,2,2,False)
+    my_map = WarMap2(4,4,4,1,False)
     action_space=math.pow(5,my_map.red_num)
     RL_red=DQN(action_space,(my_map.red_num+my_map.blue_num)*4,learning_rate=0.01,reward_decay=0.9,e_greedy=0.9,replace_target_iter=200,memory_size=2000,)
     if my_map.draw_pic:

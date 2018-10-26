@@ -105,7 +105,7 @@ class DQN:
             reward_decay=0.9,
             e_greedy=0.9,
             replace_target_iter=300,
-            memory_size=500,
+            memory_size=3000,
             batch_size=32,
             e_greedy_increment=None,
             output_graph=False,
