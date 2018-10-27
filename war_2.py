@@ -337,6 +337,7 @@ class WarMap2(tk.Tk, object):
 
         return info
 
+
     def step(self):
         time.sleep(0)
         self.fight()

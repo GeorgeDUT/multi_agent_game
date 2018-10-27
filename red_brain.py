@@ -20,7 +20,7 @@ def find_target(s):
     return x,y
 
 
-def goto_target(x,y,t_x,t_y):
+def goto_target(x,y,t_x,t_y,env_map):
     if x>t_x and y>=t_y:
         if random.random()>0.8:
             action='l'
@@ -148,6 +148,7 @@ class DQN:
             c_names, n_l1, w_initializer, b_initializer = \
                 ['eval_net_params', tf.GraphKeys.GLOBAL_VARIABLES], 10, \
                 tf.random_normal_initializer(0., 0.3), tf.constant_initializer(0.1)  # config of layers
+
             # first layer. collections is used later when assign to target net
             with tf.variable_scope('l1'):
                 w1 = tf.get_variable('w1', [self.n_features, n_l1], initializer=w_initializer, collections=c_names)

@@ -1,5 +1,5 @@
 # from war_1 import *
-from war_2 import *
+from war_1 import *
 from red_brain import *
 from blue_brain import *
 from compiler.ast import flatten
@@ -74,22 +74,25 @@ def train_naive_brain(my_map,episode,red_win,blue_win):
         red_action=[]
         blue_action=[]
         for i in range(my_map.red_num):
-            a=goto_target(my_map.red_army[i].x,my_map.red_army[i].y,t_x,t_y)
-            # a=np.random.choice(['u','d','l','r','s'])
+            # a=goto_target_blue(my_map.red_army[i].x,my_map.red_army[i].y,t_x,t_y,s.env_map)
+            a=np.random.choice(['u','d','l','r','s'])
             red_action.append(a)
         for i in range(my_map.blue_num):
-            b=np.random.choice(['u','d','s','l','r'])
-            # b=goto_target_blue(my_map.blue_army[i].x,my_map.blue_army[i].y,t_x_blue,t_y_blue)
+            # b=np.random.choice(['u','d','l','r','s'])
+            b=goto_target_blue(my_map.blue_army[i].x,my_map.blue_army[i].y,t_x_blue,t_y_blue,s.env_map)
             blue_action.append(b)
 
         my_map.move(red_action,blue_action)
         red, blue, done = my_map.step()
         if done:
-            if red!=0:
+            if red != 0:
                 red_win[0]=red_win[0]+1
-                print('red win:',red_win[0]*1.0/(episode+1),'step',step)
-            if red==0 and blue==0:
+                # print('red win:',red_win[0]*1.0/(episode+1),'step',step)
+            if red == 0 and blue == 0:
                 print('draw')
+            if blue!=0:
+                blue_win[0]=blue_win[0]+1
+                print('blue win:',blue_win[0]*1.0/(episode+1),'step',step)
             break
 
 
@@ -100,8 +103,8 @@ def update():
     red_win.append(0)
     blue_win.append(0)
     for episode in range(1000):
-        # train_naive_brain(my_map,episode,red_win,blue_win)
-        train_dqn_brain(my_map,episode,red_win,blue_win)
+        train_naive_brain(my_map,episode,red_win,blue_win)
+        # train_dqn_brain(my_map,episode,red_win,blue_win)
     '''
 
         my_map.move(a, b)
@@ -115,7 +118,7 @@ def update():
         
 
 if __name__ == "__main__":
-    my_map = WarMap2(10,10,4,1,False)
+    my_map = WarMap(20,20,10,10,False)
     action_space=math.pow(5,my_map.red_num)
     RL_red=DQN(action_space,(my_map.red_num+my_map.blue_num)*4,learning_rate=0.01,reward_decay=0.9,e_greedy=0.9,replace_target_iter=200,memory_size=2000,)
     if my_map.draw_pic:
