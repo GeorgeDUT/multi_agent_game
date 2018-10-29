@@ -1,5 +1,5 @@
+from war_2 import *
 # from war_1 import *
-from war_1 import *
 from red_brain import *
 from blue_brain import *
 from compiler.ast import flatten
@@ -40,7 +40,7 @@ def train_dqn_brain(my_map,episode,red_win,blue_win):
         '''blue action'''
         action_blue=[]
         for i in range(my_map.blue_num):
-            b = np.random.choice(['d', 'd', 'd', 'd', 'd'])
+            b = np.random.choice(['s', 's', 's', 's', 's'])
             # t_x_blue,t_y_blue=find_target_blue(s.env_map)
             # b=goto_target_blue(my_map.blue_army[i].x,my_map.blue_army[i].y,t_x_blue,t_y_blue)
             action_blue.append(b)
@@ -116,7 +116,7 @@ def update():
         
 
 if __name__ == "__main__":
-    my_map = WarMap(6,6,4,1,False)
+    my_map = WarMap2(4,4,4,1,False)
     action_space=math.pow(5,my_map.red_num)
     RL_red=DQN(action_space,(my_map.red_num+my_map.blue_num)*4,learning_rate=0.01,reward_decay=0.9,e_greedy=0.9,replace_target_iter=200,memory_size=2000,)
     if my_map.draw_pic:
