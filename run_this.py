@@ -59,8 +59,6 @@ def train_dqn_brain(my_map,episode,red_win,blue_win):
             if red!=0:
                 red_win[0]=red_win[0]+1
                 print('red win:',red_win[0]*1.0/(episode+1),'step',step)
-            if red==0:
-                print(my_map.env_map)
             break
 
 
@@ -103,8 +101,8 @@ def update():
     red_win.append(0)
     blue_win.append(0)
     for episode in range(1000):
-        train_naive_brain(my_map,episode,red_win,blue_win)
-        # train_dqn_brain(my_map,episode,red_win,blue_win)
+        # train_naive_brain(my_map,episode,red_win,blue_win)
+        train_dqn_brain(my_map,episode,red_win,blue_win)
     '''
 
         my_map.move(a, b)
@@ -118,7 +116,7 @@ def update():
         
 
 if __name__ == "__main__":
-    my_map = WarMap(20,20,10,10,False)
+    my_map = WarMap(6,6,4,1,False)
     action_space=math.pow(5,my_map.red_num)
     RL_red=DQN(action_space,(my_map.red_num+my_map.blue_num)*4,learning_rate=0.01,reward_decay=0.9,e_greedy=0.9,replace_target_iter=200,memory_size=2000,)
     if my_map.draw_pic:
