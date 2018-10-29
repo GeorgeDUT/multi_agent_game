@@ -2,7 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="2ee6dbba-829c-4f7b-abec-c0e391a25dd0" name="Default" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/red_brain.py" beforeDir="false" afterPath="$PROJECT_DIR$/red_brain.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/run_this.py" beforeDir="false" afterPath="$PROJECT_DIR$/run_this.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/war_2.py" beforeDir="false" afterPath="$PROJECT_DIR$/war_2.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -16,8 +19,8 @@
       <file leaf-file-name="war_1.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/war_1.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="4680">
-              <caret line="317" column="12" selection-start-line="317" selection-start-column="12" selection-end-line="317" selection-end-column="12" />
+            <state relative-caret-position="-429">
+              <caret line="73" column="30" lean-forward="true" selection-start-line="73" selection-start-column="30" selection-end-line="73" selection-end-column="30" />
             </state>
           </provider>
         </entry>
@@ -25,11 +28,12 @@
       <file leaf-file-name="run_this.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/run_this.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="282">
-              <caret line="42" column="51" selection-start-line="42" selection-start-column="51" selection-end-line="42" selection-end-column="51" />
+            <state relative-caret-position="435">
+              <caret line="175" column="37" selection-start-line="175" selection-start-column="37" selection-end-line="175" selection-end-column="37" />
               <folding>
-                <element signature="e#0#19#0" expanded="true" />
-                <element signature="e#2019#3138#0" />
+                <element signature="e#22#41#0" expanded="true" />
+                <element signature="e#267#804#0" />
+                <element signature="e#871#2018#0" />
               </folding>
             </state>
           </provider>
@@ -38,11 +42,12 @@
       <file leaf-file-name="red_brain.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/red_brain.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="30">
-              <caret line="205" column="18" selection-start-line="205" selection-start-column="13" selection-end-line="205" selection-end-column="18" />
+            <state relative-caret-position="101">
+              <caret line="33" column="51" selection-start-line="33" selection-start-column="51" selection-end-line="33" selection-end-column="51" />
               <folding>
                 <element signature="e#0#13#0" expanded="true" />
                 <element signature="e#994#2156#0" />
+                <element signature="e#2193#2700#0" />
               </folding>
             </state>
           </provider>
@@ -51,20 +56,12 @@
       <file leaf-file-name="blue_brain.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/blue_brain.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="210">
-              <caret line="14" column="42" selection-start-line="14" selection-start-column="42" selection-end-line="14" selection-end-column="42" />
+            <state relative-caret-position="209">
+              <caret line="79" column="35" lean-forward="true" selection-start-line="79" selection-start-column="35" selection-end-line="79" selection-end-column="35" />
               <folding>
                 <element signature="e#0#13#0" expanded="true" />
-                <element signature="e#284#3307#0" />
               </folding>
             </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="war_2.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/war_2.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-3799" />
           </provider>
         </entry>
       </file>
@@ -85,6 +82,7 @@
       <find>batch</find>
       <find>nn</find>
       <find>print</find>
+      <find>2</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -95,17 +93,17 @@
       <list>
         <option value="$PROJECT_DIR$/A*algorithm.py" />
         <option value="$PROJECT_DIR$/brain_algorithm.py" />
-        <option value="$PROJECT_DIR$/war_2.py" />
-        <option value="$PROJECT_DIR$/red_brain.py" />
         <option value="$PROJECT_DIR$/blue_brain.py" />
         <option value="$PROJECT_DIR$/war_1.py" />
+        <option value="$PROJECT_DIR$/war_2.py" />
+        <option value="$PROJECT_DIR$/red_brain.py" />
         <option value="$PROJECT_DIR$/run_this.py" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="145" />
-    <option name="y" value="54" />
+    <option name="x" value="334" />
+    <option name="y" value="71" />
     <option name="width" value="1224" />
     <option name="height" value="766" />
   </component>
@@ -211,13 +209,13 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="145" y="54" width="1224" height="766" extended-state="0" />
+    <frame x="334" y="71" width="1224" height="766" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.22222222" />
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="bottom" id="Event Log" order="7" side_tool="true" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.36127168" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.36416185" />
       <window_info anchor="bottom" id="Version Control" order="7" />
       <window_info anchor="bottom" id="Python Console" order="7" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
@@ -244,6 +242,7 @@
           <folding>
             <element signature="e#0#13#0" expanded="true" />
             <element signature="e#994#2156#0" />
+            <element signature="e#2193#2700#0" />
           </folding>
         </state>
       </provider>
@@ -254,7 +253,6 @@
           <caret line="23" column="22" lean-forward="true" selection-start-line="23" selection-start-column="22" selection-end-line="23" selection-end-column="22" />
           <folding>
             <element signature="e#0#13#0" expanded="true" />
-            <element signature="e#284#3307#0" />
           </folding>
         </state>
       </provider>
@@ -266,6 +264,7 @@
           <folding>
             <element signature="e#0#13#0" expanded="true" />
             <element signature="e#994#2156#0" />
+            <element signature="e#2193#2700#0" />
           </folding>
         </state>
       </provider>
@@ -275,8 +274,9 @@
         <state relative-caret-position="45">
           <caret line="3" column="32" lean-forward="true" selection-start-line="3" selection-start-column="32" selection-end-line="3" selection-end-column="32" />
           <folding>
-            <element signature="e#0#19#0" expanded="true" />
-            <element signature="e#2019#3138#0" />
+            <element signature="e#22#41#0" expanded="true" />
+            <element signature="e#267#804#0" />
+            <element signature="e#871#2018#0" />
           </folding>
         </state>
       </provider>
@@ -295,6 +295,7 @@
           <folding>
             <element signature="e#0#13#0" expanded="true" />
             <element signature="e#994#2156#0" />
+            <element signature="e#2193#2700#0" />
           </folding>
         </state>
       </provider>
@@ -304,8 +305,9 @@
         <state relative-caret-position="90">
           <caret line="9" column="8" selection-start-line="9" selection-start-column="8" selection-end-line="9" selection-end-column="8" />
           <folding>
-            <element signature="e#0#19#0" expanded="true" />
-            <element signature="e#2019#3138#0" />
+            <element signature="e#22#41#0" expanded="true" />
+            <element signature="e#267#804#0" />
+            <element signature="e#871#2018#0" />
           </folding>
         </state>
       </provider>
@@ -322,8 +324,9 @@
         <state relative-caret-position="165">
           <caret line="14" column="59" lean-forward="true" selection-start-line="14" selection-start-column="59" selection-end-line="14" selection-end-column="59" />
           <folding>
-            <element signature="e#0#19#0" expanded="true" />
-            <element signature="e#2019#3138#0" />
+            <element signature="e#22#41#0" expanded="true" />
+            <element signature="e#267#804#0" />
+            <element signature="e#871#2018#0" />
           </folding>
         </state>
       </provider>
@@ -335,6 +338,7 @@
           <folding>
             <element signature="e#0#13#0" expanded="true" />
             <element signature="e#994#2156#0" />
+            <element signature="e#2193#2700#0" />
           </folding>
         </state>
       </provider>
@@ -353,6 +357,7 @@
           <folding>
             <element signature="e#0#13#0" expanded="true" />
             <element signature="e#994#2156#0" />
+            <element signature="e#2193#2700#0" />
           </folding>
         </state>
       </provider>
@@ -362,8 +367,9 @@
         <state relative-caret-position="315">
           <caret line="23" column="39" selection-start-line="23" selection-start-column="39" selection-end-line="23" selection-end-column="39" />
           <folding>
-            <element signature="e#0#19#0" expanded="true" />
-            <element signature="e#2019#3138#0" />
+            <element signature="e#22#41#0" expanded="true" />
+            <element signature="e#267#804#0" />
+            <element signature="e#871#2018#0" />
           </folding>
         </state>
       </provider>
@@ -382,6 +388,7 @@
           <folding>
             <element signature="e#0#13#0" expanded="true" />
             <element signature="e#994#2156#0" />
+            <element signature="e#2193#2700#0" />
           </folding>
         </state>
       </provider>
@@ -391,8 +398,9 @@
         <state relative-caret-position="75">
           <caret line="5" column="35" selection-start-line="5" selection-start-column="35" selection-end-line="5" selection-end-column="35" />
           <folding>
-            <element signature="e#0#19#0" expanded="true" />
-            <element signature="e#2019#3138#0" />
+            <element signature="e#22#41#0" expanded="true" />
+            <element signature="e#267#804#0" />
+            <element signature="e#871#2018#0" />
           </folding>
         </state>
       </provider>
@@ -409,8 +417,9 @@
         <state relative-caret-position="240">
           <caret line="18" column="50" selection-start-line="18" selection-start-column="50" selection-end-line="18" selection-end-column="50" />
           <folding>
-            <element signature="e#0#19#0" expanded="true" />
-            <element signature="e#2019#3138#0" />
+            <element signature="e#22#41#0" expanded="true" />
+            <element signature="e#267#804#0" />
+            <element signature="e#871#2018#0" />
           </folding>
         </state>
       </provider>
@@ -427,8 +436,9 @@
         <state relative-caret-position="437">
           <caret line="19" column="14" selection-start-line="19" selection-start-column="14" selection-end-line="19" selection-end-column="14" />
           <folding>
-            <element signature="e#0#19#0" expanded="true" />
-            <element signature="e#2019#3138#0" />
+            <element signature="e#22#41#0" expanded="true" />
+            <element signature="e#267#804#0" />
+            <element signature="e#871#2018#0" />
           </folding>
         </state>
       </provider>
@@ -452,8 +462,9 @@
         <state relative-caret-position="555">
           <caret line="39" column="58" lean-forward="true" selection-start-line="39" selection-start-column="58" selection-end-line="39" selection-end-column="58" />
           <folding>
-            <element signature="e#0#19#0" expanded="true" />
-            <element signature="e#2019#3138#0" />
+            <element signature="e#22#41#0" expanded="true" />
+            <element signature="e#267#804#0" />
+            <element signature="e#871#2018#0" />
           </folding>
         </state>
       </provider>
@@ -477,8 +488,9 @@
         <state relative-caret-position="180">
           <caret line="12" column="21" selection-start-line="12" selection-start-column="21" selection-end-line="12" selection-end-column="21" />
           <folding>
-            <element signature="e#0#19#0" expanded="true" />
-            <element signature="e#2019#3138#0" />
+            <element signature="e#22#41#0" expanded="true" />
+            <element signature="e#267#804#0" />
+            <element signature="e#871#2018#0" />
           </folding>
         </state>
       </provider>
@@ -495,8 +507,9 @@
         <state relative-caret-position="180">
           <caret line="12" column="21" lean-forward="true" selection-start-line="12" selection-start-column="21" selection-end-line="12" selection-end-column="21" />
           <folding>
-            <element signature="e#0#19#0" expanded="true" />
-            <element signature="e#2019#3138#0" />
+            <element signature="e#22#41#0" expanded="true" />
+            <element signature="e#267#804#0" />
+            <element signature="e#871#2018#0" />
           </folding>
         </state>
       </provider>
@@ -527,8 +540,9 @@
         <state relative-caret-position="450">
           <caret line="31" column="26" selection-start-line="31" selection-start-column="26" selection-end-line="31" selection-end-column="26" />
           <folding>
-            <element signature="e#0#19#0" expanded="true" />
-            <element signature="e#2019#3138#0" />
+            <element signature="e#22#41#0" expanded="true" />
+            <element signature="e#267#804#0" />
+            <element signature="e#871#2018#0" />
           </folding>
         </state>
       </provider>
@@ -545,8 +559,9 @@
         <state relative-caret-position="675">
           <caret line="47" column="35" selection-start-line="47" selection-start-column="35" selection-end-line="47" selection-end-column="35" />
           <folding>
-            <element signature="e#0#19#0" expanded="true" />
-            <element signature="e#2019#3138#0" />
+            <element signature="e#22#41#0" expanded="true" />
+            <element signature="e#267#804#0" />
+            <element signature="e#871#2018#0" />
           </folding>
         </state>
       </provider>
@@ -563,8 +578,9 @@
         <state relative-caret-position="120">
           <caret line="9" column="55" selection-start-line="9" selection-start-column="55" selection-end-line="9" selection-end-column="55" />
           <folding>
-            <element signature="e#0#19#0" expanded="true" />
-            <element signature="e#2019#3138#0" />
+            <element signature="e#22#41#0" expanded="true" />
+            <element signature="e#267#804#0" />
+            <element signature="e#871#2018#0" />
           </folding>
         </state>
       </provider>
@@ -581,8 +597,9 @@
         <state relative-caret-position="165">
           <caret line="12" column="8" selection-start-line="12" selection-start-column="8" selection-end-line="12" selection-end-column="8" />
           <folding>
-            <element signature="e#0#19#0" expanded="true" />
-            <element signature="e#2019#3138#0" />
+            <element signature="e#22#41#0" expanded="true" />
+            <element signature="e#267#804#0" />
+            <element signature="e#871#2018#0" />
           </folding>
         </state>
       </provider>
@@ -599,8 +616,9 @@
         <state relative-caret-position="180">
           <caret line="12" column="8" selection-start-line="12" selection-start-column="8" selection-end-line="12" selection-end-column="8" />
           <folding>
-            <element signature="e#0#19#0" expanded="true" />
-            <element signature="e#2019#3138#0" />
+            <element signature="e#22#41#0" expanded="true" />
+            <element signature="e#267#804#0" />
+            <element signature="e#871#2018#0" />
           </folding>
         </state>
       </provider>
@@ -617,8 +635,9 @@
         <state relative-caret-position="75">
           <caret line="6" column="21" lean-forward="true" selection-start-line="6" selection-start-column="21" selection-end-line="6" selection-end-column="21" />
           <folding>
-            <element signature="e#0#19#0" expanded="true" />
-            <element signature="e#2019#3138#0" />
+            <element signature="e#22#41#0" expanded="true" />
+            <element signature="e#267#804#0" />
+            <element signature="e#871#2018#0" />
           </folding>
         </state>
       </provider>
@@ -635,8 +654,9 @@
         <state relative-caret-position="45">
           <caret line="4" column="33" selection-start-line="4" selection-start-column="33" selection-end-line="4" selection-end-column="33" />
           <folding>
-            <element signature="e#0#19#0" expanded="true" />
-            <element signature="e#2019#3138#0" />
+            <element signature="e#22#41#0" expanded="true" />
+            <element signature="e#267#804#0" />
+            <element signature="e#871#2018#0" />
           </folding>
         </state>
       </provider>
@@ -645,45 +665,48 @@
     <entry file="file://$PROJECT_DIR$/brain_algorithm.py" />
     <entry file="file://$PROJECT_DIR$/war_1.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="4680">
-          <caret line="317" column="12" selection-start-line="317" selection-start-column="12" selection-end-line="317" selection-end-column="12" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/blue_brain.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="210">
-          <caret line="14" column="42" selection-start-line="14" selection-start-column="42" selection-end-line="14" selection-end-column="42" />
-          <folding>
-            <element signature="e#0#13#0" expanded="true" />
-            <element signature="e#284#3307#0" />
-          </folding>
+        <state relative-caret-position="-429">
+          <caret line="73" column="30" lean-forward="true" selection-start-line="73" selection-start-column="30" selection-end-line="73" selection-end-column="30" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/war_2.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-3799" />
+        <state relative-caret-position="246">
+          <caret line="380" column="20" lean-forward="true" selection-start-line="380" selection-start-column="20" selection-end-line="380" selection-end-column="20" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/blue_brain.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="209">
+          <caret line="79" column="35" lean-forward="true" selection-start-line="79" selection-start-column="35" selection-end-line="79" selection-end-column="35" />
+          <folding>
+            <element signature="e#0#13#0" expanded="true" />
+          </folding>
+        </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/red_brain.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="30">
-          <caret line="205" column="18" selection-start-line="205" selection-start-column="13" selection-end-line="205" selection-end-column="18" />
+        <state relative-caret-position="101">
+          <caret line="33" column="51" selection-start-line="33" selection-start-column="51" selection-end-line="33" selection-end-column="51" />
           <folding>
             <element signature="e#0#13#0" expanded="true" />
             <element signature="e#994#2156#0" />
+            <element signature="e#2193#2700#0" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/run_this.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="282">
-          <caret line="42" column="51" selection-start-line="42" selection-start-column="51" selection-end-line="42" selection-end-column="51" />
+        <state relative-caret-position="435">
+          <caret line="175" column="37" selection-start-line="175" selection-start-column="37" selection-end-line="175" selection-end-column="37" />
           <folding>
-            <element signature="e#0#19#0" expanded="true" />
-            <element signature="e#2019#3138#0" />
+            <element signature="e#22#41#0" expanded="true" />
+            <element signature="e#267#804#0" />
+            <element signature="e#871#2018#0" />
           </folding>
         </state>
       </provider>

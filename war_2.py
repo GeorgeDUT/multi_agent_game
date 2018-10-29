@@ -73,6 +73,8 @@ class WarMap2(tk.Tk, object):
         self.blue_army = []
         self.red_army_draw=[]
         self.blue_army_draw=[]
+        self.last_dis = 99999
+        self.this_dis = 99999
 
         self._init_map()
 
@@ -101,6 +103,20 @@ class WarMap2(tk.Tk, object):
             self.blue_army.append(a)
             x,y=self.blue_army[i].x,self.blue_army[i].y
             self.env_map[y][x] = 2
+
+        # compute distance of each other
+        self.last_dis=0
+        for i in range(self.red_num):
+            if self.red_army[i].life=='live':
+                for j in range(self.blue_num):
+                    if self.blue_army[j].life=='live':
+                        self.last_dis=self.last_dis+abs(self.red_army[i].x-self.blue_army[i].x)\
+                                      +abs(self.red_army[i].y-self.blue_army[i].y)
+                    else:
+                        pass
+            else:
+                pass
+        self.this_dis=self.last_dis
 
     def _display_window(self):
         self.map = tk.Canvas(self,bg='white',height=self.map_h*UNIT_PIX,width=self.map_w*UNIT_PIX)
@@ -263,6 +279,7 @@ class WarMap2(tk.Tk, object):
                     elif self.env_map[neighbor2[s][1]][neighbor2[s][0]]==1:
                         # self.blue_army[i].win_p = self.blue_army[i].win_p-0.25
                         blue_enemy=blue_enemy+1
+            '''
             if blue_enemy==4:
                 self.blue_army[i].win_p=0
             elif blue_enemy==3:
@@ -279,6 +296,9 @@ class WarMap2(tk.Tk, object):
                     self.blue_army[i].win_p=0
                 elif self.blue_army[i].x==self.map_w-1 and self.blue_army[i].y==0:
                     self.blue_army[i].win_p=0
+            '''
+            if blue_enemy>0:
+                self.blue_army[i].win_p=0
 
     def fight_result(self):
         red_killed,blue_killed=0,0
@@ -337,7 +357,6 @@ class WarMap2(tk.Tk, object):
 
         return info
 
-
     def step(self):
         time.sleep(0)
         self.fight()
@@ -346,6 +365,20 @@ class WarMap2(tk.Tk, object):
         self.flash_draw()
         if self.draw_pic:
             self.update()
+
+        # distance
+        self.last_dis = self.this_dis
+        self.this_dis=0
+        for i in range(self.red_num):
+            if self.red_army[i].life == 'live':
+                for j in range(self.blue_num):
+                    if self.blue_army[j].life == 'live':
+                        self.this_dis = self.last_dis + abs(self.red_army[i].x - self.blue_army[i].x) \
+                                        + abs(self.red_army[i].y - self.blue_army[i].y)
+                    else:
+                        pass
+            else:
+                pass
 
         # reward function
         if red_lived==0 or blue_lived==0:
@@ -361,6 +394,6 @@ class WarMap2(tk.Tk, object):
             time.sleep(0)
         else:
             # reward_red, reward_blue=blue_killed,red_killed
-            reward_red, reward_blue=0,0
+            reward_red, reward_blue=self.last_dis-self.this_dis,self.last_dis-self.this_dis
             done = False
         return reward_red,reward_blue,done
