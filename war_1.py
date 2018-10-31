@@ -23,6 +23,7 @@ red and blue fight each other, red can be killed,
 from __future__ import division
 import time
 import numpy as np
+import math
 import sys
 import random
 import numpy as np
@@ -41,6 +42,8 @@ R_ARMY_NUM = 5
 B_ARMY_NUM = 5
 
 print('this is war_1: fight')
+
+
 class Army(object):
     def __init__(self,x=0,y=0,id=0,team=0,life='live'):
         self.x=x
@@ -57,6 +60,7 @@ class OutInfo(object):
         self.red_num=red_num
         self.blue_num=blue_num
         self.army_loc=np.zeros((red_num+blue_num)*4)
+        self.feature_stat=np.zeros(int(math.pow(2,blue_num)))
 
 
 class WarMap(tk.Tk, object):
@@ -312,7 +316,12 @@ class WarMap(tk.Tk, object):
                 x, y, id, team = self.blue_army[i].x,self.blue_army[i].y,i,2
                 info.army_loc[(i+self.red_num)*4+0], info.army_loc[(i+self.red_num)*4+1], \
                 info.army_loc[(i+self.red_num)*4+2], info.army_loc[(i+self.red_num)*4+3]=x,y,id,team
-
+        '''change state info'''
+        for i in range(self.blue_num):
+            if self.blue_army[i].life=='live':
+                info.feature_stat[i]=1
+            else:
+                info.feature_stat[i]=0
         return info
 
     def step(self):

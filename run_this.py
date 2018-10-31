@@ -104,7 +104,7 @@ def train_high_brain(my_map,episode,red_win,blue_win,r_red):
             pass
         obs_red = my_map.get_state()
         while 1:
-            action_red_num = RL_red.choose_action(obs_red.army_loc)
+            action_red_num = RL_red.choose_action(obs_red.feature_stat)
             if my_map.blue_army[action_red_num].life=='live':
                 break
         '''red action'''
@@ -113,6 +113,7 @@ def train_high_brain(my_map,episode,red_win,blue_win,r_red):
             t_x_red,t_y_red=my_map.blue_army[action_red_num].x,my_map.blue_army[action_red_num].y
             a=goto_target(my_map.red_army[i].x,my_map.red_army[i].y,t_x_red,t_y_red,obs_red.env_map)
             action_red.append(a)
+        # print(action_red)
         '''red action'''
 
         '''blue action'''
@@ -126,7 +127,7 @@ def train_high_brain(my_map,episode,red_win,blue_win,r_red):
         else:
             action_blue = []
             for i in range(my_map.blue_num):
-                b = np.random.choice(['u', 'u', 'u', 'u', 'u'])
+                b = np.random.choice(['d', 'd', 'd', 'd', 'd'])
                 # t_x_blue,t_y_blue=find_target_blue(s.env_map)
                 # b=goto_target_blue(my_map.blue_army[i].x,my_map.blue_army[i].y,t_x_blue,t_y_blue,obs_red.env_map)
                 action_blue.append(b)
@@ -134,7 +135,7 @@ def train_high_brain(my_map,episode,red_win,blue_win,r_red):
         my_map.move(action_red, action_blue)
         red, blue, done = my_map.step()
         obs_red_ = my_map.get_state()
-        RL_red.store_transition(obs_red.army_loc, action_red_num, red, obs_red_.army_loc)
+        RL_red.store_transition(obs_red.feature_stat, action_red_num, red, obs_red_.feature_stat)
         r_red[0] = r_red[0] + red
         if (episode > 5) and (step % 5 == 0):
             RL_red.learn()
@@ -144,7 +145,7 @@ def train_high_brain(my_map,episode,red_win,blue_win,r_red):
         if done:
             if red != 0:
                 red_win[0] = red_win[0] + 1
-                print('red win:', red_win[0] * 1.0 / (episode + 1), 'step', step)
+                print('red win:', red_win[0] * 1.0 / (episode + 1), 'step', step,'reward',r_red[0])
             break
 
 
@@ -173,10 +174,12 @@ def update():
 
 
 if __name__ == "__main__":
-    my_map = WarMap(10,10,6,6,True)
+    my_map = WarMap(10,10,6,6,False)
     # action_space=math.pow(5,my_map.red_num)
+    # state_space=(my_map.red_num+my_map.blue_num)*4
     action_space=my_map.blue_num
-    RL_red=DQN(action_space,(my_map.red_num+my_map.blue_num)*4,learning_rate=0.01,reward_decay=0.9,e_greedy=0.9,replace_target_iter=200,memory_size=2000,)
+    state_space=int(math.pow(2,my_map.blue_num))
+    RL_red=DQN(action_space,state_space,learning_rate=0.01,reward_decay=0.9,e_greedy=0.9,replace_target_iter=200,memory_size=2000,)
     if my_map.draw_pic:
         my_map.after(10,update)
         my_map.mainloop()
