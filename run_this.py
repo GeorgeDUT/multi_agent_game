@@ -1,5 +1,5 @@
-# from war_2 import *
-from war_1 import *
+from war_2 import *
+# from war_1 import *
 from red_brain import *
 from blue_brain import *
 from compiler.ast import flatten
@@ -99,8 +99,8 @@ def train_naive_brain(my_map,episode,red_win,blue_win):
 def train_high_brain(my_map,episode,red_win,blue_win,r_red):
     r_red[0] = 0
     for step in range(99999):
-        if episode > 200:
-            # time.sleep(0.1)
+        if episode > 1:
+            time.sleep(0.3)
             pass
         obs_red = my_map.get_state()
         while 1:
@@ -120,14 +120,14 @@ def train_high_brain(my_map,episode,red_win,blue_win,r_red):
         if 0<=step%80<=40:
             action_blue = []
             for i in range(my_map.blue_num):
-                b = np.random.choice(['d', 'd', 'd', 'd', 'd'])
+                b = np.random.choice(['u', 'd', 'l', 'r', 's'])
                 # t_x_blue,t_y_blue=find_target_blue(s.env_map)
                 # b=goto_target_blue(my_map.blue_army[i].x,my_map.blue_army[i].y,t_x_blue,t_y_blue,obs_red.env_map)
                 action_blue.append(b)
         else:
             action_blue = []
             for i in range(my_map.blue_num):
-                b = np.random.choice(['d', 'd', 'd', 'd', 'd'])
+                b = np.random.choice(['u', 'd', 'l', 'r', 's'])
                 # t_x_blue,t_y_blue=find_target_blue(s.env_map)
                 # b=goto_target_blue(my_map.blue_army[i].x,my_map.blue_army[i].y,t_x_blue,t_y_blue,obs_red.env_map)
                 action_blue.append(b)
@@ -174,7 +174,7 @@ def update():
 
 
 if __name__ == "__main__":
-    my_map = WarMap(10,10,6,6,False)
+    my_map = WarMap2(10,10,5,5,True)
     # action_space=math.pow(5,my_map.red_num)
     # state_space=(my_map.red_num+my_map.blue_num)*4
     action_space=my_map.blue_num

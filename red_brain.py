@@ -38,7 +38,7 @@ def goto_target(x,y,t_x,t_y,env_map):
         dis_map = np.zeros(shape=(len(env_map), len(env_map[0])))
         for i in range(len(dis_map)):
             for j in range(len(dis_map[0])):
-                dis_map[i][j] = 99999
+                dis_map[i][j] = 9999
         dir = [[1, 0], [-1, 0], [0, 1], [0, -1]]
         dis_map[t_y][t_x] = 0
         que = []
@@ -51,26 +51,28 @@ def goto_target(x,y,t_x,t_y,env_map):
             for i in range(4):
                 n_x = front[0] + dir[i][0]
                 n_y = front[1] + dir[i][1]
-                if 0 <= n_x < len(env_map[0]) and 0 <= n_y < len(env_map) and dis_map[n_y][n_x] == 99999 and \
+                if 0 <= n_x < len(env_map[0]) and 0 <= n_y < len(env_map) and dis_map[n_y][n_x] == 9999 and \
                         env_map[n_y][n_x] == 0:
                     dis_map[n_y][n_x] = dis_map[front[1]][front[0]] + 1
                     que.append([n_x, n_y])
         '''find short path end'''
-        if dis_map[y][x] != 99999:
+        if dis_map[y][x] == 9999:
+            short_dir=[]
             for i in range(4):
                 to_x = x + dir[i][0]
                 to_y = y + dir[i][1]
-                if 0 <= to_x < len(env_map[0]) and 0 <= to_y < len(env_map) and dis_map[to_y][to_x] < dis_map[y][x]:
-                    if i == 0:
-                        action = 'r'
-                    elif i == 1:
-                        action = 'l'
-                    elif i == 2:
-                        action = 'd'
-                    elif i == 3:
-                        action = 'u'
+                if 0 <= to_x < len(env_map[0]) and 0 <= to_y < len(env_map):
+                    short_dir.append(dis_map[to_y][to_x])
                 else:
-                    action='s'
+                    short_dir.append(9999)
+            if short_dir.index(min(short_dir))==0:
+                action='r'
+            elif short_dir.index(min(short_dir))==1:
+                action='l'
+            elif short_dir.index(min(short_dir))==2:
+                action='d'
+            elif short_dir.index(min(short_dir))==3:
+                action='u'
         else:
             if x > t_x and y >= t_y:
                 if random.random() > 0.8:
