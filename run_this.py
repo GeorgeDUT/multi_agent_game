@@ -173,7 +173,7 @@ def update():
 
 
 if __name__ == "__main__":
-    my_map = WarMap(20,20,15,15,False)
+    my_map = WarMap(10,10,6,6,True)
     # action_space=math.pow(5,my_map.red_num)
     action_space=my_map.blue_num
     RL_red=DQN(action_space,(my_map.red_num+my_map.blue_num)*4,learning_rate=0.01,reward_decay=0.9,e_greedy=0.9,replace_target_iter=200,memory_size=2000,)
