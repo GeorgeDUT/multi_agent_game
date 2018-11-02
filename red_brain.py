@@ -31,7 +31,7 @@ def goto_target(x,y,t_x,t_y,env_map):
     for i in range(len(other_dis)):
         averge = averge + other_dis[i] * 1.0 / len(other_dis)
 
-    if (abs(t_x - x) + abs(t_y - y)) < averge * 0.4:
+    if (abs(t_x - x) + abs(t_y - y))< averge*0.9:
         action = 's'
     else:
         '''find short path start bfs'''
@@ -56,7 +56,7 @@ def goto_target(x,y,t_x,t_y,env_map):
                     dis_map[n_y][n_x] = dis_map[front[1]][front[0]] + 1
                     que.append([n_x, n_y])
         '''find short path end'''
-        if dis_map[y][x] == 9999:
+        if dis_map[y][x] == 29999:
             short_dir=[]
             for i in range(4):
                 to_x = x + dir[i][0]
