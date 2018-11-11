@@ -95,7 +95,6 @@ def train_naive_brain(my_map,episode,red_win,blue_win):
                 # b=goto_target_blue(my_map.blue_army[i].x,my_map.blue_army[i].y,t_x_blue,t_y_blue,obs_red.env_map)
                 blue_action.append(b)
         '''blue action'''
-
         my_map.move(red_action,blue_action)
         red, blue, done = my_map.step()
         if done:
@@ -189,11 +188,11 @@ def update():
 
 
 if __name__ == "__main__":
-    my_map = WarMap(20,20,15,15,True)
-    # action_space=math.pow(5,my_map.red_num)
-    # state_space=(my_map.red_num+my_map.blue_num)*4
-    action_space=my_map.blue_num
-    state_space=int(math.pow(2,my_map.blue_num))
+    my_map = WarMap(30,25,20,20,True)
+    action_space=math.pow(5,my_map.red_num)
+    state_space=(my_map.red_num+my_map.blue_num)*4
+    # action_space=my_map.blue_num
+    # state_space=int(math.pow(2,my_map.blue_num))
     # RL_red=DQN(action_space,state_space,learning_rate=0.01,reward_decay=0.9,e_greedy=0.9,replace_target_iter=200,memory_size=2000,)
     if my_map.draw_pic:
         my_map.after(10,update)

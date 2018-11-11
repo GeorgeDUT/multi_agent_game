@@ -302,7 +302,9 @@ class WarMap(tk.Tk, object):
 
     def get_state(self):
         info=OutInfo(self.map_h,self.map_w,self.red_num,self.blue_num)
-        info.env_map=self.env_map
+        for i in range(self.map_h):
+            for j in range(self.map_w):
+                info.env_map[i][j]=self.env_map[i][j]
         for i in range(info.red_num):
             if self.red_army[i].life!='live':
                 x,y,id,team=-1,-1,1,1
