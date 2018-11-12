@@ -228,6 +228,7 @@ class WarMap2(tk.Tk, object):
     def fight(self):
         # compute red win probability
         for i in range(self.red_num):
+            red_enemy=0
             self.red_army[i].win_p=2
             if self.red_army[i].life!='live':
                 pass
@@ -252,7 +253,25 @@ class WarMap2(tk.Tk, object):
                         pass
                     elif self.env_map[neighbor[s][1]][neighbor[s][0]]==2:
                         # self.red_army[i].win_p = self.red_army[i].win_p - 0.25
+                        red_enemy=red_enemy+1
                         pass
+
+            if red_enemy==4:
+                self.red_army[i].win_p=0
+            elif red_enemy == 3:
+                if self.red_army[i].x * self.red_army[i].y == 0:
+                    self.red_army[i].win_p = 0
+                elif self.red_army[i].x == self.map_w - 1 or self.red_army[i].y == self.map_h - 1:
+                    self.red_army[i].win_p = 0
+            elif red_enemy == 2:
+                if self.red_army[i].x == 0 and self.red_army[i].y == 0:
+                    self.red_army[i].win_p = 0
+                elif self.red_army[i].x == self.map_w - 1 and self.red_army[i].y == self.map_h - 1:
+                    self.red_army[i].win_p = 0
+                elif self.red_army[i].x == 0 and self.red_army[i].y == self.map_h - 1:
+                    self.red_army[i].win_p = 0
+                elif self.red_army[i].x == self.map_w - 1 and self.red_army[i].y == 0:
+                    self.red_army[i].win_p = 0
         # compute blue win probability
         for i in range(self.blue_num):
             blue_enemy=0
