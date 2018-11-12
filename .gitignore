@@ -16,3 +16,5 @@ __pycache__/red_brain.cpython-36.pyc
 *.xml
 *.pyc
 *.xml
+*.xml
+*.iml

@@ -1,8 +1,13 @@
 from war_1 import *
+import pandas as pd
 
 
 def q_function(s,x,y):
-    action=np.random.choice(['u','d','l','r','s'])
+    action_space=['u','d','l','r','s']
+    action=np.random.choice(action_space)
+    action_value=[]
+    for i in range(len(action_space)):
+        action_value.append(1)
     return action
 
 
