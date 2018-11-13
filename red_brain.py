@@ -63,7 +63,7 @@ def goto_target(x,y,t_x,t_y,env_map):
                     que.append([n_x, n_y])
         '''find short path end'''
         #if dis_map[y][x] == 9999:
-        if flag==1:
+        if flag==0:
             short_dir=[]
             for i in range(4):
                 to_x = x + dir[i][0]

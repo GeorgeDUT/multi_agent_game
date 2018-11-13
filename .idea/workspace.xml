@@ -2,8 +2,14 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="2ee6dbba-829c-4f7b-abec-c0e391a25dd0" name="Default" comment="">
-      <change afterPath="$PROJECT_DIR$/run_2.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/multi_agent_game.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/multi_agent_game.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/blue_brain.py" beforeDir="false" afterPath="$PROJECT_DIR$/blue_brain.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/red_brain.py" beforeDir="false" afterPath="$PROJECT_DIR$/red_brain.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/run_2.py" beforeDir="false" afterPath="$PROJECT_DIR$/run_2.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/run_this.py" beforeDir="false" afterPath="$PROJECT_DIR$/run_this.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/war_1.py" beforeDir="false" afterPath="$PROJECT_DIR$/war_1.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -13,26 +19,27 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="FileEditorManager">
-    <splitter split-orientation="horizontal" split-proportion="0.65452653">
+    <splitter split-orientation="horizontal" split-proportion="0.5">
       <split-first>
         <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-          <file leaf-file-name="run_this.py" pinned="false" current-in-tab="false">
+          <file leaf-file-name="run_this.py" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/run_this.py">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="230">
-                  <caret line="37" column="34" lean-forward="true" selection-start-line="37" selection-start-column="34" selection-end-line="37" selection-end-column="34" />
+                <state relative-caret-position="167">
+                  <caret line="186" column="27" selection-start-line="186" selection-start-column="27" selection-end-line="186" selection-end-column="27" />
+                  <folding>
+                    <element signature="e#869#2033#0" />
+                    <element signature="e#3803#5864#0" />
+                  </folding>
                 </state>
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="run_2.py" pinned="false" current-in-tab="true">
+          <file leaf-file-name="run_2.py" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/run_2.py">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="207">
-                  <caret line="9" column="30" selection-start-line="9" selection-start-column="30" selection-end-line="9" selection-end-column="30" />
-                  <folding>
-                    <element signature="e#0#19#0" expanded="true" />
-                  </folding>
+                <state relative-caret-position="671">
+                  <caret line="74" column="29" selection-start-line="74" selection-start-column="29" selection-end-line="74" selection-end-column="29" />
                 </state>
               </provider>
             </entry>
@@ -40,8 +47,8 @@
           <file leaf-file-name="red_brain.py" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/red_brain.py">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="930">
-                  <caret line="44" column="30" lean-forward="true" selection-start-line="44" selection-start-column="30" selection-end-line="44" selection-end-column="30" />
+                <state relative-caret-position="403">
+                  <caret line="66" column="24" lean-forward="true" selection-start-line="66" selection-start-column="24" selection-end-line="66" selection-end-column="24" />
                   <folding>
                     <element signature="e#0#13#0" expanded="true" />
                   </folding>
@@ -49,20 +56,11 @@
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="war_2.py" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/war_2.py">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="7084">
-                  <caret line="311" column="28" selection-start-line="311" selection-start-column="28" selection-end-line="311" selection-end-column="28" />
-                </state>
-              </provider>
-            </entry>
-          </file>
           <file leaf-file-name="blue_brain.py" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/blue_brain.py">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="532">
-                  <caret line="62" column="18" selection-start-line="62" selection-start-column="18" selection-end-line="62" selection-end-column="18" />
+                <state relative-caret-position="171">
+                  <caret line="15" column="16" lean-forward="true" selection-start-line="15" selection-start-column="16" selection-end-line="15" selection-end-column="16" />
                   <folding>
                     <element signature="e#0#13#0" expanded="true" />
                   </folding>
@@ -73,8 +71,8 @@
           <file leaf-file-name="war_1.py" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/war_1.py">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="768">
-                  <caret line="325" column="38" selection-start-line="325" selection-start-column="38" selection-end-line="325" selection-end-column="38" />
+                <state relative-caret-position="1083">
+                  <caret line="105" column="34" lean-forward="true" selection-start-line="105" selection-start-column="34" selection-end-line="105" selection-end-column="34" />
                 </state>
               </provider>
             </entry>
@@ -83,11 +81,14 @@
       </split-first>
       <split-second>
         <leaf>
-          <file leaf-file-name="war_1.py" pinned="false" current-in-tab="true">
-            <entry file="file://$PROJECT_DIR$/war_1.py">
+          <file leaf-file-name="blue_brain.py" pinned="false" current-in-tab="true">
+            <entry file="file://$PROJECT_DIR$/blue_brain.py">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="6440">
-                  <caret line="325" column="38" selection-start-line="325" selection-start-column="38" selection-end-line="325" selection-end-column="38" />
+                <state relative-caret-position="190">
+                  <caret line="10" column="27" lean-forward="true" selection-start-line="10" selection-start-column="27" selection-end-line="10" selection-end-column="27" />
+                  <folding>
+                    <element signature="e#0#13#0" expanded="true" />
+                  </folding>
                 </state>
               </provider>
             </entry>
@@ -113,6 +114,7 @@
       <find>2</find>
       <find>abs</find>
       <find>print</find>
+      <find>team</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -123,28 +125,27 @@
       <list>
         <option value="$PROJECT_DIR$/A*algorithm.py" />
         <option value="$PROJECT_DIR$/brain_algorithm.py" />
-        <option value="$PROJECT_DIR$/war_1.py" />
         <option value="$PROJECT_DIR$/war_2.py" />
-        <option value="$PROJECT_DIR$/blue_brain.py" />
-        <option value="$PROJECT_DIR$/run_this.py" />
-        <option value="$PROJECT_DIR$/red_brain.py" />
         <option value="$PROJECT_DIR$/test_algorithm.py" />
+        <option value="$PROJECT_DIR$/war_1.py" />
         <option value="$PROJECT_DIR$/run_2.py" />
+        <option value="$PROJECT_DIR$/red_brain.py" />
+        <option value="$PROJECT_DIR$/run_this.py" />
+        <option value="$PROJECT_DIR$/blue_brain.py" />
       </list>
     </option>
   </component>
-  <component name="ProjectFrameBounds">
-    <option name="x" value="240" />
-    <option name="y" value="10" />
-    <option name="width" value="1086" />
-    <option name="height" value="838" />
+  <component name="ProjectFrameBounds" extendedState="4">
+    <option name="x" value="166" />
+    <option name="y" value="24" />
+    <option name="width" value="1695" />
+    <option name="height" value="1056" />
   </component>
   <component name="ProjectView">
     <navigator proportions="" version="1">
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -156,6 +157,7 @@
           <select />
         </subPane>
       </pane>
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -175,7 +177,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Python.run_2">
+  <component name="RunManager" selected="Python.run_this">
     <configuration name="red_brain" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="multi_agent_game" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -252,8 +254,8 @@
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Python.run_2" />
         <item itemvalue="Python.run_this" />
+        <item itemvalue="Python.run_2" />
         <item itemvalue="Python tests.py.test in test_algorithm.py" />
         <item itemvalue="Python.red_brain" />
       </list>
@@ -278,25 +280,25 @@
     </history-entry>
   </component>
   <component name="ToolWindowManager">
-    <frame x="240" y="10" width="1086" height="838" extended-state="0" />
+    <frame x="166" y="24" width="1695" height="1056" extended-state="4" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.022429906" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.06725664" />
       <window_info anchor="bottom" id="TODO" order="6" />
-      <window_info anchor="bottom" id="Event Log" order="7" sideWeight="0.13644859" side_tool="true" visible="true" weight="0.14127424" />
+      <window_info anchor="right" id="R Packages" order="3" />
+      <window_info anchor="right" id="R Graphics" order="3" />
+      <window_info anchor="bottom" id="Event Log" order="7" sideWeight="0.13746312" side_tool="true" visible="true" weight="0.4335443" />
       <window_info anchor="bottom" id="Version Control" order="7" />
       <window_info anchor="bottom" id="Python Console" order="7" />
-      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.8635514" weight="0.14127424" />
+      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.86253685" weight="0.4335443" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info anchor="bottom" id="Terminal" order="7" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Debug" order="3" sideWeight="0.49973047" weight="0.39856556" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
-      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
-      <window_info anchor="right" id="R Graphics" order="3" />
-      <window_info anchor="right" id="R Packages" order="3" />
       <window_info anchor="bottom" id="Message" order="0" />
+      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Find" order="1" />
     </layout>
@@ -593,13 +595,6 @@
     <entry file="file://$PROJECT_DIR$/A*algorithm.py" />
     <entry file="file://$PROJECT_DIR$/brain_algorithm.py" />
     <entry file="file:///Library/Python/2.7/site-packages/tensorflow/python/client/session.py" />
-    <entry file="file://$PROJECT_DIR$/war_2.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="7084">
-          <caret line="311" column="28" selection-start-line="311" selection-start-column="28" selection-end-line="311" selection-end-column="28" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$APPLICATION_HOME_DIR$/helpers/pycharm/_jb_pytest_runner.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="76">
@@ -608,49 +603,57 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/test_algorithm.py" />
-    <entry file="file://$PROJECT_DIR$/run_this.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="230">
-          <caret line="37" column="34" lean-forward="true" selection-start-line="37" selection-start-column="34" selection-end-line="37" selection-end-column="34" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/.gitignore">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/blue_brain.py">
+    <entry file="file://$PROJECT_DIR$/war_2.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="532">
-          <caret line="62" column="18" selection-start-line="62" selection-start-column="18" selection-end-line="62" selection-end-column="18" />
-          <folding>
-            <element signature="e#0#13#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/red_brain.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="930">
-          <caret line="44" column="30" lean-forward="true" selection-start-line="44" selection-start-column="30" selection-end-line="44" selection-end-column="30" />
-          <folding>
-            <element signature="e#0#13#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/war_1.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="768">
-          <caret line="325" column="38" selection-start-line="325" selection-start-column="38" selection-end-line="325" selection-end-column="38" />
+        <state relative-caret-position="1861">
+          <caret line="311" column="28" selection-start-line="311" selection-start-column="28" selection-end-line="311" selection-end-column="28" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/run_2.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="207">
-          <caret line="9" column="30" selection-start-line="9" selection-start-column="30" selection-end-line="9" selection-end-column="30" />
+        <state relative-caret-position="671">
+          <caret line="74" column="29" selection-start-line="74" selection-start-column="29" selection-end-line="74" selection-end-column="29" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/war_1.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1083">
+          <caret line="105" column="34" lean-forward="true" selection-start-line="105" selection-start-column="34" selection-end-line="105" selection-end-column="34" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/red_brain.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="403">
+          <caret line="66" column="24" lean-forward="true" selection-start-line="66" selection-start-column="24" selection-end-line="66" selection-end-column="24" />
           <folding>
-            <element signature="e#0#19#0" expanded="true" />
+            <element signature="e#0#13#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/run_this.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="167">
+          <caret line="186" column="27" selection-start-line="186" selection-start-column="27" selection-end-line="186" selection-end-column="27" />
+          <folding>
+            <element signature="e#869#2033#0" />
+            <element signature="e#3803#5864#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/blue_brain.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="190">
+          <caret line="10" column="27" lean-forward="true" selection-start-line="10" selection-start-column="27" selection-end-line="10" selection-end-column="27" />
+          <folding>
+            <element signature="e#0#13#0" expanded="true" />
           </folding>
         </state>
       </provider>

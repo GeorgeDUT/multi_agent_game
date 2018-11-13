@@ -8,7 +8,7 @@ def find_target_blue(s):
         for j in range(len(s[0])):
             if s[i][j]==1:
                 x,y=j,i
-                break
+                return x, y
     return x,y
 
 
@@ -23,7 +23,7 @@ def goto_target_blue(x,y,t_x,t_y,env_map):
     for i in range(len(other_dis)):
         averge=averge+other_dis[i]*1.0/len(other_dis)
 
-    if (abs(t_x-x)+abs(t_y-y))<averge*0:
+    if (abs(t_x-x)+abs(t_y-y))<averge*0.9:
         action = 's'
     else:
         '''find short path start bfs'''

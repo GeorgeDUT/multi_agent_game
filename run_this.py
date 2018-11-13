@@ -67,12 +67,13 @@ def train_dqn_brain(my_map,episode,red_win,blue_win,r_red):
 def train_naive_brain(my_map,episode,red_win,blue_win):
     for step in range(1000):
         if episode>1:
-            time.sleep(0.01)
+            time.sleep(0.05)
         s=my_map.get_state()
         t_x,t_y=find_target(s.env_map)
         t_x_blue,t_y_blue=find_target_blue(s.env_map)
 
         red_action=[]
+        blue_action=[]
         for i in range(my_map.red_num):
             a=goto_target(my_map.red_army[i].x,my_map.red_army[i].y,t_x,t_y,s.env_map)
             # a=np.random.choice(['u','d','l','r','s'])
@@ -80,16 +81,13 @@ def train_naive_brain(my_map,episode,red_win,blue_win):
 
         '''blue action'''
         if 0 <= step % 80 <= 40:
-            blue_action = []
             for i in range(my_map.blue_num):
-                # b = np.random.choice(['u', 'u', 'u', 'u', 'u'])
+                # b = np.random.choice(['u', 'd', 'l', 'r', 's'])
                 b=goto_target_blue(my_map.blue_army[i].x,my_map.blue_army[i].y,t_x_blue,t_y_blue,s.env_map)
                 blue_action.append(b)
         else:
-            blue_action = []
             for i in range(my_map.blue_num):
-                # b = np.random.choice(['d', 'd', 'd', 'd', 'd'])
-                # t_x_blue,t_y_blue=find_target_blue(s.env_map)
+                # b = np.random.choice(['u', 'd', 'l', 'r', 's'])
                 b=goto_target_blue(my_map.blue_army[i].x,my_map.blue_army[i].y,t_x_blue,t_y_blue,s.env_map)
                 blue_action.append(b)
         '''blue action'''
@@ -186,7 +184,7 @@ def update():
 
 
 if __name__ == "__main__":
-    my_map = WarMap(30,30,28,25,True)
+    my_map = WarMap(30,30,15,25,True)
     action_space=math.pow(5,my_map.red_num)
     state_space=(my_map.red_num+my_map.blue_num)*4
     # action_space=my_map.blue_num
