@@ -9,6 +9,7 @@ def find_target_blue(s):
             if s[i][j]==1:
                 x,y=j,i
                 return x, y
+                # break
     return x,y
 
 

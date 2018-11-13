@@ -185,7 +185,7 @@ def update():
 
 
 if __name__ == "__main__":
-    my_map = WarMap(30,30,15,25,True)
+    my_map = WarMap(30,30,25,25,True)
     action_space=math.pow(5,my_map.red_num)
     state_space=(my_map.red_num+my_map.blue_num)*4
     # action_space=my_map.blue_num
