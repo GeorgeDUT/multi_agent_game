@@ -43,7 +43,6 @@ def q_function(s,x,y,team):
             action=action_space[i]
         else:
             pass
-    print(action_value)
     return action
 
 

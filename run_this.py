@@ -4,6 +4,7 @@ from red_brain import *
 from blue_brain import *
 from compiler.ast import flatten
 import math
+import tensorflow as tf
 
 
 '''action_space: is |A|,agent_num: is number of red or blue agent'''
@@ -67,7 +68,7 @@ def train_dqn_brain(my_map,episode,red_win,blue_win,r_red):
 def train_naive_brain(my_map,episode,red_win,blue_win):
     for step in range(1000):
         if episode>1:
-            time.sleep(0.05)
+            time.sleep(0.01)
         s=my_map.get_state()
         t_x,t_y=find_target(s.env_map)
         t_x_blue,t_y_blue=find_target_blue(s.env_map)
