@@ -16,7 +16,7 @@ function list:
     my_map.get_state()
 # return map
 
-About WarMap
+About WarMap big very big map
 red and blue fight each other, red can be killed,
 """
 
@@ -59,11 +59,11 @@ class OutInfo(object):
         self.env_map=np.zeros(shape=(h,w))
         self.red_num=red_num
         self.blue_num=blue_num
-        self.army_loc=np.zeros((red_num+blue_num)*4)
-        self.feature_stat=np.zeros(int(math.pow(2,blue_num)))
+        # self.army_loc=np.zeros((red_num+blue_num)*4)
+        # self.feature_stat=np.zeros(int(math.pow(2,blue_num)))
 
 
-class WarMap(tk.Tk, object):
+class WarMap3(tk.Tk, object):
     def __init__(self, w=MAP_W, h=MAP_H, red=R_ARMY_NUM, blue=B_ARMY_NUM, draw_pic=False):
         self.draw_pic = draw_pic
         self.map_w = w
@@ -80,7 +80,7 @@ class WarMap(tk.Tk, object):
         self._init_map()
 
         if draw_pic:
-            super(WarMap,self).__init__()
+            super(WarMap3,self).__init__()
             self.title('war_1 game')
             self.geometry('{0}x{1}'.format(self.map_w*UNIT_PIX, self.map_h*UNIT_PIX))
             self._display_window()
@@ -305,25 +305,6 @@ class WarMap(tk.Tk, object):
         for i in range(self.map_h):
             for j in range(self.map_w):
                 info.env_map[i][j]=self.env_map[i][j]
-        for i in range(info.red_num):
-            if self.red_army[i].life!='live':
-                x,y,id,team=-1,-1,1,1
-            else:
-                x,y,id,team=self.red_army[i].x,self.red_army[i].y,i,1
-            info.army_loc[i*4],info.army_loc[i*4+1],info.army_loc[i*4+2],info.army_loc[i*4+3]=x,y,id,team
-        for i in range(info.blue_num):
-            if self.blue_army[i].life!='live':
-                x, y, id, team = -1, -1, 1, 1
-            else:
-                x, y, id, team = self.blue_army[i].x,self.blue_army[i].y,i,2
-                info.army_loc[(i+self.red_num)*4+0], info.army_loc[(i+self.red_num)*4+1], \
-                info.army_loc[(i+self.red_num)*4+2], info.army_loc[(i+self.red_num)*4+3]=x,y,id,team
-        '''change state info'''
-        for i in range(self.blue_num):
-            if self.blue_army[i].life=='live':
-                info.feature_stat[i]=1
-            else:
-                info.feature_stat[i]=0
         return info
 
     def step(self):

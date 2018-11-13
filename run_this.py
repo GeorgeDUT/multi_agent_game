@@ -1,8 +1,9 @@
-from war_2 import *
-from war_1 import *
+# from war_2 import *
+# from war_1 import *
+from war_3 import *
 from red_brain import *
 from blue_brain import *
-from compiler.ast import flatten
+# from compiler.ast import flatten
 import math
 import tensorflow as tf
 
@@ -68,7 +69,7 @@ def train_dqn_brain(my_map,episode,red_win,blue_win,r_red):
 def train_naive_brain(my_map,episode,red_win,blue_win):
     for step in range(1000):
         if episode>1:
-            time.sleep(0.01)
+            time.sleep(0)
         s=my_map.get_state()
         t_x,t_y=find_target(s.env_map)
         t_x_blue,t_y_blue=find_target_blue(s.env_map)
@@ -185,7 +186,7 @@ def update():
 
 
 if __name__ == "__main__":
-    my_map = WarMap(30,30,25,25,True)
+    my_map = WarMap3(60,60,50,50,True)
     action_space=math.pow(5,my_map.red_num)
     state_space=(my_map.red_num+my_map.blue_num)*4
     # action_space=my_map.blue_num
