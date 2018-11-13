@@ -25,9 +25,9 @@ def value(s,x,y,team):
                     if s[i][j]+team==3:
                         other_dis = other_dis + abs(y - i) + abs(x - j)
     if team==1:
-        all=-0.1*sum_dis-other_dis
+        all=-0.1*sum_dis-0.2*other_dis
     else:
-        all=0*sum_dis-other_dis
+        all=0*sum_dis-0*other_dis
     return all
 
 
@@ -58,7 +58,7 @@ def pseudo(my_map):
         for i in range(my_map.blue_num):
             x,y=my_map.blue_army[i].x,my_map.blue_army[i].y
             b=q_function(s.env_map,x,y,2)
-            # b=np.random.choice(['s','s','s','s','s'])
+            b=np.random.choice(['u','d','l','r','s'])
             blue_action.append(b)
 
         my_map.move(red_action,blue_action)
