@@ -98,7 +98,8 @@ class WarMap3(tk.Tk, object):
                 self.env_map[i][j]=0
         # init army information
         for i in range(self.red_num):
-            a = Army(i,0,i,1,'live')
+            # x,y,id,team,life
+            a = Army(i,3,i,1,'live')
             self.red_army.append(a)
             x,y=self.red_army[i].x,self.red_army[i].y
             self.env_map[y][x]=1
