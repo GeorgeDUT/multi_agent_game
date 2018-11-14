@@ -16,7 +16,7 @@ function list:
     my_map.get_state()
 # return map
 
-About WarMap big very big map
+About WarMap big very big map,this is ant world war
 red and blue fight each other, red can be killed,
 """
 
@@ -41,7 +41,7 @@ UNIT_PIX = 10
 R_ARMY_NUM = 5
 B_ARMY_NUM = 5
 
-print('this is war_1: fight')
+print('this is war_3: Ant world war')
 
 
 class Army(object):
@@ -52,6 +52,7 @@ class Army(object):
         self.team=team
         self.life=life
         self.win_p=1
+        self.power=1
 
 
 class OutInfo(object):
@@ -59,6 +60,8 @@ class OutInfo(object):
         self.env_map=np.zeros(shape=(h,w))
         self.red_num=red_num
         self.blue_num=blue_num
+        self.red_loc=np.zeros(shape=(red_num,2))
+        self.blue_loc=np.zeros(shape=(blue_num,2))
         # self.army_loc=np.zeros((red_num+blue_num)*4)
         # self.feature_stat=np.zeros(int(math.pow(2,blue_num)))
 
@@ -70,7 +73,7 @@ class WarMap3(tk.Tk, object):
         self.map_h = h
         self.red_num = red
         self.blue_num = blue
-        # env_map = 0, space, =1,red_army, =2, blue_army
+        # env_map = 0, space; =1,red_army; =2, blue_army;
         self.env_map = np.zeros(shape=(self.map_h, self.map_w))
         self.red_army = []
         self.blue_army = []
@@ -81,7 +84,7 @@ class WarMap3(tk.Tk, object):
 
         if draw_pic:
             super(WarMap3,self).__init__()
-            self.title('war_1 game')
+            self.title('Ant world war')
             self.geometry('{0}x{1}'.format(self.map_w*UNIT_PIX, self.map_h*UNIT_PIX))
             self._display_window()
         else:
@@ -100,7 +103,7 @@ class WarMap3(tk.Tk, object):
             x,y=self.red_army[i].x,self.red_army[i].y
             self.env_map[y][x]=1
         for i in range(self.blue_num):
-            a = Army(i+1,self.map_h-3,2,'live')
+            a = Army(i+1,self.map_h-3,i,2,'live')
             self.blue_army.append(a)
             x,y=self.blue_army[i].x,self.blue_army[i].y
             self.env_map[y][x] = 2
@@ -116,15 +119,16 @@ class WarMap3(tk.Tk, object):
             x0,y0,x1,y1=0,r,self.map_w*UNIT_PIX,r
             self.map.create_line(x0,y0,x1,y1)
         # draw agent
-        for i in range(self.map_h):
-            for j in range(self.map_w):
-                if self.env_map[i][j]==1:
-                    self.red_army_draw.append(self.map.create_rectangle(j*UNIT_PIX,
-                    i*UNIT_PIX,(j+1)*UNIT_PIX,(i+1)*UNIT_PIX,fill='red'))
-                elif self.env_map[i][j]==2:
-                    self.blue_army_draw.append(self.map.create_rectangle(j * UNIT_PIX,
-                                                                   i * UNIT_PIX, (j + 1) * UNIT_PIX, (i + 1) * UNIT_PIX,
-                                                                   fill='blue'))
+        for i in range(self.red_num):
+            if self.red_army[i].life=='live':
+                x,y=self.red_army[i].x,self.red_army[i].y
+                self.red_army_draw.append(self.map.create_rectangle(x * UNIT_PIX,
+                    y * UNIT_PIX, (x + 1) * UNIT_PIX,(y + 1) * UNIT_PIX, fill='red'))
+        for i in range(self.blue_num):
+            if self.blue_army[i].life=='live':
+                x,y=self.blue_army[i].x,self.blue_army[i].y
+                self.blue_army_draw.append(self.map.create_rectangle(x * UNIT_PIX,
+                    y * UNIT_PIX, (x + 1) * UNIT_PIX,(y + 1) * UNIT_PIX,fill='blue'))
 
     def move_one(self,action,team,id):
         if team==1:
@@ -177,20 +181,30 @@ class WarMap3(tk.Tk, object):
             self.blue_army[id].x, self.blue_army[id].y = change_x, change_y
 
     def move(self,action_red,action_blue):
+        # random order to move agent
+        order_red = []
+        for i in range(len(action_red)):
+            order_red.append(i)
+        order_red = random.sample(order_red, len(order_red))
+        order_blue = []
+        for i in range(len(action_blue)):
+            order_blue.append(i)
+        order_blue = random.sample(order_blue, len(order_blue))
+
         if random.random()>0.5:
             for i in range(self.red_num):
-                if self.red_army[i].life=='live':
-                    self.move_one(action_red[i],1,i)
+                if self.red_army[order_red[i]].life=='live':
+                    self.move_one(action_red[order_red[i]],1,order_red[i])
             for i in range(self.blue_num):
-                if self.blue_army[i].life=='live':
-                    self.move_one(action_blue[i],2,i)
+                if self.blue_army[order_blue[i]].life=='live':
+                    self.move_one(action_blue[order_blue[i]],2,order_blue[i])
         else:
             for i in range(self.blue_num):
-                if self.blue_army[i].life=='live':
-                    self.move_one(action_blue[i],2,i)
+                if self.blue_army[order_blue[i]].life=='live':
+                    self.move_one(action_blue[order_blue[i]],2,order_blue[i])
             for i in range(self.red_num):
-                if self.red_army[i].life=='live':
-                    self.move_one(action_red[i],1,i)
+                if self.red_army[order_red[i]].life=='live':
+                    self.move_one(action_red[order_red[i]],1,order_red[i])
 
     def flash_draw(self):
         if self.draw_pic:
@@ -198,15 +212,17 @@ class WarMap3(tk.Tk, object):
                 self.map.delete(self.red_army_draw[i])
             for i in range(len(self.blue_army_draw)):
                 self.map.delete(self.blue_army_draw[i])
-            for i in range(self.map_h):
-                for j in range(self.map_w):
-                    if self.env_map[i][j]==1:
-                        self.red_army_draw.append(self.map.create_rectangle(j*UNIT_PIX,
-                        i*UNIT_PIX,(j+1)*UNIT_PIX,(i+1)*UNIT_PIX,fill='red'))
-                    elif self.env_map[i][j]==2:
-                        self.blue_army_draw.append(self.map.create_rectangle(j * UNIT_PIX,
-                                                                   i * UNIT_PIX, (j + 1) * UNIT_PIX, (i + 1) * UNIT_PIX,
-                                                                   fill='blue'))
+            for i in range(self.red_num):
+                if self.red_army[i].life=='live':
+                    x,y=self.red_army[i].x,self.red_army[i].y
+                    self.red_army_draw.append(self.map.create_rectangle(x * UNIT_PIX,
+                     y * UNIT_PIX, (x + 1) * UNIT_PIX,(y + 1) * UNIT_PIX, fill='red'))
+            for i in range(self.blue_num):
+                if self.blue_army[i].life=='live':
+                    x,y=self.blue_army[i].x,self.blue_army[i].y
+                    self.blue_army_draw.append(self.map.create_rectangle(x * UNIT_PIX,
+                     y * UNIT_PIX, (x + 1) * UNIT_PIX,(y + 1) * UNIT_PIX, fill='blue'))
+
         else:
             pass
 
@@ -305,6 +321,12 @@ class WarMap3(tk.Tk, object):
         for i in range(self.map_h):
             for j in range(self.map_w):
                 info.env_map[i][j]=self.env_map[i][j]
+        for i in range(self.red_num):
+            info.red_loc[i][0],info.red_loc[i][1]=self.red_army[i].x,\
+                                                  self.red_army[i].y
+        for i in range(self.blue_num):
+            info.blue_loc[i][0],info.blue_loc[i][1]=self.blue_army[i].x,\
+                                                    self.blue_army[i].y
         return info
 
     def step(self):

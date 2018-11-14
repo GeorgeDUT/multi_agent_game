@@ -1,5 +1,5 @@
 # from war_2 import *
-# from war_1 import *
+from war_1 import *
 from war_3 import *
 from red_brain import *
 from blue_brain import *
@@ -77,8 +77,8 @@ def train_naive_brain(my_map,episode,red_win,blue_win):
         red_action=[]
         blue_action=[]
         for i in range(my_map.red_num):
-            a=goto_target(my_map.red_army[i].x,my_map.red_army[i].y,t_x,t_y,s.env_map)
-            # a=np.random.choice(['u','d','l','r','s'])
+            # a=goto_target(my_map.red_army[i].x,my_map.red_army[i].y,t_x,t_y,s.env_map)
+            a=np.random.choice(['d','d','d','d','d'])
             red_action.append(a)
 
         '''blue action'''
@@ -186,7 +186,7 @@ def update():
 
 
 if __name__ == "__main__":
-    my_map = WarMap3(60,60,50,50,True)
+    my_map = WarMap3(60,50,30,30,True)
     action_space=math.pow(5,my_map.red_num)
     state_space=(my_map.red_num+my_map.blue_num)*4
     # action_space=my_map.blue_num
