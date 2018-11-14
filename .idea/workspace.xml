@@ -3,7 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="2ee6dbba-829c-4f7b-abec-c0e391a25dd0" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/run_2.py" beforeDir="false" afterPath="$PROJECT_DIR$/run_2.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/war_3.py" beforeDir="false" afterPath="$PROJECT_DIR$/war_3.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -31,7 +30,7 @@
           <file leaf-file-name="war_3.py" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/war_3.py">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="-940">
+                <state relative-caret-position="2755">
                   <caret line="151" column="13" selection-start-line="151" selection-start-column="13" selection-end-line="151" selection-end-column="13" />
                 </state>
               </provider>
@@ -40,7 +39,7 @@
           <file leaf-file-name="red_brain.py" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/red_brain.py">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="746">
+                <state relative-caret-position="1976">
                   <caret line="108" column="24" selection-start-line="108" selection-start-column="24" selection-end-line="108" selection-end-column="24" />
                   <folding>
                     <element signature="e#0#13#0" expanded="true" />
@@ -52,8 +51,8 @@
           <file leaf-file-name="run_2.py" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/run_2.py">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="665">
-                  <caret line="74" column="24" lean-forward="true" selection-start-line="74" selection-start-column="24" selection-end-line="74" selection-end-column="24" />
+                <state relative-caret-position="399">
+                  <caret line="30" column="16" selection-start-line="30" selection-start-column="16" selection-end-line="30" selection-end-column="16" />
                   <folding>
                     <element signature="e#0#19#0" expanded="true" />
                   </folding>
@@ -76,7 +75,7 @@
         </leaf>
       </split-first>
       <split-second>
-        <leaf>
+        <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
           <file leaf-file-name="war_3.py" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/war_3.py">
               <provider selected="true" editor-type-id="text-editor">
@@ -282,10 +281,10 @@
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="right" id="R Packages" order="3" />
       <window_info anchor="right" id="R Graphics" order="3" />
-      <window_info anchor="bottom" id="Event Log" order="7" sideWeight="0.0851752" side_tool="true" visible="true" weight="0.24180327" />
+      <window_info anchor="bottom" id="Event Log" order="7" sideWeight="0.08571429" side_tool="true" visible="true" weight="0.24180327" />
       <window_info anchor="bottom" id="Version Control" order="7" />
       <window_info anchor="bottom" id="Python Console" order="7" />
-      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.9148248" weight="0.24180327" />
+      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.9142857" weight="0.24180327" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info anchor="bottom" id="Terminal" order="7" />
       <window_info id="Favorites" order="2" side_tool="true" />
@@ -640,7 +639,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/red_brain.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="746">
+        <state relative-caret-position="1976">
           <caret line="108" column="24" selection-start-line="108" selection-start-column="24" selection-end-line="108" selection-end-column="24" />
           <folding>
             <element signature="e#0#13#0" expanded="true" />
@@ -650,15 +649,15 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/war_3.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-940">
+        <state relative-caret-position="2755">
           <caret line="151" column="13" selection-start-line="151" selection-start-column="13" selection-end-line="151" selection-end-column="13" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/run_2.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="665">
-          <caret line="74" column="24" lean-forward="true" selection-start-line="74" selection-start-column="24" selection-end-line="74" selection-end-column="24" />
+        <state relative-caret-position="399">
+          <caret line="30" column="16" selection-start-line="30" selection-start-column="16" selection-end-line="30" selection-end-column="16" />
           <folding>
             <element signature="e#0#19#0" expanded="true" />
           </folding>

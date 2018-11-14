@@ -26,6 +26,7 @@ def cmpt_f(s,x,y,tartget):
             F=max(pow(f_x,2)+pow(f_y,2),F)
             if F==pow(f_x,2)+pow(f_y,2):
                 red_force[0],red_force[1]=f_x,f_y
+            sum+=1
         else:
             pass
     F=0.0
@@ -53,27 +54,27 @@ def brain(s,x,y,team,id):
 
     # choose direction
     pi = softmax([abs(red_f[0]), abs(red_f[1])])
-    if red_f[0]>0 and red_f[1]>0:
+    if red_f[0]>0 and red_f[1]>=0:
         if np.random.rand()<pi[0]:
             action='r'
         else:
             action='d'
-    elif red_f[0]<0<red_f[1]:
+    elif red_f[0]<=0<red_f[1]:
         if np.random.rand() < pi[0]:
             action = 'l'
         else:
             action = 'd'
-    elif red_f[0]<0 and red_f[1]<0:
+    elif red_f[0]<0 and red_f[1]<=0:
         if np.random.rand() < pi[0]:
             action = 'l'
         else:
             action = 'u'
-    elif red_f[0]>0>red_f[1]:
+    elif red_f[0]>=0>red_f[1]:
         if np.random.rand() < pi[0]:
             action = 'r'
         else:
             action = 'u'
-
+    '''
     elif red_f[0]==0 and red_f[1]>0:
         action='d'
     elif red_f[0]==0 and red_f[1]<0:
@@ -82,6 +83,7 @@ def brain(s,x,y,team,id):
         action = 'r'
     elif red_f[0]<0 and red_f[1]==0:
         action = 'l'
+    '''
 
     return action
 
@@ -112,7 +114,7 @@ def update():
 
 
 if __name__ =="__main__":
-    my_map=WarMap3(60,50,50,50,True)
+    my_map=WarMap3(60,60,50,50,True)
     if my_map.draw_pic:
         my_map.after(10,update)
         my_map.mainloop()
