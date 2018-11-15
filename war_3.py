@@ -1,8 +1,8 @@
 """
-war_1 game is multi_agent war game, red_army vs blue_army
+war_3 game is multi_agent war game, red_army vs blue_army
 turn-based strategy game
 rule:
-    1,every turn agent move first,red or blue move first,from 1 to n, then fight, then judge fight result.
+    1,every turn agent move first,red or blue move first,random from 1 to n, then fight, then judge fight result.
     2,the more agent in fight, the higher probability win.
     3,every agent in every turn can only do one action.
 

@@ -1,3 +1,8 @@
+"""
+this function is just for war_3 game
+usr force, every pair of agents have force like gravity.
+
+"""
 from war_3 import *
 import pandas as pd
 import math
@@ -22,13 +27,15 @@ def cmpt_f(s,x,y):
     for i in range(s.red_num):
         # random find a target
         # i=random.randint(0,s.red_num-1)
-        i=(i+s.red_num/2)%s.red_num
+        i=(i+s.red_num/(random.randint(1,s.red_num-1)))%s.red_num
         end_x,end_y=int(s.red_loc[i][0]),int(s.red_loc[i][1])
         if s.env_map[end_y][end_x]==1:
             f_x,f_y=force(x,y,end_x,end_y)
+
             red_force[0]+=f_x
             red_force[1]+=f_y
             break
+
             '''
             F=max(pow(f_x,2)+pow(f_y,2),F)
             if F==pow(f_x,2)+pow(f_y,2):
@@ -42,8 +49,8 @@ def cmpt_f(s,x,y):
         end_x,end_y=int(s.blue_loc[i][0]),int(s.blue_loc[i][1])
         if s.env_map[end_y][end_x]==2:
             f_x,f_y=force(x,y,end_x,end_y)
-            blue_force[0] += f_x*(pow(x - end_x, 2) + pow(y - end_y, 2))
-            blue_force[1] += f_y*(pow(x - end_x, 2) + pow(y - end_y, 2))
+            blue_force[0] += f_x*pow((pow(x - end_x, 2) + pow(y - end_y, 2)),2)
+            blue_force[1] += f_y*pow((pow(x - end_x, 2) + pow(y - end_y, 2)),2)
             '''
             F = max(pow(f_x, 2) + pow(f_y, 2), F)
             if F == pow(f_x, 2) + pow(f_y, 2):
@@ -63,8 +70,8 @@ def brain(s,x,y,team,id):
     action_space = ['u', 'd', 'l', 'r', 's']
     action = np.random.choice(action_space)
     red_f,blue_f=cmpt_f(s,x,y)
-    red_f[0]=red_f[0]+(blue_f[0]*0.001)
-    red_f[1] = red_f[1] + (blue_f[1]*0.001)
+    red_f[0]=red_f[0]+(blue_f[0]*pow(0.1,5))
+    red_f[1] = red_f[1] + (blue_f[1]*pow(0.1,5))
 
     # choose direction
     pi = softmax([abs(red_f[0]), abs(red_f[1])])
@@ -111,7 +118,7 @@ def pseudo(my_map):
         for i in range(my_map.red_num):
             x,y=my_map.red_army[i].x,my_map.red_army[i].y
             a=brain(s,x,y,1,i)
-            a=np.random.choice(['u','d','l','r','s'])
+            a=np.random.choice(['u','l','r','d','s'])
             red_action.append(a)
         for i in range(my_map.blue_num):
             x,y=my_map.blue_army[i].x,my_map.blue_army[i].y
@@ -129,7 +136,7 @@ def update():
 
 
 if __name__ =="__main__":
-    my_map=WarMap3(60,60,50,50,True)
+    my_map=WarMap3(80,60,50,40,True)
     if my_map.draw_pic:
         my_map.after(10,update)
         my_map.mainloop()
