@@ -7,3 +7,4 @@ platform for multi-agent game.
 2.war_2:
 
 3.war_3:
+    very big map, ant world war
