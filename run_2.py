@@ -69,8 +69,8 @@ def brain(s,x,y,team,id):
     action_space = ['u', 'd', 'l', 'r', 's']
     action = np.random.choice(action_space)
     red_f,blue_f=cmpt_f(s,x,y)
-    red_f[0]=red_f[0]+(blue_f[0]*pow(0.1,5))
-    red_f[1] = red_f[1] + (blue_f[1]*pow(0.1,5))
+    red_f[0]=red_f[0]+(blue_f[0]*pow(0.1,6))
+    red_f[1] = red_f[1] + (blue_f[1]*pow(0.1,6))
 
     # choose direction
     pi = softmax([abs(red_f[0]), abs(red_f[1])])
