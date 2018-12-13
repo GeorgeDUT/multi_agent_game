@@ -51,22 +51,23 @@ def cmpt_f(s,x,y):
         end_x,end_y=int(s.blue_loc[i][0]),int(s.blue_loc[i][1])
         if s.env_map[end_y][end_x]==2:
             f_x,f_y=force(x,y,end_x,end_y)
-            '''
-            # blue force rule 1:外力乘以距离的四次方。
-            blue_force[0] += f_x*pow((pow(x - end_x, 2) + pow(y - end_y, 2)),2)
-            blue_force[1] += f_y*pow((pow(x - end_x, 2) + pow(y - end_y, 2)),2)
-            '''
 
+            # blue force rule 1:外力乘以距离的四次方。
+            blue_force[0] += f_x*pow((pow(x - end_x, 2) + pow(y - end_y, 2)),1)
+            blue_force[1] += f_y*pow((pow(x - end_x, 2) + pow(y - end_y, 2)),1)
+
+            '''
             # blue force rule 2: max force is his all force
             F = max(pow(f_x, 2) + pow(f_y, 2), F)
             if F == pow(f_x, 2) + pow(f_y, 2):
                 blue_force[0], blue_force[1] = f_x, f_y
-
+            '''
             '''
             # blue force rule 3:sum force
             blue_force[0] += f_x
             blue_force[1] += f_y
             '''
+
         else:
             pass
     return red_force,blue_force
@@ -85,8 +86,8 @@ def brain(s,x,y,team,id):
     r_sum_f[0]=red_f[0]+(blue_f[0]*pow(0.1,-1))
     r_sum_f[1] = red_f[1] + (blue_f[1]*pow(0.1,-1))
 
-    b_sum_f[0] = red_f[0] + (blue_f[0] * pow(0.1, 4))
-    b_sum_f[1] = red_f[1] + (blue_f[1] * pow(0.1, 4))
+    b_sum_f[0] = red_f[0] + (blue_f[0] * pow(0.1, 6))
+    b_sum_f[1] = red_f[1] + (blue_f[1] * pow(0.1, 6))
 
     # this is blue all sum force-2
     '''
@@ -171,7 +172,7 @@ def pseudo(my_map):
         for i in range(my_map.red_num):
             x,y=my_map.red_army[i].x,my_map.red_army[i].y
             a=brain(s,x,y,1,i)
-            a=np.random.choice(['s','u','d','l','r'])
+            # a=np.random.choice(['s','u','d','l','r'])
             red_action.append(a)
         for i in range(my_map.blue_num):
             x,y=my_map.blue_army[i].x,my_map.blue_army[i].y
