@@ -2,7 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="2ee6dbba-829c-4f7b-abec-c0e391a25dd0" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/run_2.py" beforeDir="false" afterPath="$PROJECT_DIR$/run_2.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -22,11 +23,20 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="run_2.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="run_2.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/run_2.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="185">
               <caret line="56" column="78" selection-start-line="56" selection-start-column="78" selection-end-line="56" selection-end-column="78" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name=".gitignore" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/.gitignore">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="195">
+              <caret line="13" column="5" lean-forward="true" selection-start-line="13" selection-start-column="2" selection-end-line="13" selection-end-column="5" />
             </state>
           </provider>
         </entry>
@@ -75,7 +85,7 @@
     </option>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="283" />
+    <option name="x" value="181" />
     <option name="y" value="24" />
     <option name="width" value="1259" />
     <option name="height" value="807" />
@@ -85,6 +95,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -96,7 +107,6 @@
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -220,10 +230,10 @@
     </history-entry>
   </component>
   <component name="ToolWindowManager">
-    <frame x="283" y="24" width="1259" height="807" extended-state="0" />
+    <frame x="181" y="24" width="1259" height="807" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.14853057" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.1477363" />
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="bottom" id="Event Log" order="7" sideWeight="0.1183479" side_tool="true" visible="true" weight="0.16371077" />
       <window_info anchor="bottom" id="Run" order="2" sideWeight="0.8816521" weight="0.16371077" />
@@ -253,13 +263,6 @@
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/run_this.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="90">
-          <caret line="9" column="8" selection-start-line="9" selection-start-column="8" selection-end-line="9" selection-end-column="8" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/war_1.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="4440">
@@ -577,6 +580,13 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="185">
           <caret line="56" column="78" selection-start-line="56" selection-start-column="78" selection-end-line="56" selection-end-column="78" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/.gitignore">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="195">
+          <caret line="13" column="5" lean-forward="true" selection-start-line="13" selection-start-column="2" selection-end-line="13" selection-end-column="5" />
         </state>
       </provider>
     </entry>
