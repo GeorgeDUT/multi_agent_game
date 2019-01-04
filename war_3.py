@@ -99,12 +99,12 @@ class WarMap3(tk.Tk, object):
         # init army information
         for i in range(self.red_num):
             # x,y,id,team,life
-            a = Army(i,3,i,1,'live')
+            a = Army(i,10,i,1,'live')
             self.red_army.append(a)
             x,y=self.red_army[i].x,self.red_army[i].y
             self.env_map[y][x]=1
         for i in range(self.blue_num):
-            a = Army(i+1,self.map_h-3,i,2,'live')
+            a = Army(i+1,self.map_h-10,i,2,'live')
             self.blue_army.append(a)
             x,y=self.blue_army[i].x,self.blue_army[i].y
             self.env_map[y][x] = 2
@@ -250,7 +250,7 @@ class WarMap3(tk.Tk, object):
                     neighbor.remove([x,y+1])
                 for s in range(len(neighbor)):
                     if self.env_map[neighbor[s][1]][neighbor[s][0]]==1:
-                        self.red_army[i].win_p=self.red_army[i].win_p+0.25/2
+                        self.red_army[i].win_p=self.red_army[i].win_p+0.25/2.5
                     elif self.env_map[neighbor[s][1]][neighbor[s][0]]==2:
                         self.red_army[i].win_p = self.red_army[i].win_p - 0.25
         # compute blue win probability
@@ -275,7 +275,7 @@ class WarMap3(tk.Tk, object):
                     neighbor2.remove([x,y+1])
                 for s in range(len(neighbor2)):
                     if self.env_map[neighbor2[s][1]][neighbor2[s][0]]==2:
-                        self.blue_army[i].win_p=self.blue_army[i].win_p+0.25/2
+                        self.blue_army[i].win_p=self.blue_army[i].win_p+0.25/2.5
                     elif self.env_map[neighbor2[s][1]][neighbor2[s][0]]==1:
                         self.blue_army[i].win_p = self.blue_army[i].win_p-0.25
 

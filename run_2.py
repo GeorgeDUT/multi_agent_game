@@ -38,10 +38,16 @@ def cmpt_f_r(s,x,y):
             red_force[1]+=f_y
             '''
 
+            '''
             # red force rule 2: max force is all force
             F=max(pow(f_x,2)+pow(f_y,2),F)
             if F==pow(f_x,2)+pow(f_y,2):
                 red_force[0],red_force[1]=f_x,f_y
+            '''
+
+            # red force rule 3:外力乘以距离的四次方。
+            red_force[0] += f_x * pow((pow(x - end_x, 2) + pow(y - end_y, 2)), 1.5)
+            red_force[1] += f_y * pow((pow(x - end_x, 2) + pow(y - end_y, 2)), 1.5)
 
         else:
             pass
@@ -52,22 +58,24 @@ def cmpt_f_r(s,x,y):
         end_x,end_y=int(s.blue_loc[i][0]),int(s.blue_loc[i][1])
         if s.env_map[end_y][end_x]==2:
             f_x,f_y=force(x,y,end_x,end_y)
-
+            '''
             # blue force rule 1:外力乘以距离的四次方。
             blue_force[0] += f_x*pow((pow(x - end_x, 2) + pow(y - end_y, 2)),1)
             blue_force[1] += f_y*pow((pow(x - end_x, 2) + pow(y - end_y, 2)),1)
-
             '''
+
+
             # blue force rule 2: max force is his all force
             F = max(pow(f_x, 2) + pow(f_y, 2), F)
             if F == pow(f_x, 2) + pow(f_y, 2):
                 blue_force[0], blue_force[1] = f_x, f_y
-            '''
+
             '''
             # blue force rule 3:sum force
             blue_force[0] += f_x
             blue_force[1] += f_y
             '''
+
 
         else:
             pass
@@ -84,10 +92,10 @@ def brain_r(s,x,y,team,id):
     red_f,blue_f=cmpt_f_r(s,x,y)
     r_sum_f,b_sum_f=[0.,0.],[0.,0.]
     # his is blue all sum force-1
-    # r_sum_f[0]=red_f[0]+(blue_f[0]*pow(0.1,-1))
-    # r_sum_f[1] = red_f[1] + (blue_f[1]*pow(0.1,-1))
-    r_sum_f[0] = red_f[0]* 0 + (blue_f[0] * pow(0.1, -1))
-    r_sum_f[1] = red_f[1] *0+ (blue_f[1]*pow(0.1,-1))
+    r_sum_f[0]=red_f[0]*pow(0.1,6)+(blue_f[0])
+    r_sum_f[1] = red_f[1]*pow(0.1,6) + (blue_f[1])
+    # r_sum_f[0] = red_f[0] + (blue_f[0] * pow(0.1, 6))
+    # r_sum_f[1] = red_f[1] + (blue_f[1]*pow(0.1,6))
 
     b_sum_f[0] = red_f[0] + (blue_f[0] * pow(0.1, 6))
     b_sum_f[1] = red_f[1] + (blue_f[1] * pow(0.1, 6))
@@ -212,8 +220,8 @@ def cmpt_f(s,x,y):
             f_x,f_y=force(x,y,end_x,end_y)
 
             # blue force rule 1:外力乘以距离的四次方。
-            blue_force[0] += f_x*pow((pow(x - end_x, 2) + pow(y - end_y, 2)),1)
-            blue_force[1] += f_y*pow((pow(x - end_x, 2) + pow(y - end_y, 2)),1)
+            blue_force[0] += f_x*pow((pow(x - end_x, 2) + pow(y - end_y, 2)),1.5)
+            blue_force[1] += f_y*pow((pow(x - end_x, 2) + pow(y - end_y, 2)),1.5)
 
             '''
             # blue force rule 2: max force is his all force

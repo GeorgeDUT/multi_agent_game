@@ -31,3 +31,4 @@ __pycache__/red_brain.cpython-36.pyc
 *.xml
 .idea/workspace.xml
 .idea/workspace.xml
+*.xml
