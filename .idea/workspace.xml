@@ -2,8 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="2ee6dbba-829c-4f7b-abec-c0e391a25dd0" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/run_2.py" beforeDir="false" afterPath="$PROJECT_DIR$/run_2.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/war_3.py" beforeDir="false" afterPath="$PROJECT_DIR$/war_3.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/test.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -17,7 +17,7 @@
       <file leaf-file-name="war_3.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/war_3.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="456">
+            <state relative-caret-position="3630">
               <caret line="277" column="80" selection-start-line="277" selection-start-column="80" selection-end-line="277" selection-end-column="80" />
               <folding>
                 <element signature="e#1407#1773#0" />
@@ -27,11 +27,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="run_2.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="run_2.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/run_2.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="352">
-              <caret line="255" column="50" lean-forward="true" selection-start-line="255" selection-start-column="50" selection-end-line="255" selection-end-column="50" />
+            <state relative-caret-position="3960">
+              <caret line="264" column="4" selection-start-line="261" selection-start-column="7" selection-end-line="264" selection-end-column="4" />
               <folding>
                 <element signature="e#103#122#0" expanded="true" />
               </folding>
@@ -43,7 +43,7 @@
         <entry file="file://$PROJECT_DIR$/.gitignore">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="45">
-              <caret line="3" column="19" lean-forward="true" selection-start-line="3" selection-start-column="19" selection-end-line="3" selection-end-column="19" />
+              <caret line="3" column="19" selection-start-line="3" selection-start-column="19" selection-end-line="3" selection-end-column="19" />
             </state>
           </provider>
         </entry>
@@ -66,7 +66,7 @@
       <file leaf-file-name="run_this.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/run_this.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2154">
+            <state relative-caret-position="2730">
               <caret line="188" column="28" selection-start-line="188" selection-start-column="28" selection-end-line="188" selection-end-column="28" />
             </state>
           </provider>
@@ -75,8 +75,20 @@
       <file leaf-file-name="war_2.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/war_2.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-64">
-              <caret line="93" column="33" lean-forward="true" selection-start-line="93" selection-start-column="33" selection-end-line="93" selection-end-column="33" />
+            <state relative-caret-position="1305">
+              <caret line="93" column="33" selection-start-line="93" selection-start-column="33" selection-end-line="93" selection-end-column="33" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="test.py" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/test.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="510">
+              <caret line="34" column="36" selection-start-line="34" selection-start-column="36" selection-end-line="34" selection-end-column="36" />
+              <folding>
+                <element signature="e#0#24#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -121,10 +133,11 @@
         <option value="$PROJECT_DIR$/README.md" />
         <option value="$PROJECT_DIR$/war_3.py" />
         <option value="$PROJECT_DIR$/run_2.py" />
+        <option value="$PROJECT_DIR$/test.py" />
       </list>
     </option>
   </component>
-  <component name="ProjectFrameBounds">
+  <component name="ProjectFrameBounds" fullScreen="true">
     <option name="x" value="128" />
     <option name="y" value="23" />
     <option name="width" value="1259" />
@@ -135,7 +148,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -147,6 +159,7 @@
           <select />
         </subPane>
       </pane>
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -168,24 +181,6 @@
     </option>
   </component>
   <component name="RunManager" selected="Python.run_2">
-    <configuration name="red_brain" type="PythonConfigurationType" factoryName="Python" temporary="true">
-      <module name="multi_agent_game" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/red_brain.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <option name="MODULE_MODE" value="false" />
-    </configuration>
     <configuration name="run_2" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="multi_agent_game" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -222,6 +217,42 @@
       <option name="EMULATE_TERMINAL" value="false" />
       <option name="MODULE_MODE" value="false" />
     </configuration>
+    <configuration name="test" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <module name="multi_agent_game" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/test.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+    </configuration>
+    <configuration name="war_2" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <module name="multi_agent_game" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/war_2.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+    </configuration>
     <configuration name="py.test in test_algorithm.py" type="tests" factoryName="py.test" temporary="true" nameIsGenerated="true">
       <module name="multi_agent_game" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -238,16 +269,18 @@
     </configuration>
     <list>
       <item itemvalue="Python.run_this" />
-      <item itemvalue="Python.red_brain" />
       <item itemvalue="Python tests.py.test in test_algorithm.py" />
       <item itemvalue="Python.run_2" />
+      <item itemvalue="Python.test" />
+      <item itemvalue="Python.war_2" />
     </list>
     <recent_temporary>
       <list>
         <item itemvalue="Python.run_2" />
+        <item itemvalue="Python.war_2" />
+        <item itemvalue="Python.test" />
         <item itemvalue="Python.run_this" />
         <item itemvalue="Python tests.py.test in test_algorithm.py" />
-        <item itemvalue="Python.red_brain" />
       </list>
     </recent_temporary>
   </component>
@@ -270,13 +303,13 @@
     </history-entry>
   </component>
   <component name="ToolWindowManager">
-    <frame x="128" y="23" width="1259" height="805" extended-state="0" />
+    <frame x="0" y="0" width="1440" height="900" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.14694202" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.12847222" />
       <window_info anchor="bottom" id="TODO" order="6" />
-      <window_info anchor="bottom" id="Event Log" order="7" sideWeight="0.12152502" side_tool="true" visible="true" weight="0.16142271" />
-      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.87847495" weight="0.16142271" />
+      <window_info anchor="bottom" id="Event Log" order="7" sideWeight="0.12291667" side_tool="true" visible="true" weight="0.16037735" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" sideWeight="0.87708336" visible="true" weight="0.16037735" />
       <window_info anchor="bottom" id="Version Control" order="7" />
       <window_info anchor="bottom" id="Python Console" order="7" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
@@ -303,13 +336,6 @@
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/war_1.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="4440">
-          <caret line="301" column="37" selection-start-line="301" selection-start-column="37" selection-end-line="301" selection-end-column="37" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/run_this.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="165">
@@ -591,20 +617,20 @@
     <entry file="file://$PROJECT_DIR$/.gitignore">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="45">
-          <caret line="3" column="19" lean-forward="true" selection-start-line="3" selection-start-column="19" selection-end-line="3" selection-end-column="19" />
+          <caret line="3" column="19" selection-start-line="3" selection-start-column="19" selection-end-line="3" selection-end-column="19" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/war_2.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-64">
-          <caret line="93" column="33" lean-forward="true" selection-start-line="93" selection-start-column="33" selection-end-line="93" selection-end-column="33" />
+        <state relative-caret-position="1305">
+          <caret line="93" column="33" selection-start-line="93" selection-start-column="33" selection-end-line="93" selection-end-column="33" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/run_this.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2154">
+        <state relative-caret-position="2730">
           <caret line="188" column="28" selection-start-line="188" selection-start-column="28" selection-end-line="188" selection-end-column="28" />
         </state>
       </provider>
@@ -624,7 +650,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/war_3.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="456">
+        <state relative-caret-position="3630">
           <caret line="277" column="80" selection-start-line="277" selection-start-column="80" selection-end-line="277" selection-end-column="80" />
           <folding>
             <element signature="e#1407#1773#0" />
@@ -635,10 +661,20 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/run_2.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="352">
-          <caret line="255" column="50" lean-forward="true" selection-start-line="255" selection-start-column="50" selection-end-line="255" selection-end-column="50" />
+        <state relative-caret-position="3960">
+          <caret line="264" column="4" selection-start-line="261" selection-start-column="7" selection-end-line="264" selection-end-column="4" />
           <folding>
             <element signature="e#103#122#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="510">
+          <caret line="34" column="36" selection-start-line="34" selection-start-column="36" selection-end-line="34" selection-end-column="36" />
+          <folding>
+            <element signature="e#0#24#0" expanded="true" />
           </folding>
         </state>
       </provider>
