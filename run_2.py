@@ -44,8 +44,7 @@ def cmpt_f_r(s,x,y):
             if F==pow(f_x,2)+pow(f_y,2):
                 red_force[0],red_force[1]=f_x,f_y
             '''
-
-            # red force rule 3:外力乘以距离的四次方。
+            # red force rule 3:force times distance^4
             red_force[0] += f_x * pow((pow(x - end_x, 2) + pow(y - end_y, 2)), 1.5)
             red_force[1] += f_y * pow((pow(x - end_x, 2) + pow(y - end_y, 2)), 1.5)
 
@@ -59,7 +58,7 @@ def cmpt_f_r(s,x,y):
         if s.env_map[end_y][end_x]==2:
             f_x,f_y=force(x,y,end_x,end_y)
             '''
-            # blue force rule 1:外力乘以距离的四次方。
+            # blue force rule 1:force times distance^4
             blue_force[0] += f_x*pow((pow(x - end_x, 2) + pow(y - end_y, 2)),1)
             blue_force[1] += f_y*pow((pow(x - end_x, 2) + pow(y - end_y, 2)),1)
             '''
@@ -219,7 +218,7 @@ def cmpt_f(s,x,y):
         if s.env_map[end_y][end_x]==2:
             f_x,f_y=force(x,y,end_x,end_y)
 
-            # blue force rule 1:外力乘以距离的四次方。
+            # blue force rule 1:force /times distance^4
             blue_force[0] += f_x*pow((pow(x - end_x, 2) + pow(y - end_y, 2)),1.5)
             blue_force[1] += f_y*pow((pow(x - end_x, 2) + pow(y - end_y, 2)),1.5)
 
