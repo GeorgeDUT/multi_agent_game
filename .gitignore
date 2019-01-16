@@ -41,3 +41,9 @@ __pycache__/red_brain.cpython-36.pyc
 .idea/multi_agent_game.iml
 .idea/workspace.xml
 .idea/workspace.xml
+*.xml
+*.iml
+*.xml
+.idea/misc.xml
+.idea/multi_agent_game.iml
+.idea/workspace.xml
