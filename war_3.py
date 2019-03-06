@@ -18,6 +18,7 @@ function list:
 
 About WarMap big very big map,this is ant world war
 red and blue fight each other, red can be killed,
+
 """
 
 from __future__ import division
@@ -104,7 +105,7 @@ class WarMap3(tk.Tk, object):
             x,y=self.red_army[i].x,self.red_army[i].y
             self.env_map[y][x]=1
         for i in range(self.blue_num):
-            a = Army(i+1,self.map_h-10,i,2,'live')
+            a = Army(i+1,self.map_h-1,i,2,'live')
             self.blue_army.append(a)
             x,y=self.blue_army[i].x,self.blue_army[i].y
             self.env_map[y][x] = 2
