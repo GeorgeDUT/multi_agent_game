@@ -74,10 +74,11 @@ def cmpt_f_r(s,x,y):
             blue_force[0] += f_x
             blue_force[1] += f_y
             '''
-
-
         else:
             pass
+    # blue can not affect red
+    blue_force[0], blue_force[1] = 0, 0
+    red_force[0],red_force[1]=-red_force[0],-red_force[1]
     return red_force,blue_force
 
 

@@ -5,6 +5,10 @@ from war_3 import *
 import numpy as np
 
 
+weight=[-0.1,-0]
+bais=10
+
+
 def dis(x1,y1,x2,y2):
     return abs(x1-x2)+abs(y1-y2)
 
@@ -28,8 +32,31 @@ def function_1(num,s_map):
     return sum_distance
 
 
+def function_2(num,s_map):
+    dis_of_red = []
+    dis_of_blue=[]
+    for i in range(len(s_map)):
+        for j in range(len(s_map[0])):
+            a = []
+            b=[]
+            if s_map[i][j] != num and s_map[i][j]!=0:
+                a.append(j)
+                a.append(i)
+                dis_of_red.append(a)
+            if s_map[i][j]==num:
+                b.append(j)
+                b.append(i)
+                dis_of_blue.append(b)
+    sum_distance = 0
+    for i in range(len(dis_of_blue)):
+        for j in range(len(dis_of_red)):
+            sum_distance = sum_distance + dis(dis_of_blue[i][0], dis_of_blue[i][1],
+                                              dis_of_red[j][0], dis_of_red[j][1])
+    return sum_distance
+
+
 def sum_function(num,s_map):
-    return function_1(num,s_map)
+    return weight[0]*function_1(num,s_map)+weight[1]*function_2(num,s_map)
 
 
 def want_move(num,x,y,action,s_map):
@@ -69,7 +96,7 @@ def brain_red(num,x,y,s_map):
 
 def move_game(my_map):
     while 1:
-        time.sleep(0.1)
+        # time.sleep(0.002)
         red_action=[]
         blue_action=[]
         s=my_map.get_state()
@@ -95,7 +122,7 @@ def update():
 
 
 if __name__=="__main__":
-    my_map=WarMap3(58,58,30,5,True)
+    my_map=WarMap3(20,20,10,5,True)
     if my_map.draw_pic:
         my_map.after(10,update)
         my_map.mainloop()
