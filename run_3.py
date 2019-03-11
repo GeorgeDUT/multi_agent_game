@@ -5,8 +5,29 @@ from war_3 import *
 import numpy as np
 
 
-weight=[-0.1,-0]
-bais=10
+weight_r=[-0.01,-1,-90]
+weight_b=[1,1,0]
+
+dis_of_red=[]
+dis_of_blue=[]
+
+
+# transform map to list of red and blue
+def map_to_list(s_map):
+    del dis_of_red[:]
+    del dis_of_blue[:]
+    for i in range(len(s_map)):
+        for j in range(len(s_map[0])):
+            a = []
+            b=[]
+            if s_map[i][j]==1:
+                a.append(j)
+                a.append(i)
+                dis_of_red.append(a)
+            if s_map[i][j]==2:
+                b.append(j)
+                b.append(i)
+                dis_of_blue.append(b)
 
 
 def dis(x1,y1,x2,y2):
@@ -14,39 +35,24 @@ def dis(x1,y1,x2,y2):
 
 
 # x is w; y is h
-# compute the distance of each other in red group
+# compute the distance of each other in our group
 def function_1(num,s_map):
-    dis_of_red=[]
-    for i in range(len(s_map)):
-        for j in range(len(s_map[0])):
-            a=[]
-            if s_map[i][j]==num:
-                a.append(j)
-                a.append(i)
-                dis_of_red.append(a)
     sum_distance=0
-    for i in range(len(dis_of_red)):
-        for j in range(len(dis_of_red)):
-            sum_distance=sum_distance+dis(dis_of_red[i][0],dis_of_red[i][1],
+    if num==1:
+        for i in range(len(dis_of_red)):
+            for j in range(len(dis_of_red)):
+                sum_distance=sum_distance+dis(dis_of_red[i][0],dis_of_red[i][1],
                              dis_of_red[j][0],dis_of_red[j][1])
+    else:
+        for i in range(len(dis_of_blue)):
+            for j in range(len(dis_of_blue)):
+                sum_distance=sum_distance+dis(dis_of_blue[i][0],dis_of_blue[i][1],
+                             dis_of_blue[j][0],dis_of_blue[j][1])
     return sum_distance
 
 
+# compute the distance of each pair (our agent, enemy agent)
 def function_2(num,s_map):
-    dis_of_red = []
-    dis_of_blue=[]
-    for i in range(len(s_map)):
-        for j in range(len(s_map[0])):
-            a = []
-            b=[]
-            if s_map[i][j] != num and s_map[i][j]!=0:
-                a.append(j)
-                a.append(i)
-                dis_of_red.append(a)
-            if s_map[i][j]==num:
-                b.append(j)
-                b.append(i)
-                dis_of_blue.append(b)
     sum_distance = 0
     for i in range(len(dis_of_blue)):
         for j in range(len(dis_of_red)):
@@ -55,11 +61,29 @@ def function_2(num,s_map):
     return sum_distance
 
 
-def sum_function(num,s_map):
-    return weight[0]*function_1(num,s_map)+weight[1]*function_2(num,s_map)
+# compute the min distance pair (our agent, enemy agent)
+def function_3(num,s_map):
+    min_dis=len(s_map)+len(s_map[0])
+    for i in range(len(dis_of_blue)):
+        for j in range(len(dis_of_red)):
+            pair_dis=dis(dis_of_blue[i][0],dis_of_blue[i][1],dis_of_red[j][0],dis_of_red[j][1])
+            min_dis=min(min_dis,pair_dis)
+    return min_dis
 
 
-def want_move(num,x,y,action,s_map):
+def sum_function_r(num,s_map):
+    map_to_list(s_map)
+    value = weight_r[0]*function_1(num,s_map)+weight_r[1]*function_2(num,s_map)+weight_r[2]*function_3(num,s_map)
+    return value
+
+
+def sum_function_b(num,s_map):
+    map_to_list(s_map)
+    value = weight_b[0]*function_1(num,s_map)+weight_b[1]*function_2(num,s_map)+weight_b[2]*function_3(num,s_map)
+    return value
+
+
+def want_move_r(num,x,y,action,s_map):
     if action =='u':
         x_new=x
         y_new=max(0,y-1)
@@ -77,7 +101,31 @@ def want_move(num,x,y,action,s_map):
         y_new=y
     s_map[y][x]=0
     s_map[y_new][x_new]=num
-    sum_distance=sum_function(num,s_map)
+    sum_distance=sum_function_r(num,s_map)
+    s_map[y][x]=num
+    s_map[y_new][x_new]=0
+    return sum_distance
+
+
+def want_move_b(num,x,y,action,s_map):
+    if action =='u':
+        x_new=x
+        y_new=max(0,y-1)
+    elif action=='d':
+        x_new=x
+        y_new=min(y+1,len(s_map)-1)
+    elif action=='l':
+        x_new=max(0,x-1)
+        y_new=y
+    elif action=='r':
+        x_new=min(x+1,len(s_map[0])-1)
+        y_new=y
+    else:
+        x_new=x
+        y_new=y
+    s_map[y][x]=0
+    s_map[y_new][x_new]=num
+    sum_distance=sum_function_b(num,s_map)
     s_map[y][x]=num
     s_map[y_new][x_new]=0
     return sum_distance
@@ -88,7 +136,18 @@ def brain_red(num,x,y,s_map):
     random.shuffle(action_space)
     action_reward=[]
     for action in action_space:
-        r=want_move(num,x,y,action,s_map)
+        r=want_move_r(num,x,y,action,s_map)
+        action_reward.append(r)
+    choose=action_reward.index(max(action_reward))
+    return action_space[choose]
+
+
+def brain_blue(num,x,y,s_map):
+    action_space=['u','d','l','r','s']
+    random.shuffle(action_space)
+    action_reward=[]
+    for action in action_space:
+        r=want_move_b(num,x,y,action,s_map)
         action_reward.append(r)
     choose=action_reward.index(max(action_reward))
     return action_space[choose]
@@ -107,7 +166,8 @@ def move_game(my_map):
             red_action.append(a)
         for i in range(my_map.blue_num):
             x,y=my_map.blue_army[i].x,my_map.blue_army[i].y
-            b=np.random.choice(['u','d','r','l','s'])
+            # b=np.random.choice(['u','d','r','l','s'])
+            b=brain_blue(2,x,y,s_map)
             blue_action.append(b)
 
         my_map.move(red_action,blue_action)
@@ -122,7 +182,7 @@ def update():
 
 
 if __name__=="__main__":
-    my_map=WarMap3(20,20,10,5,True)
+    my_map=WarMap3(30,30,15,15,True)
     if my_map.draw_pic:
         my_map.after(10,update)
         my_map.mainloop()
