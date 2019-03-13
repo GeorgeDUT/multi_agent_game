@@ -32,11 +32,11 @@ def cmpt_f_r(s,x,y):
         end_x,end_y=int(s.red_loc[i][0]),int(s.red_loc[i][1])
         if s.env_map[end_y][end_x]==1:
             f_x, f_y = force(x, y, end_x, end_y)
-            '''
+
             # red force rule 1: sum force is all force
             red_force[0]+=f_x
             red_force[1]+=f_y
-            '''
+
 
             '''
             # red force rule 2: max force is all force
@@ -44,16 +44,19 @@ def cmpt_f_r(s,x,y):
             if F==pow(f_x,2)+pow(f_y,2):
                 red_force[0],red_force[1]=f_x,f_y
             '''
+            '''
             # red force rule 3:force times distance^4
             red_force[0] += f_x * pow((pow(x - end_x, 2) + pow(y - end_y, 2)), 1.5)
             red_force[1] += f_y * pow((pow(x - end_x, 2) + pow(y - end_y, 2)), 1.5)
+            '''
+
 
         else:
             pass
     # cmpt blue sum force
     F=0.0
     for i in range(s.blue_num):
-        i=random.randint(0,s.blue_num-1)
+        # i=random.randint(0,s.blue_num-1)
         end_x,end_y=int(s.blue_loc[i][0]),int(s.blue_loc[i][1])
         if s.env_map[end_y][end_x]==2:
             f_x,f_y=force(x,y,end_x,end_y)
@@ -62,7 +65,6 @@ def cmpt_f_r(s,x,y):
             blue_force[0] += f_x*pow((pow(x - end_x, 2) + pow(y - end_y, 2)),1)
             blue_force[1] += f_y*pow((pow(x - end_x, 2) + pow(y - end_y, 2)),1)
             '''
-
 
             # blue force rule 2: max force is his all force
             F = max(pow(f_x, 2) + pow(f_y, 2), F)
@@ -77,7 +79,7 @@ def cmpt_f_r(s,x,y):
         else:
             pass
     # blue can not affect red
-    blue_force[0], blue_force[1] = 0, 0
+    # blue_force[0], blue_force[1] = 0, 0
     red_force[0],red_force[1]=-red_force[0],-red_force[1]
     return red_force,blue_force
 
@@ -92,13 +94,13 @@ def brain_r(s,x,y,team,id):
     red_f,blue_f=cmpt_f_r(s,x,y)
     r_sum_f,b_sum_f=[0.,0.],[0.,0.]
     # his is blue all sum force-1
-    r_sum_f[0]=red_f[0]*pow(0.1,6)+(blue_f[0])
-    r_sum_f[1] = red_f[1]*pow(0.1,6) + (blue_f[1])
+    r_sum_f[0]=-red_f[0]*pow(0.1,5)+(blue_f[0])
+    r_sum_f[1] =-red_f[1]*pow(0.1,5) + (blue_f[1])
     # r_sum_f[0] = red_f[0] + (blue_f[0] * pow(0.1, 6))
     # r_sum_f[1] = red_f[1] + (blue_f[1]*pow(0.1,6))
 
-    b_sum_f[0] = red_f[0] + (blue_f[0] * pow(0.1, 6))
-    b_sum_f[1] = red_f[1] + (blue_f[1] * pow(0.1, 6))
+    b_sum_f[0] = red_f[0] + (blue_f[0] * pow(0.1, 4))
+    b_sum_f[1] = red_f[1] + (blue_f[1] * pow(0.1, 4))
 
     # this is blue all sum force-2
     '''
@@ -214,7 +216,7 @@ def cmpt_f(s,x,y):
     # cmpt blue sum force
     F=0.0
     for i in range(s.blue_num):
-        i=random.randint(0,s.blue_num-1)
+        # i=random.randint(0,s.blue_num-1)
         end_x,end_y=int(s.blue_loc[i][0]),int(s.blue_loc[i][1])
         if s.env_map[end_y][end_x]==2:
             f_x,f_y=force(x,y,end_x,end_y)
@@ -255,8 +257,8 @@ def brain(s,x,y,team,id):
     r_sum_f[0] = red_f[0] + (blue_f[0] * pow(0.1, 1))
     r_sum_f[1] = red_f[1] + (blue_f[1]*pow(0.1,1))
 
-    b_sum_f[0] = red_f[0] + (blue_f[0] * pow(0.1, 6))
-    b_sum_f[1] = red_f[1] + (blue_f[1] * pow(0.1, 6))
+    b_sum_f[0] = red_f[0] + (blue_f[0] * pow(0.1, 5))
+    b_sum_f[1] = red_f[1] + (blue_f[1] * pow(0.1, 5))
 
     # this is blue all sum force-2
     '''

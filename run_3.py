@@ -3,9 +3,9 @@ this file is feature function
 """
 from war_3 import *
 import numpy as np
+# import tensorflow as tf
 
-
-weight_r=[-0.01,-1,-90]
+weight_r=[-0.1,-1,-90]
 weight_b=[1,1,0]
 
 dis_of_red=[]
@@ -166,7 +166,7 @@ def move_game(my_map):
             red_action.append(a)
         for i in range(my_map.blue_num):
             x,y=my_map.blue_army[i].x,my_map.blue_army[i].y
-            # b=np.random.choice(['u','d','r','l','s'])
+            #b=np.random.choice(['u','d','r','l','s'])
             b=brain_blue(2,x,y,s_map)
             blue_action.append(b)
 
@@ -182,7 +182,7 @@ def update():
 
 
 if __name__=="__main__":
-    my_map=WarMap3(30,30,15,15,True)
+    my_map=WarMap3(22,22,20,20,True)
     if my_map.draw_pic:
         my_map.after(10,update)
         my_map.mainloop()
