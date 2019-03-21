@@ -99,8 +99,8 @@ def brain_r(s,x,y,team,id):
     # r_sum_f[0] = red_f[0] + (blue_f[0] * pow(0.1, 6))
     # r_sum_f[1] = red_f[1] + (blue_f[1]*pow(0.1,6))
 
-    b_sum_f[0] = red_f[0] + (blue_f[0] * pow(0.1, 4))
-    b_sum_f[1] = red_f[1] + (blue_f[1] * pow(0.1, 4))
+    b_sum_f[0] = red_f[0] + (blue_f[0] * pow(0.1, 5))
+    b_sum_f[1] = red_f[1] + (blue_f[1] * pow(0.1, 5))
 
     # this is blue all sum force-2
     '''
