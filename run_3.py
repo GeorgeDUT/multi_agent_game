@@ -3,7 +3,13 @@ this file is feature function
 """
 from war_3 import *
 import numpy as np
-# import tensorflow as tf
+import tensorflow as tf
+# print(tf.__version__)
+# a=tf.constant([1,2,3],shape=[1,3],name='a')
+# b=tf.constant([1,2,3],shape=[3,1],name='b')
+# c=tf.matmul(a,b)
+# sess=tf.Session(config=tf.ConfigProto(log_device_placement=True))
+# print(sess.run(c))
 
 weight_r=[-0.1,-1,-90]
 weight_b=[1,1,0]
