@@ -1,7 +1,7 @@
 """
 this file is feature function
 """
-from war_3 import *
+from war_4 import *
 import numpy as np
 import tensorflow as tf
 # print(tf.__version__)
@@ -12,7 +12,7 @@ import tensorflow as tf
 # print(sess.run(c))
 
 weight_r=[-0.1,-1,-90]
-weight_b=[1,1,0]
+weight_b=[0,1,0]
 
 dis_of_red=[]
 dis_of_blue=[]
@@ -169,6 +169,7 @@ def move_game(my_map):
         for i in range(my_map.red_num):
             x,y=my_map.red_army[i].x,my_map.red_army[i].y
             a=brain_red(1,x,y,s_map)
+            a='r'
             red_action.append(a)
         for i in range(my_map.blue_num):
             x,y=my_map.blue_army[i].x,my_map.blue_army[i].y
@@ -188,7 +189,7 @@ def update():
 
 
 if __name__=="__main__":
-    my_map=WarMap3(22,22,20,20,True)
+    my_map=WarMap4(22,22,20,20,True)
     if my_map.draw_pic:
         my_map.after(10,update)
         my_map.mainloop()

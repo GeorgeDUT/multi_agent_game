@@ -1,6 +1,6 @@
 # from war_2 import *
 from war_1 import *
-from war_3 import *
+from war_4 import *
 from red_brain import *
 from blue_brain import *
 # from compiler.ast import flatten
@@ -186,7 +186,7 @@ def update():
 
 
 if __name__ == "__main__":
-    my_map = WarMap3(60,50,30,30,True)
+    my_map = WarMap4(15,15,10,10,True)
     action_space=math.pow(5,my_map.red_num)
     state_space=(my_map.red_num+my_map.blue_num)*4
     # action_space=my_map.blue_num

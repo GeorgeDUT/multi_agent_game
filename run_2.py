@@ -3,7 +3,7 @@ this function is just for war_3 game
 usr force, every pair of agents have force like gravity.
 
 """
-from war_3 import *
+from war_4 import *
 import pandas as pd
 import math
 
@@ -361,7 +361,7 @@ def update():
 
 
 if __name__ =="__main__":
-    my_map=WarMap3(80,60,50,50,True)
+    my_map=WarMap4(80,60,50,50,True)
     if my_map.draw_pic:
         my_map.after(10,update)
         my_map.mainloop()
