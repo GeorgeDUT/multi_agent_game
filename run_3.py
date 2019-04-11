@@ -12,7 +12,10 @@ import tensorflow as tf
 # print(sess.run(c))
 
 weight_r=[-0.1,-1,-90]
-weight_b=[0,1,0]
+weight_b=[-1,1,0]
+
+MAP_H=30
+MAP_W=40
 
 dis_of_red=[]
 dis_of_blue=[]
@@ -36,8 +39,18 @@ def map_to_list(s_map):
                 dis_of_blue.append(b)
 
 
+'''
 def dis(x1,y1,x2,y2):
     return abs(x1-x2)+abs(y1-y2)
+'''
+
+
+def dis(x1,y1,x2,y2):
+    d_1=abs(x1-x2)+abs(y1-y2)
+    d_2=(MAP_W-abs(x1-x2))+abs(MAP_H-abs(y1-y2))
+    d=min(d_1,d_2)
+    d=d_1-d_2
+    return d
 
 
 # x is w; y is h
@@ -169,7 +182,7 @@ def move_game(my_map):
         for i in range(my_map.red_num):
             x,y=my_map.red_army[i].x,my_map.red_army[i].y
             a=brain_red(1,x,y,s_map)
-            a='r'
+            # a='r'
             red_action.append(a)
         for i in range(my_map.blue_num):
             x,y=my_map.blue_army[i].x,my_map.blue_army[i].y
@@ -189,7 +202,7 @@ def update():
 
 
 if __name__=="__main__":
-    my_map=WarMap4(22,22,20,20,True)
+    my_map=WarMap4(MAP_W,MAP_H,20,20,False)
     if my_map.draw_pic:
         my_map.after(10,update)
         my_map.mainloop()
