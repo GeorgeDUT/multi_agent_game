@@ -63,15 +63,17 @@ class OutInfo(object):
         self.env_map=np.zeros(shape=(h,w))
         self.red_num=red_num
         self.blue_num=blue_num
-        self.red_loc=np.zeros(shape=(red_num,2))
-        self.blue_loc=np.zeros(shape=(blue_num,2))
+        '''loc [x,y,live or dead]'''
+        self.red_loc=np.zeros(shape=(red_num,3))
+        self.blue_loc=np.zeros(shape=(blue_num,3))
         # self.army_loc=np.zeros((red_num+blue_num)*4)
         # self.feature_stat=np.zeros(int(math.pow(2,blue_num)))
 
 
 class WarMap4(tk.Tk, object):
-    def __init__(self, w=MAP_W, h=MAP_H, red=R_ARMY_NUM, blue=B_ARMY_NUM, draw_pic=False):
+    def __init__(self, w=MAP_W, h=MAP_H, red=R_ARMY_NUM, blue=B_ARMY_NUM, draw_pic=False,global_switch=False):
         self.draw_pic = draw_pic
+        self.global_switch=global_switch
         self.map_w = w
         self.map_h = h
         self.red_num = red
@@ -139,19 +141,31 @@ class WarMap4(tk.Tk, object):
             if action=='u':
                 change_x,change_y=self.red_army[id].x, self.red_army[id].y-1
                 if change_y<0:
-                    change_y=self.map_h-1
+                    if self.global_switch:
+                        change_y=self.map_h-1
+                    else:
+                        change_y=0
             elif action=='d':
                 change_x, change_y=self.red_army[id].x, self.red_army[id].y+1
                 if change_y>=self.map_h:
-                    change_y=0
+                    if self.global_switch:
+                        change_y=0
+                    else:
+                        change_y=self.map_h-1
             elif action=='l':
                 change_x, change_y = self.red_army[id].x-1, self.red_army[id].y
                 if change_x< 0:
-                    change_x = self.map_w-1
+                    if self.global_switch:
+                        change_x = self.map_w-1
+                    else:
+                        change_x=0
             elif action=='r':
                 change_x, change_y = self.red_army[id].x+1, self.red_army[id].y
                 if change_x >= self.map_w:
-                    change_x = 0
+                    if self.global_switch:
+                        change_x = 0
+                    else:
+                        change_x=self.map_w-1
             elif action == 's':
                 change_x, change_y = self.red_army[id].x , self.red_army[id].y
             if self.env_map[change_y][change_x] != 0:
@@ -163,19 +177,31 @@ class WarMap4(tk.Tk, object):
             if action=='u':
                 change_x,change_y=self.blue_army[id].x, self.blue_army[id].y-1
                 if change_y<0:
-                    change_y=self.map_h-1
+                    if self.global_switch:
+                        change_y=self.map_h-1
+                    else:
+                        change_y=0
             elif action=='d':
                 change_x, change_y=self.blue_army[id].x, self.blue_army[id].y+1
                 if change_y>=self.map_h:
-                    change_y=0
+                    if self.global_switch:
+                        change_y=0
+                    else:
+                        change_y=self.map_h-1
             elif action=='l':
                 change_x, change_y = self.blue_army[id].x-1, self.blue_army[id].y
                 if change_x< 0:
-                    change_x = self.map_w-1
+                    if self.global_switch:
+                        change_x=self.map_w-1
+                    else:
+                        change_x=0
             elif action=='r':
                 change_x, change_y = self.blue_army[id].x+1, self.blue_army[id].y
                 if change_x >= self.map_w:
-                    change_x = 0
+                    if self.global_switch:
+                        change_x = 0
+                    else:
+                        change_x=self.map_w-1
             elif action=='s':
                 change_x, change_y = self.blue_army[id].x , self.blue_army[id].y
             if self.env_map[change_y][change_x] != 0:
@@ -326,11 +352,19 @@ class WarMap4(tk.Tk, object):
             for j in range(self.map_w):
                 info.env_map[i][j]=self.env_map[i][j]
         for i in range(self.red_num):
-            info.red_loc[i][0],info.red_loc[i][1]=self.red_army[i].x,\
-                                                  self.red_army[i].y
+            if self.red_army[i].life=='live':
+                life=1
+            else:
+                life=0
+            info.red_loc[i][0],info.red_loc[i][1],info.red_loc[i][2]=self.red_army[i].x,\
+                                                  self.red_army[i].y,life
         for i in range(self.blue_num):
-            info.blue_loc[i][0],info.blue_loc[i][1]=self.blue_army[i].x,\
-                                                    self.blue_army[i].y
+            if self.blue_army[i].life=='live':
+                life=1
+            else:
+                life=0
+            info.blue_loc[i][0],info.blue_loc[i][1],info.blue_loc[i][2]=self.blue_army[i].x,\
+                                                    self.blue_army[i].y,life
         return info
 
     def step(self):
