@@ -11,8 +11,8 @@ import tensorflow as tf
 # sess=tf.Session(config=tf.ConfigProto(log_device_placement=True))
 # print(sess.run(c))
 
-weight_r=[-0.1,-1,-90]
-weight_b=[-1,1,0]
+weight_r=[-10,0,0]
+weight_b=[-10,0,0]
 
 MAP_H=20
 MAP_W=20
@@ -52,6 +52,7 @@ def dis(x1,y1,x2,y2):
     d=d_1-d_2
     return d
 '''
+
 
 # x is w; y is h
 # compute the distance of each other in our group
@@ -142,11 +143,13 @@ def want_move_b(num,x,y,action,s_map):
     else:
         x_new=x
         y_new=y
+
     s_map[y][x]=0
     s_map[y_new][x_new]=num
     sum_distance=sum_function_b(num,s_map)
     s_map[y][x]=num
     s_map[y_new][x_new]=0
+
     return sum_distance
 
 
@@ -182,12 +185,11 @@ def move_game(my_map):
         for i in range(my_map.red_num):
             x,y=my_map.red_army[i].x,my_map.red_army[i].y
             a=brain_red(1,x,y,s_map)
-            # a='r'
             red_action.append(a)
         for i in range(my_map.blue_num):
             x,y=my_map.blue_army[i].x,my_map.blue_army[i].y
-            b=np.random.choice(['u','d','r','l','s'])
-            # b=brain_blue(2,x,y,s_map)
+            # b=np.random.choice(['u','d','r','l','s'])
+            b=brain_blue(2,x,y,s_map)
             blue_action.append(b)
 
         my_map.move(red_action,blue_action)
