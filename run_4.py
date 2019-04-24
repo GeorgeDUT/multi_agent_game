@@ -11,8 +11,8 @@ import tensorflow as tf
 # sess=tf.Session(config=tf.ConfigProto(log_device_placement=True))
 # print(sess.run(c))
 
-weight_r=[-0.01,-1,-100]
-weight_b=[1,0,0]
+weight_r=[-1,0,0]
+weight_b=[-1,0,0]
 
 MAP_H=30
 MAP_W=30
@@ -48,7 +48,7 @@ def dis(x1,y1,x2,y2):
     d_1=abs(x1-x2)+abs(y1-y2)
     d_2=(MAP_W-abs(x1-x2))+abs(MAP_H-abs(y1-y2))
     d=min(d_1,d_2)
-    d=d_1-d_2
+    #d=d_1-d_2
     return d
 
 
@@ -187,8 +187,8 @@ def move_game(my_map):
             red_action.append(a)
         for i in range(my_map.blue_num):
             x,y=my_map.blue_army[i].x,my_map.blue_army[i].y
-            b=np.random.choice(['u','d','r','l','s'])
-            # b=brain_blue(2,x,y,s_map)
+            #b=np.random.choice(['u','d','r','l','s'])
+            b=brain_blue(2,x,y,s_map)
             blue_action.append(b)
 
         my_map.move(red_action,blue_action)
@@ -203,7 +203,7 @@ def update():
 
 
 if __name__=="__main__":
-    my_map=WarMap4(MAP_W,MAP_H,18,10,True,True)
+    my_map=WarMap4(MAP_W,MAP_H,18,18,True,True)
     if my_map.draw_pic:
         my_map.after(10,update)
         my_map.mainloop()
