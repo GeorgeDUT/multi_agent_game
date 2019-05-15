@@ -11,11 +11,11 @@ import tensorflow as tf
 # sess=tf.Session(config=tf.ConfigProto(log_device_placement=True))
 # print(sess.run(c))
 
-weight_r=[-1,0,0]
+weight_r=[-0.5,-1,0]
 weight_b=[-1,0,0]
 
-MAP_H=30
-MAP_W=30
+MAP_H=10
+MAP_W=10
 
 dis_of_red=[]
 dis_of_blue=[]
@@ -175,8 +175,10 @@ def brain_blue(num,x,y,s_map):
 
 
 def move_game(my_map):
+    step=0
     while 1:
         # time.sleep(0.002)
+        step=step+1
         red_action=[]
         blue_action=[]
         s=my_map.get_state()
@@ -194,16 +196,25 @@ def move_game(my_map):
         my_map.move(red_action,blue_action)
         red,blue,done=my_map.step()
         if done:
-            print ('end')
+            print ('end',red,blue,step)
+            if red>blue:
+                return 1,step
+            else:
+                return 0,step
 
 
 def update():
+    red_win,all,sum_step=0,0,0
     for episode in range(100):
-        move_game(my_map)
+        all=all+1
+        r,step=move_game(my_map)
+        sum_step=sum_step+step
+        red_win=red_win+r
+        print(red_win/all,sum_step/all)
 
 
 if __name__=="__main__":
-    my_map=WarMap4(MAP_W,MAP_H,18,18,True,True)
+    my_map=WarMap4(MAP_W,MAP_H,5,5,False,True)
     if my_map.draw_pic:
         my_map.after(10,update)
         my_map.mainloop()
