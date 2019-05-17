@@ -11,8 +11,8 @@ import tensorflow as tf
 # sess=tf.Session(config=tf.ConfigProto(log_device_placement=True))
 # print(sess.run(c))
 
-weight_r=[0.5,-1,0]
-weight_b=[0.5,-1,0]
+weight_r=[-0.5,-1,0]
+weight_b=[-1,0,0]
 
 MAP_H=30
 MAP_W=30

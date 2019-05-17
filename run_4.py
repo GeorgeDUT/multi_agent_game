@@ -10,9 +10,9 @@ import tensorflow as tf
 # c=tf.matmul(a,b)
 # sess=tf.Session(config=tf.ConfigProto(log_device_placement=True))
 # print(sess.run(c))
-
-weight_r=[-0.5,-1,0]
-weight_b=[-1,0,0]
+0
+weight_r=[1,-1,0]
+weight_b=[-1,-1,0]
 
 MAP_H=10
 MAP_W=10
@@ -175,7 +175,7 @@ def brain_blue(num,x,y,s_map):
 
 
 def move_game(my_map):
-    step=0
+    step=0.0
     while 1:
         # time.sleep(0.002)
         step=step+1
@@ -204,7 +204,7 @@ def move_game(my_map):
 
 
 def update():
-    red_win,all,sum_step=0,0,0
+    red_win,all,sum_step=0.0,0.0,0.0
     for episode in range(100):
         all=all+1
         r,step=move_game(my_map)
