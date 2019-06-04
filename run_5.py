@@ -5,7 +5,7 @@ Using Reinforcement learning algorithm.
 
 from DQN_brain_new import *
 from war_4 import *
-
+import matplotlib.pyplot as plt
 
 MAP_H=6
 MAP_W=6
@@ -53,7 +53,12 @@ def move_game(my_map):
 
         red_num_action=Red_RL.choose_action(s_map)
         red_action=num_to_action(red_num_action,5,my_map.red_num)
-        print(red_action,red_num_action)
+        # for i in range(my_map.red_num):
+        #     a=np.random.choice(['u','d','r','l','s'])
+        #     red_action.append(a)
+
+
+        #print(red_action,red_num_action)
         """move action"""
 
         my_map.move(red_action,blue_action)
@@ -69,29 +74,36 @@ def move_game(my_map):
                 reward=-100
         else:
             reward=0
-        print(s_map.ndim,s_map_.ndim)
         Red_RL.store_transition(s_map,red_num_action,reward,s_map_)
 
         if done:
             print ('end',red,blue,step)
             if red>blue:
                 return 1,step
+            elif red==blue:
+                return 0.5,step
             else:
                 return 0,step
 
 
 def update():
     red_win,all,sum_step=0.0,0.0,0.0
-    for episode in range(100):
+    plt_red_win=[]
+    for episode in range(200):
         all=all+1
         r,step=move_game(my_map)
         sum_step=sum_step+step
         red_win=red_win+r
         print(red_win/all,sum_step/all)
+        plt_red_win.append(red_win/all)
+    fig=plt.figure()
+    plt.plot(plt_red_win)
+    plt.show()
+
 
 
 if __name__=="__main__":
-    my_map=WarMap4(MAP_W,MAP_H,2,2,True,True)
+    my_map=WarMap4(MAP_W,MAP_H,4,4,False,True)
     Red_RL=DeepQNetwork(
         n_actions=pow(5,my_map.red_num), n_features=MAP_H*MAP_W,
         learning_rate=0.01,
