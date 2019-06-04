@@ -10,7 +10,6 @@ import tensorflow as tf
 # c=tf.matmul(a,b)
 # sess=tf.Session(config=tf.ConfigProto(log_device_placement=True))
 # print(sess.run(c))
-0
 weight_r=[1,-1,0]
 weight_b=[-1,-1,0]
 
@@ -50,7 +49,6 @@ def dis(x1,y1,x2,y2):
     d=min(d_1,d_2)
     #d=d_1-d_2
     return d
-
 
 
 # x is w; y is h
@@ -214,7 +212,7 @@ def update():
 
 
 if __name__=="__main__":
-    my_map=WarMap4(MAP_W,MAP_H,5,5,False,True)
+    my_map=WarMap4(MAP_W,MAP_H,5,5,True,True)
     if my_map.draw_pic:
         my_map.after(10,update)
         my_map.mainloop()
