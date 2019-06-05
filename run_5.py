@@ -41,7 +41,6 @@ def change_map(map):
     return s_map
 
 
-
 def move_game(my_map):
     step=0.0
     s_map=change_map(my_map)
@@ -53,7 +52,7 @@ def move_game(my_map):
 
         """move action"""
         for i in range(my_map.blue_num):
-            b=np.random.choice(['s','s','s','s','s'])
+            b=np.random.choice(['u','d','l','r','s'])
             # x,y=my_map.blue_army[i].x,my_map.blue_army[i].y
             # b=brain_blue(2,x,y,s.env_map)
             blue_action.append(b)
@@ -74,15 +73,16 @@ def move_game(my_map):
 
         if done:
             if red>blue:
-                reward=100
+                reward=(red-blue)*100
             else:
-                reward=100
+                reward=(red-blue)*100
         else:
             reward=0
-        Red_RL.store_transition(s_map,red_num_action,reward,s_map_)
         print(s_map,s_map_)
+        Red_RL.store_transition(s_map,red_num_action,reward,s_map_)
         Red_RL.learn()
         s_map=s_map_
+
 
         if done:
             print ('end',red,blue,step)
@@ -107,13 +107,13 @@ def update():
         plt_red_win.append(red_win/all)
         plt_red_step.append(step)
     fig=plt.figure()
-    plt.plot(plt_red_step)
+    plt.plot(plt_red_win)
     plt.show()
 
 
 
 if __name__=="__main__":
-    my_map=WarMap4(MAP_W,MAP_H,1,1,False,True)
+    my_map=WarMap4(MAP_W,MAP_H,3,3,False,True)
     Red_RL=DeepQNetwork(
         n_actions=pow(5,my_map.red_num), n_features=my_map.red_num*2,
         learning_rate=0.01,

@@ -5,7 +5,7 @@ import numpy as np
 import random
 
 weight_r=[1,-1,0]
-weight_b=[-1,1,0]
+weight_b=[0,0,0]
 
 
 dis_of_red=[]
