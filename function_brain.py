@@ -11,8 +11,8 @@ weight_b=[-1,1,0]
 dis_of_red=[]
 dis_of_blue=[]
 
-MAP_H=6
-MAP_W=6
+MAP_H=10
+MAP_W=10
 
 
 # transform map to list of red and blue

@@ -8,10 +8,11 @@ from function_brain import *
 from war_4 import *
 import matplotlib.pyplot as plt
 
-MAP_H=6
-MAP_W=6
+MAP_H=10
+MAP_W=10
 
 Action_Space=['u','d','l','r','s']
+
 
 def num_to_action(action_id,action_num,agent_num):
     action_space=Action_Space
@@ -29,14 +30,28 @@ def num_to_action(action_id,action_num,agent_num):
     return b
 
 
-def change_map(map,x,y):
-    s_map_change = np.zeros(MAP_W * MAP_H+2, )
-    for i in range(MAP_W):
-        for j in range(MAP_H):
-            s_map_change[i * MAP_W + j] = map[i, j]
-    s_map_change[MAP_W*MAP_H]=x
-    s_map_change[MAP_W*MAP_H+1]=y
-    return s_map_change
+def change_map(map,id):
+    # s_map_change = np.zeros(MAP_W * MAP_H+2, )
+    # for i in range(MAP_W):
+    #     for j in range(MAP_H):
+    #         s_map_change[i * MAP_W + j] = map[i, j]
+    # s_map_change[MAP_W*MAP_H]=x
+    # s_map_change[MAP_W*MAP_H+1]=y
+    # return s_map_change
+    s_map=np.zeros((map.red_num+map.blue_num)*2)
+    num_list=[]
+    for i in range(map.red_num):
+        num_list.append(i)
+    del num_list[id]
+    num_list.insert(0,id)
+    for i in range(map.red_num):
+        s_map[i*2]=map.red_army[num_list[i]].x
+        s_map[i*2+1]=map.red_army[num_list[i]].y
+    for i in range(map.blue_num):
+        s_map[map.red_num+i*2]=map.blue_army[i].x
+        s_map[map.red_num+i*2+1]=map.blue_army[i].y
+    return s_map
+
 
 
 def move_game(my_map):
@@ -63,11 +78,7 @@ def move_game(my_map):
 
         for i in range(my_map.red_num):
             # a=np.random.choice(['u','d','r','l','s'])
-            s = my_map.get_state()
-            s_map = s.env_map
-            s_map = change_map(s_map,
-                               my_map.red_army[i].x,
-                               my_map.red_army[i].y)
+            s_map=change_map(my_map,i)
             s_map_list.append(s_map)
             a=Red_RL.choose_action(s_map)
             a=Action_Space[a]
@@ -78,11 +89,7 @@ def move_game(my_map):
         my_map.move(red_action,blue_action)
         red,blue,done=my_map.step()
         for i in range(my_map.red_num):
-            s_=my_map.get_state()
-            s_map_=s_.env_map
-            s_map_=change_map(s_map_,
-                              my_map.red_army[i].x,
-                              my_map.red_army[i].y)
+            s_map_=change_map(my_map,i)
             s_map_next_list.append(s_map_)
 
         if done:
@@ -94,6 +101,9 @@ def move_game(my_map):
             reward=0
         for i in range(my_map.red_num):
             Red_RL.store_transition(s_map_list[i],Action_Space.index(red_action[i]),reward,s_map_next_list[i])
+
+        Red_RL.learn()
+        s_map_list=s_map_next_list
 
         if done:
             print ('end',red,blue,step)
@@ -121,10 +131,10 @@ def update():
 
 
 if __name__=="__main__":
-    my_map=WarMap4(MAP_W,MAP_H,4,4,False,True)
+    my_map=WarMap4(MAP_W,MAP_H,1,1,False,True)
 
     Red_RL=DeepQNetwork(
-        n_actions=5, n_features=MAP_H*MAP_W+2,
+        n_actions=5, n_features=my_map.red_num*2+my_map.blue_num*2,
         learning_rate=0.01,
         reward_decay=0.9,
         e_greedy=0.9,
