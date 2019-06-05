@@ -1,5 +1,6 @@
 """
 DQN algorithm.
+state is map[M,N], action is agent joint action [a_1,a_2,...,a_n]
 """
 import numpy as np
 import tensorflow as tf

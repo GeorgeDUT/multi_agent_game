@@ -3,7 +3,7 @@ Using Reinforcement learning algorithm.
 
 """
 
-from DQN_brain_new import *
+from DQN_brain import *
 from function_brain import *
 from war_4 import *
 import matplotlib.pyplot as plt
@@ -11,9 +11,10 @@ import matplotlib.pyplot as plt
 MAP_H=6
 MAP_W=6
 
+Action_Space=['u','d','l','r','s']
 
 def num_to_action(action_id,action_num,agent_num):
-    action_space=['u','d','l','r','s']
+    action_space=Action_Space
     b=[]
     while True:
         s = action_id // action_num
@@ -28,47 +29,61 @@ def num_to_action(action_id,action_num,agent_num):
     return b
 
 
-def change_map(map):
-    s_map_change = np.zeros(MAP_W * MAP_H, )
+def change_map(map,x,y):
+    s_map_change = np.zeros(MAP_W * MAP_H+2, )
     for i in range(MAP_W):
         for j in range(MAP_H):
             s_map_change[i * MAP_W + j] = map[i, j]
+    s_map_change[MAP_W*MAP_H]=x
+    s_map_change[MAP_W*MAP_H+1]=y
     return s_map_change
 
 
 def move_game(my_map):
     step=0.0
-    s=my_map.get_state()
-    s_map=s.env_map
-    s_map=change_map(s_map)
+    s_map_list=[]
+    s_map_next_list=[]
 
     while 1:
+        del s_map_next_list[:]
+        del s_map_list[:]
         step=step+1
         red_action=[]
         blue_action=[]
 
         """move action"""
         for i in range(my_map.blue_num):
-            #b=np.random.choice(['u','d','r','l','s'])
+            # b=np.random.choice(['u','d','r','l','s'])
             x,y=my_map.blue_army[i].x,my_map.blue_army[i].y
-            b=brain_blue(2,x,y,s.env_map)
+            b=brain_blue(2,x,y,my_map.get_state().env_map)
             blue_action.append(b)
 
-        red_num_action=Red_RL.choose_action(s_map)
-        red_action=num_to_action(red_num_action,5,my_map.red_num)
-        # for i in range(my_map.red_num):
-        #     a=np.random.choice(['u','d','r','l','s'])
-        #     red_action.append(a)
+        # red_num_action=Red_RL.choose_action(s_map)
+        # red_action=num_to_action(red_num_action,5,my_map.red_num)
 
-
-        #print(red_action,red_num_action)
+        for i in range(my_map.red_num):
+            # a=np.random.choice(['u','d','r','l','s'])
+            s = my_map.get_state()
+            s_map = s.env_map
+            s_map = change_map(s_map,
+                               my_map.red_army[i].x,
+                               my_map.red_army[i].y)
+            s_map_list.append(s_map)
+            a=Red_RL.choose_action(s_map)
+            a=Action_Space[a]
+            red_action.append(a)
+        # print(red_action,red_num_action)
         """move action"""
 
         my_map.move(red_action,blue_action)
         red,blue,done=my_map.step()
-        s_=my_map.get_state()
-        s_map_=s_.env_map
-        s_map_=change_map(s_map_)
+        for i in range(my_map.red_num):
+            s_=my_map.get_state()
+            s_map_=s_.env_map
+            s_map_=change_map(s_map_,
+                              my_map.red_army[i].x,
+                              my_map.red_army[i].y)
+            s_map_next_list.append(s_map_)
 
         if done:
             if red>blue:
@@ -77,7 +92,8 @@ def move_game(my_map):
                 reward=-100
         else:
             reward=0
-        Red_RL.store_transition(s_map,red_num_action,reward,s_map_)
+        for i in range(my_map.red_num):
+            Red_RL.store_transition(s_map_list[i],Action_Space.index(red_action[i]),reward,s_map_next_list[i])
 
         if done:
             print ('end',red,blue,step)
@@ -104,11 +120,11 @@ def update():
     plt.show()
 
 
-
 if __name__=="__main__":
     my_map=WarMap4(MAP_W,MAP_H,4,4,False,True)
+
     Red_RL=DeepQNetwork(
-        n_actions=pow(5,my_map.red_num), n_features=MAP_H*MAP_W,
+        n_actions=5, n_features=MAP_H*MAP_W+2,
         learning_rate=0.01,
         reward_decay=0.9,
         e_greedy=0.9,
