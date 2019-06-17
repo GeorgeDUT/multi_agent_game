@@ -50,8 +50,8 @@ def change_map(map,id):
         s_map[i*2]=map.red_army[num_list[i]].x
         s_map[i*2+1]=map.red_army[num_list[i]].y
     for i in range(map.blue_num):
-        s_map[map.red_num+i*2]=map.blue_army[i].x
-        s_map[map.red_num+i*2+1]=map.blue_army[i].y
+        s_map[map.red_num*2+i*2]=map.blue_army[i].x
+        s_map[map.red_num*2+i*2+1]=map.blue_army[i].y
     return s_map
 
     # s_map = np.zeros(my_map.red_num * 2)
@@ -75,8 +75,8 @@ def move_game(my_map):
 
         """move action"""
         for i in range(my_map.blue_num):
-            # b=np.random.choice(['u','d','l','r','s'])
-            b='s'
+            b=np.random.choice(['u','d','l','r','s'])
+            # b='l'
             # x,y=my_map.blue_army[i].x,my_map.blue_army[i].y
             # b=brain_blue(2,x,y,my_map.get_state().env_map)
             blue_action.append(b)
@@ -104,13 +104,15 @@ def move_game(my_map):
             if red>blue:
                 reward=100
             else:
-                reward=-100
+                reward=100
         else:
             reward=0
         for i in range(my_map.red_num):
             Red_RL.store_transition(s_map_list[i],Action_Space.index(red_action[i]),reward,s_map_next_list[i])
 
         Red_RL.learn()
+        # print(s_map_list,s_map_next_list)
+
         for i in range(my_map.red_num):
             s_map_list[i]=s_map_next_list[i]
 
@@ -128,14 +130,14 @@ def update():
     red_win,all,sum_step=0.0,0.0,0.0
     plt_red_win=[]
     plt_red_step=[]
-    for episode in range(400):
+    for episode in range(1000):
         all=all+1
         r,step=move_game(my_map)
         sum_step=sum_step+step
         red_win=red_win+r
         print(red_win/all,sum_step/all)
         plt_red_win.append(red_win/all)
-        plt_red_step.append(step/500.00)
+        plt_red_step.append(step)
     fig=plt.figure()
     plt.plot(plt_red_win,color='r')
     plt.plot(plt_red_step,color='b')
@@ -143,7 +145,7 @@ def update():
 
 
 if __name__=="__main__":
-    my_map=WarMap4(MAP_W,MAP_H,5,5,False,True)
+    my_map=WarMap4(MAP_W,MAP_H,1,1,False,True)
 
     Red_RL=DeepQNetwork(
         n_actions=5, n_features=my_map.red_num*2+my_map.blue_num*2,

@@ -1,6 +1,9 @@
 """
 DQN algorithm.
-state is agent i position (x_i,y_i) and map[M,N], action is agent i action
+state is agent i position
+ [x_i,y_i,x_0,y_0,...,x_red_end,y_red_end,
+x_blue_0,y_blue_0,x_blue_end,y_blue_end],
+action is agent i action
 """
 import numpy as np
 import tensorflow as tf
