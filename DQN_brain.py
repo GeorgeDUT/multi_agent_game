@@ -75,11 +75,11 @@ class DeepQNetwork:
         with tf.variable_scope('eval_net'):
             e1 = tf.layers.dense(self.s, 20, tf.nn.relu, kernel_initializer=w_initializer,
                                  bias_initializer=b_initializer, name='e1')
-
+            # two hidden layer @zmy
             e2=tf.layers.dense(e1,20,tf.nn.relu,kernel_initializer=w_initializer,
                                bias_initializer=b_initializer,name='e2'
             )
-
+            # two hidden layer @zmy
             self.q_eval = tf.layers.dense(e2, self.n_actions, kernel_initializer=w_initializer,
                                           bias_initializer=b_initializer, name='q')
 
@@ -87,10 +87,10 @@ class DeepQNetwork:
         with tf.variable_scope('target_net'):
             t1 = tf.layers.dense(self.s_, 20, tf.nn.relu, kernel_initializer=w_initializer,
                                  bias_initializer=b_initializer, name='t1')
-
-            t2=tf.layers.dense(t1,20,tf.nn.relu,kernel_initializer=w_initializer,
+            # two hidden layer @zmy
+            t2 = tf.layers.dense(t1,20,tf.nn.relu,kernel_initializer=w_initializer,
                                bias_initializer=b_initializer,name='t2')
-
+            # two hidden layer @zmy
             self.q_next = tf.layers.dense(t2, self.n_actions, kernel_initializer=w_initializer,
                                           bias_initializer=b_initializer, name='q_')
 
