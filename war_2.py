@@ -1,5 +1,5 @@
 """
-war_1 game is multi_agent war game, red_army vs blue_army
+war_2 game is multi_agent war game, red_army vs blue_army
 turn-based strategy game
 rule:
     1,every turn agent move first,red or blue move first,from 1 to n, then fight, then judge fight result.
@@ -409,20 +409,38 @@ class WarMap2(tk.Tk, object):
             else:
                 pass
 
-        # reward function
-        if red_lived==0 or blue_lived==0:
-            reward_red,reward_blue=red_lived,blue_lived
+        '''reward function'''
+        # if red_lived==0 or blue_lived==0:
+        #     reward_red,reward_blue=red_lived,blue_lived
+        #     self._init_map()
+        #     done = True
+        #     if red_lived!=0:
+        #         # print('red',red_lived,blue_lived)
+        #         pass
+        #     else:
+        #         # print('blue',red_lived,blue_lived)
+        #         pass
+        #     time.sleep(0)
+        # else:
+        #     # reward_red, reward_blue=blue_killed,red_killed
+        #     reward_red, reward_blue=self.last_dis-self.this_dis,self.last_dis-self.this_dis
+        #     done = False
+
+        '''reward function'''
+        if red_lived == 0 or blue_lived == 0:
+            reward_red, reward_blue = red_lived, blue_lived
             self._init_map()
             done = True
-            if red_lived!=0:
-                #print('red',red_lived,blue_lived)
+            if red_lived != 0:
+                # print('red',red_lived,blue_lived)
                 pass
             else:
-                #print('blue',red_lived,blue_lived)
+                # print('blue',red_lived,blue_lived)
                 pass
             time.sleep(0)
         else:
             # reward_red, reward_blue=blue_killed,red_killed
-            reward_red, reward_blue=self.last_dis-self.this_dis,self.last_dis-self.this_dis
+            reward_red, reward_blue = 0, 0
             done = False
+
         return reward_red,reward_blue,done
