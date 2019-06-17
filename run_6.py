@@ -1,5 +1,6 @@
 """
 Using Reinforcement learning algorithm.
+model is DQN_brain
 
 """
 
@@ -75,8 +76,9 @@ def move_game(my_map):
         """move action"""
         for i in range(my_map.blue_num):
             # b=np.random.choice(['u','d','l','r','s'])
-            x,y=my_map.blue_army[i].x,my_map.blue_army[i].y
-            b=brain_blue(2,x,y,my_map.get_state().env_map)
+            b='s'
+            # x,y=my_map.blue_army[i].x,my_map.blue_army[i].y
+            # b=brain_blue(2,x,y,my_map.get_state().env_map)
             blue_action.append(b)
 
         # red_num_action=Red_RL.choose_action(s_map)
@@ -102,7 +104,7 @@ def move_game(my_map):
             if red>blue:
                 reward=100
             else:
-                reward=100
+                reward=-100
         else:
             reward=0
         for i in range(my_map.red_num):
@@ -133,9 +135,10 @@ def update():
         red_win=red_win+r
         print(red_win/all,sum_step/all)
         plt_red_win.append(red_win/all)
-        plt_red_step.append(step)
+        plt_red_step.append(step/500.00)
     fig=plt.figure()
-    plt.plot(plt_red_win)
+    plt.plot(plt_red_win,color='r')
+    plt.plot(plt_red_step,color='b')
     plt.show()
 
 

@@ -1,5 +1,6 @@
 """
 Using Reinforcement learning algorithm.
+model is DQN_brain_new
 
 """
 
