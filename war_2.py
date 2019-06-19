@@ -256,8 +256,8 @@ class WarMap2(tk.Tk, object):
                         red_enemy=red_enemy+1
                         pass
 
-            if red_enemy==4:
-                self.red_army[i].win_p=0
+            if red_enemy == 4:
+                self.red_army[i].win_p = 0
             elif red_enemy == 3:
                 if self.red_army[i].x * self.red_army[i].y == 0:
                     self.red_army[i].win_p = 0

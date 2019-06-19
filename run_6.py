@@ -9,8 +9,8 @@ from function_brain import *
 from war_4 import *
 import matplotlib.pyplot as plt
 
-MAP_H=20
-MAP_W=20
+MAP_H=5
+MAP_W=5
 
 Action_Space=['u','d','l','r','s']
 
@@ -78,7 +78,7 @@ def move_game(my_map):
         """move action"""
         for i in range(my_map.blue_num):
             b=np.random.choice(['u','d','l','r','s'])
-            # b='s'
+            # b='l'
             # x,y=my_map.blue_army[i].x,my_map.blue_army[i].y
             # b=brain_blue(2,x,y,my_map.get_state().env_map)
             blue_action.append(b)
@@ -108,7 +108,7 @@ def move_game(my_map):
             if red>blue:
                 reward=100
             else:
-                reward=100
+                reward=-100
         else:
             reward=0
         for i in range(my_map.red_num):
@@ -149,7 +149,7 @@ def update():
 
 
 if __name__=="__main__":
-    my_map=WarMap4(MAP_W,MAP_H,1,1,False,True)
+    my_map=WarMap4(MAP_W,MAP_H,3,3,False, False)
 
     Red_RL=DeepQNetwork(
         n_actions=5, n_features=my_map.red_num*2+my_map.blue_num*2,
