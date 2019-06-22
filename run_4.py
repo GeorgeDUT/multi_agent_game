@@ -10,11 +10,11 @@ import tensorflow as tf
 # c=tf.matmul(a,b)
 # sess=tf.Session(config=tf.ConfigProto(log_device_placement=True))
 # print(sess.run(c))
-weight_r=[-1,-0.6,0]
+weight_r=[-1,1,0]
 weight_b=[0,0,0]
 
-MAP_H=11
-MAP_W=11
+MAP_H=25
+MAP_W=25
 
 dis_of_red=[]
 dis_of_blue=[]
@@ -189,6 +189,7 @@ def move_game(my_map):
             x,y=my_map.blue_army[i].x,my_map.blue_army[i].y
             #b=np.random.choice(['u','d','r','l','s'])
             b=brain_blue(2,x,y,s_map)
+            b='s'
             blue_action.append(b)
 
         my_map.move(red_action,blue_action)
@@ -212,7 +213,7 @@ def update():
 
 
 if __name__=="__main__":
-    my_map=WarMap4(MAP_W,MAP_H,10,10,True,False)
+    my_map=WarMap4(MAP_W,MAP_H,25,5,True,False)
     if my_map.draw_pic:
         my_map.after(10,update)
         my_map.mainloop()
