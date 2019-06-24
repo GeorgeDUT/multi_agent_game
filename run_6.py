@@ -9,8 +9,8 @@ from function_brain import *
 from war_4 import *
 import matplotlib.pyplot as plt
 
-MAP_H=15
-MAP_W=15
+MAP_H=10
+MAP_W=10
 
 Action_Space=['u','d','l','r','s']
 
@@ -78,7 +78,7 @@ def move_game(my_map):
         """move action"""
         for i in range(my_map.blue_num):
             b=np.random.choice(['u','d','l','r','s'])
-            # b='u'
+            # b='s'
             # x,y=my_map.blue_army[i].x,my_map.blue_army[i].y
             # b=brain_blue(2,x,y,my_map.get_state().env_map)
             blue_action.append(b)
@@ -107,9 +107,9 @@ def move_game(my_map):
 
         if done:
             if red>blue:
-                reward=100
+                reward=1
             else:
-                reward=100
+                reward=1
         else:
             reward=0
         for i in range(my_map.red_num):
@@ -140,7 +140,8 @@ def update():
         r,step=move_game(my_map)
         sum_step=sum_step+step
         red_win=red_win+r
-        print(red_win/all,sum_step/all)
+        # print(red_win/all,sum_step/all)
+        print(r,step)
         plt_red_win.append(red_win/all)
         plt_red_step.append(step)
     fig=plt.figure()
