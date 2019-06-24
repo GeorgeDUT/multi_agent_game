@@ -7,10 +7,10 @@ model is DQN_brain
 from DQN_brain import *
 from function_brain import *
 from war_4 import *
-# import matplotlib.pyplot as plt
+import matplotlib.pyplot as plt
 
-MAP_H=20
-MAP_W=20
+MAP_H=15
+MAP_W=15
 
 Action_Space=['u','d','l','r','s']
 
@@ -78,7 +78,7 @@ def move_game(my_map):
         """move action"""
         for i in range(my_map.blue_num):
             b=np.random.choice(['u','d','l','r','s'])
-            # b='l'
+            # b='u'
             # x,y=my_map.blue_army[i].x,my_map.blue_army[i].y
             # b=brain_blue(2,x,y,my_map.get_state().env_map)
             blue_action.append(b)
@@ -99,7 +99,8 @@ def move_game(my_map):
         my_map.move(red_action,blue_action)
         red,blue,done=my_map.step()
         if done:
-            print(red,blue)
+            # print(red,blue)
+            pass
         for i in range(my_map.red_num):
             s_map_=change_map(my_map,i)
             s_map_next_list.append(s_map_)
@@ -121,7 +122,7 @@ def move_game(my_map):
             s_map_list[i]=s_map_next_list[i]
 
         if done:
-            print ('end',red,blue,step)
+            # print ('end',red,blue,step)
             if red>blue:
                 return 1,step
             elif red==blue:
@@ -149,7 +150,7 @@ def update():
 
 
 if __name__=="__main__":
-    my_map=WarMap4(MAP_W,MAP_H,5,5,True, False)
+    my_map=WarMap4(MAP_W,MAP_H,1,1,False, False)
 
     Red_RL=DeepQNetwork(
         n_actions=5, n_features=my_map.red_num*2+my_map.blue_num*2,

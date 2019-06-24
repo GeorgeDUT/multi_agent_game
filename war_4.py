@@ -43,6 +43,7 @@ MAP_H = 5
 UNIT_PIX = 10
 R_ARMY_NUM = 5
 B_ARMY_NUM = 5
+Block=0
 
 print('this is war_3: Ant world war')
 
@@ -78,14 +79,21 @@ class WarMap4(tk.Tk, object):
         self.map_h = h
         self.red_num = red
         self.blue_num = blue
-        # env_map = 0, space; =1,red_army; =2, blue_army;
+        # env_map = 0, space; =1,red_army; =2, blue_army; =10, block=3
         self.env_map = np.zeros(shape=(self.map_h, self.map_w))
         self.red_army = []
         self.blue_army = []
         self.red_army_draw=[]
         self.blue_army_draw=[]
+        self.block_draw=[]
+        # generation block
+        self.block = np.zeros((Block, 2))
+        for i in range(Block):
+            self.block[i, 0] = random.randint(1, self.map_w - 1)
+            self.block[i, 1] = random.randint(1, self.map_h - 2)
 
         self._init_map()
+
 
         if draw_pic:
             super(WarMap4,self).__init__()
@@ -101,6 +109,11 @@ class WarMap4(tk.Tk, object):
         for i in range(self.map_h):
             for j in range(self.map_w):
                 self.env_map[i][j]=0
+        # init block
+        for i in range(Block):
+            x=int(self.block[i,0])
+            y=int(self.block[i,1])
+            self.env_map[y][x]=3
         # init army information
         for i in range(self.red_num):
             # x,y,id,team,life
@@ -124,6 +137,15 @@ class WarMap4(tk.Tk, object):
         for r in range(0,self.map_h*UNIT_PIX,UNIT_PIX):
             x0,y0,x1,y1=0,r,self.map_w*UNIT_PIX,r
             self.map.create_line(x0,y0,x1,y1)
+        # draw block
+        for i in range(Block):
+            x = int(self.block[i,0])
+            y = int(self.block[i,1])
+            self.block_draw.append(self.map.create_rectangle(x * UNIT_PIX,
+                        y * UNIT_PIX, (x + 1) * UNIT_PIX, (y + 1) * UNIT_PIX,
+                        fill='black'))
+        print(self.env_map)
+
         # draw agent
         for i in range(self.red_num):
             if self.red_army[i].life=='live':
@@ -170,9 +192,11 @@ class WarMap4(tk.Tk, object):
                 change_x, change_y = self.red_army[id].x , self.red_army[id].y
             if self.env_map[change_y][change_x] != 0:
                 change_x, change_y = self.red_army[id].x, self.red_army[id].y
+
             self.env_map[self.red_army[id].y][self.red_army[id].x] = 0
             self.env_map[change_y][change_x]=1
             self.red_army[id].x, self.red_army[id].y = change_x, change_y
+
         elif team==2:
             if action=='u':
                 change_x,change_y=self.blue_army[id].x, self.blue_army[id].y-1
@@ -206,6 +230,7 @@ class WarMap4(tk.Tk, object):
                 change_x, change_y = self.blue_army[id].x , self.blue_army[id].y
             if self.env_map[change_y][change_x] != 0:
                 change_x, change_y = self.blue_army[id].x, self.blue_army[id].y
+
             self.env_map[self.blue_army[id].y][self.blue_army[id].x] = 0
             self.env_map[change_y][change_x]=2
             self.blue_army[id].x, self.blue_army[id].y = change_x, change_y
