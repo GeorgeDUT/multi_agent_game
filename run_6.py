@@ -97,7 +97,7 @@ def move_game(my_map):
         """move action"""
 
         my_map.move(red_action,blue_action)
-        red,blue,done=my_map.step()
+        red,blue,red_killed,blue_killed,done=my_map.step()
         if done:
             # print(red,blue)
             pass
@@ -107,11 +107,13 @@ def move_game(my_map):
 
         if done:
             if red>blue:
-                reward=1
+                reward=50
             else:
-                reward=1
+                reward=50
         else:
-            reward=0
+            reward=blue_killed*25
+        if blue_killed!=0:
+            print('kill')
         for i in range(my_map.red_num):
             Red_RL.store_transition(s_map_list[i],Action_Space.index(red_action[i]),reward,s_map_next_list[i])
 
@@ -151,7 +153,7 @@ def update():
 
 
 if __name__=="__main__":
-    my_map=WarMap4(MAP_W,MAP_H,1,1,False, False)
+    my_map=WarMap4(MAP_W,MAP_H,1,2,False, False)
 
     Red_RL=DeepQNetwork(
         n_actions=5, n_features=my_map.red_num*2+my_map.blue_num*2,

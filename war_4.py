@@ -417,4 +417,4 @@ class WarMap4(tk.Tk, object):
             # reward_red, reward_blue=blue_killed,red_killed
             reward_red, reward_blue=0,0
             done = False
-        return reward_red,reward_blue,done
+        return reward_red,reward_blue,red_killed,blue_killed,done
