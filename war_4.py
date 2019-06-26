@@ -314,7 +314,7 @@ class WarMap4(tk.Tk, object):
                 pass
             else:
                 x,y=self.blue_army[i].x,self.blue_army[i].y
-                neighbor2=[]
+                neighbor2 = []
                 neighbor2.append([x-1,y])
                 neighbor2.append([x+1, y])
                 neighbor2.append([x , y+1])
@@ -329,7 +329,7 @@ class WarMap4(tk.Tk, object):
                     neighbor2.remove([x,y+1])
                 for s in range(len(neighbor2)):
                     if self.env_map[neighbor2[s][1]][neighbor2[s][0]]==2:
-                        self.blue_army[i].win_p=self.blue_army[i].win_p+0.25
+                        self.blue_army[i].win_p=self.blue_army[i].win_p
                     elif self.env_map[neighbor2[s][1]][neighbor2[s][0]]==1:
                         self.blue_army[i].win_p = self.blue_army[i].win_p-0.25
 
