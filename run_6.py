@@ -15,6 +15,20 @@ MAP_W=10
 Action_Space=['u','d','l','r','s']
 
 
+def direction(s_map):
+    new_s_map=np.zeros(len(s_map))
+    for i in range(len(s_map)/2):
+        if i==0:
+            new_s_map[0]=s_map[0]
+            new_s_map[1]=s_map[1]
+        else:
+            new_s_map[i*2]=np.sign(s_map[0]-s_map[i*2])
+            new_s_map[i*2+1] = np.sign(s_map[1] - s_map[i*2+1])
+    # print(s_map)
+    # print(new_s_map)
+    return new_s_map
+
+
 def num_to_action(action_id,action_num,agent_num):
     action_space=Action_Space
     b=[]
@@ -86,14 +100,12 @@ def move_game(my_map):
         """move action"""
         for i in range(my_map.blue_num):
             b=np.random.choice(['u','d','l','r','s'])
-            if i==0:
-                b='r'
-            elif i==1:
-                b='r'
+            # if i==0:
+            #     b='l'
+            # elif i==1:
+            #     b='r'
             # elif i==2:
             #     b='r'
-
-            # b='s'
             # x,y=my_map.blue_army[i].x,my_map.blue_army[i].y
             # b=brain_blue(2,x,y,my_map.get_state().env_map)
             blue_action.append(b)
@@ -104,6 +116,7 @@ def move_game(my_map):
         for i in range(my_map.red_num):
             # a=np.random.choice(['u','d','r','l','s'])
             s_map=change_map(my_map,i)
+            # s_map=direction(s_map)
             s_map_list.append(s_map)
             a=Red_RL.choose_action(s_map)
             a=Action_Space[a]
@@ -118,29 +131,29 @@ def move_game(my_map):
             for i in range(my_map.red_num):
                 s_map_=[]
                 for j in range(my_map.red_num):
-                    s_map_.append(0)
-                    s_map_.append(0)
+                    s_map_.append(-1)
+                    s_map_.append(-1)
                 for j in range(my_map.blue_num):
-                    s_map_.append(0)
-                    s_map_.append(0)
+                    s_map_.append(-1)
+                    s_map_.append(-1)
                 s_map_next_list.append(s_map_)
         else:
             for i in range(my_map.red_num):
                 s_map_=change_map(my_map,i)
+                # s_map_=direction(s_map_)
                 s_map_next_list.append(s_map_)
 
         if done:
             if red>blue:
-                reward=500
+                reward=5000
             else:
-                reward=500
+                reward=5000
         else:
             reward=blue_killed*100
         # if blue_killed!=0:
         #     print('kill',reward)
         for i in range(my_map.red_num):
             Red_RL.store_transition(s_map_list[i],Action_Space.index(red_action[i]),reward,s_map_next_list[i])
-
         Red_RL.learn()
         # print(s_map_list,s_map_next_list)
 
@@ -177,14 +190,14 @@ def update():
 
 
 if __name__=="__main__":
-    my_map=WarMap4(MAP_W,MAP_H,1,5,False, False)
+    my_map=WarMap4(MAP_W,MAP_H,1,3,False, False)
 
     Red_RL=DeepQNetwork(
         n_actions=5, n_features=my_map.red_num*2+my_map.blue_num*2,
         learning_rate=0.01,
         reward_decay=0.9,
         e_greedy=0.9,
-        replace_target_iter=200,
+        replace_target_iter=500,
         memory_size=2000,
     )
     # Blue_RL=DeepQNetwork(
