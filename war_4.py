@@ -331,7 +331,7 @@ class WarMap4(tk.Tk, object):
                     if self.env_map[neighbor2[s][1]][neighbor2[s][0]]==2:
                         self.blue_army[i].win_p=self.blue_army[i].win_p
                     elif self.env_map[neighbor2[s][1]][neighbor2[s][0]]==1:
-                        self.blue_army[i].win_p = self.blue_army[i].win_p-0.8
+                        self.blue_army[i].win_p = self.blue_army[i].win_p-0.5
 
     def fight_result(self):
         red_killed,blue_killed=0,0
