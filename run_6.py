@@ -7,7 +7,7 @@ model is DQN_brain
 from DQN_brain import *
 from function_brain import *
 from war_4 import *
-import matplotlib.pyplot as plt
+# import matplotlib.pyplot as plt
 
 MAP_H=10
 MAP_W=10
@@ -190,7 +190,7 @@ def update():
 
 
 if __name__=="__main__":
-    my_map=WarMap4(MAP_W,MAP_H,1,3,False, False)
+    my_map=WarMap4(MAP_W,MAP_H,1,3,False,False)
 
     Red_RL=DeepQNetwork(
         n_actions=5, n_features=my_map.red_num*2+my_map.blue_num*2,
