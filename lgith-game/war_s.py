@@ -25,7 +25,7 @@ MAP_H = 5
 UNIT_PIX = 10
 R_ARMY_NUM = 5
 B_ARMY_NUM = 5
-Block=500
+Block=10
 
 print('this is war_3: Ant world war')
 
