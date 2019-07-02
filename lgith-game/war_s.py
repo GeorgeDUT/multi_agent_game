@@ -1,25 +1,7 @@
 """
-war_4 game is multi_agent war game, red_army vs blue_army
-turn-based strategy game
-rule:
-    1,every turn agent move first,red or blue move first,random from 1 to n, then fight, then judge fight result.
-    2,the more agent in fight, the higher probability win.
-    3,every agent in every turn can only do one action.
-
-function list:
-    my_map = WarMap(w,h,red,blue,tk_draw)
-# new a WarMap class, size w*h, agent num red, blue, if tk_draw False, then do not draw picture.
-    mp_map.move(action_red[],action_blue[])
-# red_army action list, blue_army action list. action space {u,d,l,r,s}
-    mp_map.step()
-# return reward_red, reward_blue, done.
-    my_map.get_state()
-# return map
-
-About WarMap big very big map,this is ant world war
-red and blue fight each other, red can be killed,
-
-different between war_3, there is no border, one move left and right, up and down border are connected.
+war_s come from war_4
+different:
+    rule red must surround blue, blue can be removed.
 
 """
 
@@ -43,7 +25,7 @@ MAP_H = 5
 UNIT_PIX = 10
 R_ARMY_NUM = 5
 B_ARMY_NUM = 5
-Block=10
+Block=500
 
 print('this is war_3: Ant world war')
 
@@ -335,30 +317,49 @@ class WarMap4(tk.Tk, object):
 
     def fight_result(self):
         red_killed,blue_killed=0,0
-        # red fight result
         for i in range(self.red_num):
-            if self.red_army[i].life!='live':
+            if self.red_army[i].life != 'live':
                 pass
             else:
-                win_pro=random.random()
-                x,y=self.red_army[i].x,self.red_army[i].y
+                x, y = self.red_army[i].x, self.red_army[i].y
                 # army lost fight
-                if win_pro>self.red_army[i].win_p:
-                    self.red_army[i].life='dead'
-                    self.env_map[y][x]=0
-                    red_killed=red_killed+1
-        # blue fight result
+                if self.red_army[i].win_p==0:
+                    self.red_army[i].life = 'dead'
+                    self.env_map[y][x] = 0
+                    red_killed = red_killed + 1
+                if (x== 0 and y==0) or (x==self.map_w-1 and y==self.map_h-1):
+                    if self.red_army[i].win_p==0.5:
+                        self.red_army[i].life = 'dead'
+                        self.env_map[y][x] = 0
+                        red_killed = red_killed + 1
+                elif (x==0) or (y==0) or (x==self.map_w-1) or (y==self.map_h-1):
+                    if self.red_army[i].win_p == 0.25:
+                        self.red_army[i].life = 'dead'
+                        self.env_map[y][x] = 0
+                        red_killed = red_killed + 1
+
+
+            # blue fight result
         for i in range(self.blue_num):
-            if self.blue_army[i].life!='live':
+            if self.blue_army[i].life != 'live':
                 pass
             else:
-                win_pro=random.random()
-                x,y=self.blue_army[i].x,self.blue_army[i].y
+                x, y = self.blue_army[i].x, self.blue_army[i].y
                 # army lost fight
-                if win_pro>self.blue_army[i].win_p:
-                    self.blue_army[i].life='dead'
-                    self.env_map[y][x]=0
-                    blue_killed=blue_killed+1
+                if self.blue_army[i].win_p==0:
+                    self.blue_army[i].life = 'dead'
+                    self.env_map[y][x] = 0
+                    blue_killed = blue_killed + 1
+                if (x == 0 and y == 0) or (x == self.map_w - 1 and y == self.map_h - 1):
+                    if self.blue_army[i].win_p == 0.5:
+                        self.blue_army[i].life = 'dead'
+                        self.env_map[y][x] = 0
+                        blue_killed = blue_killed + 1
+                elif (x == 0) or (y == 0) or (x == self.map_w - 1) or (y == self.map_h - 1):
+                    if self.blue_army[i].win_p == 0.25:
+                        self.blue_army[i].life = 'dead'
+                        self.env_map[y][x] = 0
+                        blue_killed = blue_killed + 1
 
         return red_killed,blue_killed
 

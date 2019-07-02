@@ -4,11 +4,11 @@ model is DQN_brain
 
 """
 
-from war_4 import *
+from war_s import *
 # import matplotlib.pyplot as plt
 
-MAP_H=50
-MAP_W=50
+MAP_H=60
+MAP_W=60
 
 Action_Space=['u','d','l','r','s']
 
@@ -61,6 +61,9 @@ def move_game(my_map):
         """move action"""
         for i in range(my_map.blue_num):
             b=np.random.choice(Action_Space)
+            # b=np.random.choice(['u','d','l','l','l','l','l'])
+            # b = np.random.choice(['u', 'd', 'r','r', 'r', 'r', 'r','r','r','r'])
+            # b = np.random.choice(['u', 'd', 'l', 'l', 'l', 'l', 'l'])
             blue_action.append(b)
         for i in range(my_map.red_num):
             a=cmt_light(my_map,my_map.red_army[i].x,my_map.red_army[i].y)
@@ -86,7 +89,7 @@ def update():
 
 
 if __name__=="__main__":
-    my_map=WarMap4(MAP_W,MAP_H,20,20,True,False)
+    my_map=WarMap4(MAP_W,MAP_H,40,40,True,False)
 
     if my_map.draw_pic:
         my_map.after(10,update)
