@@ -12,10 +12,9 @@ MAP_W=60
 
 Action_Space=['u','d','l','r','s']
 
-
 def cmt_light(my_map,x,y):
     dis_to_blue=[]
-    for i in range(my_map.blue_num):
+    for i in range(len(my_map.blue_army)):
         if my_map.blue_army[i].life!='live':
             dis=my_map.map_w*my_map.map_h
         else:
@@ -23,7 +22,6 @@ def cmt_light(my_map,x,y):
                 abs(y-my_map.blue_army[i].y)
         dis_to_blue.append(dis)
     blue_target=dis_to_blue.index(min(dis_to_blue))
-    print(blue_target)
     x_b=my_map.blue_army[blue_target].x
     y_b=my_map.blue_army[blue_target].y
     direction_x=np.sign(x-x_b)
@@ -59,18 +57,22 @@ def move_game(my_map):
         red_action=[]
         blue_action=[]
         """move action"""
-        for i in range(my_map.blue_num):
+        for i in range(len(my_map.blue_army)):
             b=np.random.choice(Action_Space)
+            # b='s'
             # b=np.random.choice(['u','d','l','l','l','l','l'])
             # b = np.random.choice(['u', 'd', 'r','r', 'r', 'r', 'r','r','r','r'])
             # b = np.random.choice(['u', 'd', 'l', 'l', 'l', 'l', 'l'])
             blue_action.append(b)
-        for i in range(my_map.red_num):
+        for i in range(len(my_map.red_army)):
             a=cmt_light(my_map,my_map.red_army[i].x,my_map.red_army[i].y)
+            # a='s'
             red_action.append(a)
         """move action"""
         my_map.move(red_action,blue_action)
         my_map.step()
+        print('red',len(my_map.red_army))
+        print('blue',len(my_map.blue_army))
 
 
 def update():
@@ -83,7 +85,7 @@ def update():
         sum_step=sum_step+step
         red_win=red_win+r
         # print(red_win/all,sum_step/all)
-        print(r,step)
+        # print(r,step)
         plt_red_win.append(red_win/all)
         plt_red_step.append(step)
 
