@@ -39,6 +39,7 @@ class Army(object):
         self.life=life
         self.win_p=1
         self.power=1
+        self.blood=100
 
 
 class OutInfo(object):
@@ -270,6 +271,10 @@ class WarMap4(tk.Tk, object):
             pass
 
     def fight(self):
+        # compute red hungry
+        for i in range(len(self.red_army)):
+            self.red_army[i].blood=self.red_army[i].blood-1
+
         # compute red win probability
         for i in range(len(self.red_army)):
             self.red_army[i].win_p=1
@@ -334,7 +339,8 @@ class WarMap4(tk.Tk, object):
                     # del self.red_army[i]
                     self.env_map[y][x] = 0
                     red_killed = red_killed + 1
-                if (x== 0 and y==0) or (x==self.map_w-1 and y==self.map_h-1):
+                if (x== 0 and y==0) or (x==self.map_w-1 and y==self.map_h-1) \
+                        or (x== self.map_w-1 and y==0) or (x==0 and y==self.map_h-1):
                     if self.red_army[i].win_p==0.5:
                         self.red_army[i].life = 'dead'
                         self.env_map[y][x] = 0
@@ -357,7 +363,8 @@ class WarMap4(tk.Tk, object):
                     self.blue_army[i].life = 'dead'
                     self.env_map[y][x] = 0
                     blue_killed = blue_killed + 1
-                if (x == 0 and y == 0) or (x == self.map_w - 1 and y == self.map_h - 1):
+                if (x == 0 and y == 0) or (x == self.map_w - 1 and y == self.map_h - 1) or \
+                        (x== self.map_w-1 and y==0) or (x==0 and y==self.map_h-1):
                     if self.blue_army[i].win_p == 0.5:
                         self.blue_army[i].life = 'dead'
                         self.env_map[y][x] = 0
@@ -387,6 +394,40 @@ class WarMap4(tk.Tk, object):
         for i in range(len(del_list)):
             del self.blue_army[del_list[i]]
 
+        # hungry death for red
+        del_list=[]
+        for i in range(len(self.red_army)):
+            if self.red_army[i].blood==0:
+                x,y=self.red_army[i].x,self.red_army[i].y
+                self.env_map[y][x]=0
+                del_list.append(i)
+        for i in range(len(del_list)):
+            del_list[i]=del_list[i]-i
+        for i in range(len(del_list)):
+            del self.red_army[del_list[i]]
+
+        # generate red and blue
+        red_live_num=len(self.red_army)
+        blue_live_num=len(self.blue_army)
+        new_red_birth=min(int(0.5*blue_live_num),5)
+        new_blue_birth=min(int(0.5*blue_live_num),5)
+
+        for i in range(new_red_birth):
+            x,y=random.randint(0,self.map_w-1),random.randint(0,self.map_h-1)
+            if self.env_map[y][x]!=0:
+                pass
+            else:
+                a=Army(x,y,i+red_live_num,1,'live')
+                self.red_army.append(a)
+                self.env_map[y][x]=1
+        for i in range(new_blue_birth):
+            x,y=random.randint(0,self.map_w-1),random.randint(0,self.map_h-1)
+            if self.env_map[y][x]!=0:
+                pass
+            else:
+                a=Army(x,y,i+blue_live_num,2,'live')
+                self.blue_army.append(a)
+                self.env_map[y][x]=2
 
         return red_killed,blue_killed
 
@@ -400,26 +441,26 @@ class WarMap4(tk.Tk, object):
                 blue_lived=blue_lived+1
         return red_lived,blue_lived
 
-    def get_state(self):
-        info=OutInfo(self.map_h,self.map_w,self.red_num,self.blue_num)
-        for i in range(self.map_h):
-            for j in range(self.map_w):
-                info.env_map[i][j]=self.env_map[i][j]
-        for i in range(self.red_num):
-            if self.red_army[i].life=='live':
-                life=1
-            else:
-                life=0
-            info.red_loc[i][0],info.red_loc[i][1],info.red_loc[i][2]=self.red_army[i].x,\
-                                                  self.red_army[i].y,life
-        for i in range(self.blue_num):
-            if self.blue_army[i].life=='live':
-                life=1
-            else:
-                life=0
-            info.blue_loc[i][0],info.blue_loc[i][1],info.blue_loc[i][2]=self.blue_army[i].x,\
-                                                    self.blue_army[i].y,life
-        return info
+    # def get_state(self):
+    #     info=OutInfo(self.map_h,self.map_w,self.red_num,self.blue_num)
+    #     for i in range(self.map_h):
+    #         for j in range(self.map_w):
+    #             info.env_map[i][j]=self.env_map[i][j]
+    #     for i in range(self.red_num):
+    #         if self.red_army[i].life=='live':
+    #             life=1
+    #         else:
+    #             life=0
+    #         info.red_loc[i][0],info.red_loc[i][1],info.red_loc[i][2]=self.red_army[i].x,\
+    #                                               self.red_army[i].y,life
+    #     for i in range(self.blue_num):
+    #         if self.blue_army[i].life=='live':
+    #             life=1
+    #         else:
+    #             life=0
+    #         info.blue_loc[i][0],info.blue_loc[i][1],info.blue_loc[i][2]=self.blue_army[i].x,\
+    #                                                 self.blue_army[i].y,life
+    #     return info
 
     def step(self):
         time.sleep(0)
@@ -431,7 +472,7 @@ class WarMap4(tk.Tk, object):
             self.update()
 
         # reward function
-        if red_lived==0 or blue_lived==0:
+        if red_lived==0 and blue_lived==0:
             reward_red,reward_blue=red_lived,blue_lived
             self._init_map()
             done = True

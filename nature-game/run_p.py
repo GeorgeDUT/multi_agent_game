@@ -7,8 +7,8 @@ model is DQN_brain
 from war_pp import *
 # import matplotlib.pyplot as plt
 
-MAP_H=60
-MAP_W=60
+MAP_H=30
+MAP_W=30
 
 Action_Space=['u','d','l','r','s']
 
@@ -71,8 +71,11 @@ def move_game(my_map):
         """move action"""
         my_map.move(red_action,blue_action)
         my_map.step()
-        print('red',len(my_map.red_army))
-        print('blue',len(my_map.blue_army))
+        if (len(my_map.red_army)+len(my_map.blue_army))==0:
+            return 0,0
+        # print('red',len(my_map.red_army))
+        # print('blue',len(my_map.blue_army))
+        print('all',len(my_map.red_army)+len(my_map.blue_army))
 
 
 def update():
@@ -88,10 +91,11 @@ def update():
         # print(r,step)
         plt_red_win.append(red_win/all)
         plt_red_step.append(step)
+        print('death')
 
 
 if __name__=="__main__":
-    my_map=WarMap4(MAP_W,MAP_H,40,40,True,False)
+    my_map=WarMap4(MAP_W,MAP_H,2,2,True,False)
 
     if my_map.draw_pic:
         my_map.after(10,update)
