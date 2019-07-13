@@ -395,7 +395,7 @@ class WarMap4(tk.Tk, object):
         return info
 
     def step(self):
-        time.sleep(0)
+        time.sleep(0.5)
         self.fight()
         red_killed,blue_killed=self.fight_result()
         red_lived, blue_lived=self.end_battle()

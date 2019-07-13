@@ -5,6 +5,7 @@ model is DQN_brain
 """
 
 from war_pp import *
+import gambit as gb
 # import matplotlib.pyplot as plt
 
 MAP_H=30
