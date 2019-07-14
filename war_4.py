@@ -38,12 +38,12 @@ else:
     import tkinter as tk
 
 
-MAP_W = 5
-MAP_H = 5
+MAP_W = 0
+MAP_H = 0
 UNIT_PIX = 10
 R_ARMY_NUM = 5
 B_ARMY_NUM = 5
-Block=10
+Block=400
 
 print('this is war_3: Ant world war')
 
@@ -89,7 +89,7 @@ class WarMap4(tk.Tk, object):
         # generation block
         self.block = np.zeros((Block, 2))
         for i in range(Block):
-            self.block[i, 0] = random.randint(1, self.map_w - 1)
+            self.block[i, 0] = random.randint(1, self.map_w - 2)
             self.block[i, 1] = random.randint(1, self.map_h - 2)
 
         self._init_map()

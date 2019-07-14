@@ -7,10 +7,10 @@ model is DQN_brain
 from DQN_brain import *
 from function_brain import *
 from war_4 import *
-# import matplotlib.pyplot as plt
+import matplotlib.pyplot as plt
 
-MAP_H=10
-MAP_W=10
+MAP_H=19
+MAP_W=19
 
 Action_Space=['u','d','l','r','s']
 
@@ -174,13 +174,13 @@ def update():
     red_win,all,sum_step=0.0,0.0,0.0
     plt_red_win=[]
     plt_red_step=[]
-    for episode in range(500):
+    for episode in range(1500):
         all=all+1
         r,step=move_game(my_map)
         sum_step=sum_step+step
         red_win=red_win+r
         # print(red_win/all,sum_step/all)
-        print(r,step)
+        print(episode,step)
         plt_red_win.append(red_win/all)
         plt_red_step.append(step)
     fig=plt.figure()
@@ -190,7 +190,7 @@ def update():
 
 
 if __name__=="__main__":
-    my_map=WarMap4(MAP_W,MAP_H,1,3,False,False)
+    my_map=WarMap4(MAP_W,MAP_H,1,1,False,False)
 
     Red_RL=DeepQNetwork(
         n_actions=5, n_features=my_map.red_num*2+my_map.blue_num*2,
