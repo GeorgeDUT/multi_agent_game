@@ -25,7 +25,7 @@ MAP_H = 5
 UNIT_PIX = 10
 R_ARMY_NUM = 5
 B_ARMY_NUM = 5
-Block=10
+Block=400
 
 print('this is war_3: Ant world war')
 
@@ -395,7 +395,7 @@ class WarMap4(tk.Tk, object):
         return info
 
     def step(self):
-        time.sleep(0.5)
+        time.sleep(0)
         self.fight()
         red_killed,blue_killed=self.fight_result()
         red_lived, blue_lived=self.end_battle()
