@@ -9,8 +9,8 @@ from function_brain import *
 from war_4 import *
 import matplotlib.pyplot as plt
 
-MAP_H=19
-MAP_W=19
+MAP_H=18
+MAP_W=18
 
 Action_Space=['u','d','l','r','s']
 

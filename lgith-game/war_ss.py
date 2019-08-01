@@ -43,7 +43,7 @@ MAP_H = 0
 UNIT_PIX = 10
 R_ARMY_NUM = 5
 B_ARMY_NUM = 5
-Block=165
+Block=10
 
 print('this is war_3: Ant world war')
 
@@ -306,7 +306,7 @@ class WarMap4(tk.Tk, object):
                     if self.env_map[neighbor[s][1]][neighbor[s][0]]==1:
                         self.red_army[i].win_p=self.red_army[i].win_p+0
                     elif self.env_map[neighbor[s][1]][neighbor[s][0]]==2:
-                        self.red_army[i].win_p = self.red_army[i].win_p - 0
+                        self.red_army[i].win_p = self.red_army[i].win_p - 0.25
         # compute blue win probability
         for i in range(self.blue_num):
             self.blue_army[i].win_p=1
@@ -331,7 +331,7 @@ class WarMap4(tk.Tk, object):
                     if self.env_map[neighbor2[s][1]][neighbor2[s][0]]==2:
                         self.blue_army[i].win_p=self.blue_army[i].win_p+0
                     elif self.env_map[neighbor2[s][1]][neighbor2[s][0]]==1:
-                        self.blue_army[i].win_p = self.blue_army[i].win_p-1
+                        self.blue_army[i].win_p = self.blue_army[i].win_p-0.25
 
     def fight_result(self):
         red_killed,blue_killed=0,0
