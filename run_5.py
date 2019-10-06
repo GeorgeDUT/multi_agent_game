@@ -69,7 +69,7 @@ def move_game(my_map):
         """move action"""
 
         my_map.move(red_action,blue_action)
-        red,blue,done=my_map.step()
+        red,blue,red_kill,blue_kill,done=my_map.step()
         s_map_=change_map(my_map)
 
         if done:

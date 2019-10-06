@@ -193,7 +193,7 @@ def move_game(my_map):
             blue_action.append(b)
 
         my_map.move(red_action,blue_action)
-        red,blue,done=my_map.step()
+        red,blue,red_kill,blue_kill,done=my_map.step()
         if done:
             print ('end',red,blue,step)
             if red>blue:

@@ -1,6 +1,7 @@
 """
 Using Reinforcement learning algorithm.
 model is DQN_brain
+each agent can product new agent.
 
 """
 

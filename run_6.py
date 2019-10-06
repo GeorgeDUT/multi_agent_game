@@ -1,6 +1,9 @@
 """
 Using Reinforcement learning algorithm.
 model is DQN_brain
+this new and can use
+
+our paper use this run file
 
 """
 
