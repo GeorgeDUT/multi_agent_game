@@ -13,8 +13,8 @@ import tensorflow as tf
 weight_r=[-1,1,0]
 weight_b=[0,0,0]
 
-MAP_H=25
-MAP_W=25
+MAP_H=60
+MAP_W=60
 
 dis_of_red=[]
 dis_of_blue=[]
@@ -213,7 +213,7 @@ def update():
 
 
 if __name__=="__main__":
-    my_map=WarMap4(MAP_W,MAP_H,25,5,True,False)
+    my_map=WarMap4(MAP_W,MAP_H,50,50,True,False)
     if my_map.draw_pic:
         my_map.after(10,update)
         my_map.mainloop()

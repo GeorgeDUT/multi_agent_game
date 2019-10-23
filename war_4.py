@@ -40,10 +40,10 @@ else:
 
 MAP_W = 0
 MAP_H = 0
-UNIT_PIX = 10
+UNIT_PIX = 20
 R_ARMY_NUM = 5
 B_ARMY_NUM = 5
-Block=0
+Block=100
 
 print('this is war_3: Ant world war')
 
@@ -267,6 +267,8 @@ class WarMap4(tk.Tk, object):
                 self.map.delete(self.red_army_draw[i])
             for i in range(len(self.blue_army_draw)):
                 self.map.delete(self.blue_army_draw[i])
+
+            """two color"""
             for i in range(self.red_num):
                 if self.red_army[i].life=='live':
                     x,y=self.red_army[i].x,self.red_army[i].y
@@ -277,7 +279,38 @@ class WarMap4(tk.Tk, object):
                     x,y=self.blue_army[i].x,self.blue_army[i].y
                     self.blue_army_draw.append(self.map.create_rectangle(x * UNIT_PIX,
                      y * UNIT_PIX, (x + 1) * UNIT_PIX,(y + 1) * UNIT_PIX, fill='blue'))
+            """two color"""
 
+            # """many color"""
+            # for i in range(self.red_num):
+            #     if self.red_army[i].life == 'live' and 0<=i<=20 :
+            #         x, y = self.red_army[i].x, self.red_army[i].y
+            #         self.red_army_draw.append(self.map.create_rectangle(x * UNIT_PIX,
+            #                                                             y * UNIT_PIX, (x + 1) * UNIT_PIX,
+            #                                                             (y + 1) * UNIT_PIX, fill='blue'))
+            #     if self.red_army[i].life == 'live' and 21<=i<=39:
+            #         x, y = self.red_army[i].x, self.red_army[i].y
+            #         self.red_army_draw.append(self.map.create_rectangle(x * UNIT_PIX,
+            #                                                             y * UNIT_PIX, (x + 1) * UNIT_PIX,
+            #                                                             (y + 1) * UNIT_PIX, fill='orange'))
+            #     if self.red_army[i].life == 'live' and i>28:
+            #         x, y = self.red_army[i].x, self.red_army[i].y
+            #         self.red_army_draw.append(self.map.create_rectangle(x * UNIT_PIX,
+            #                                                             y * UNIT_PIX, (x + 1) * UNIT_PIX,
+            #                                                             (y + 1) * UNIT_PIX, fill='green'))
+            #
+            # for i in range(self.blue_num):
+            #     if self.blue_army[i].life == 'live' and 0<=i<=10:
+            #         x, y = self.blue_army[i].x, self.blue_army[i].y
+            #         self.blue_army_draw.append(self.map.create_rectangle(x * UNIT_PIX,
+            #                                                              y * UNIT_PIX, (x + 1) * UNIT_PIX,
+            #                                                              (y + 1) * UNIT_PIX, fill='red'))
+            #     if self.blue_army[i].life == 'live' and i % 2 == 1:
+            #         x, y = self.blue_army[i].x, self.blue_army[i].y
+            #         self.blue_army_draw.append(self.map.create_rectangle(x * UNIT_PIX,
+            #                                                              y * UNIT_PIX, (x + 1) * UNIT_PIX,
+            #                                                              (y + 1) * UNIT_PIX, fill='purple'))
+            #     """many color"""
         else:
             pass
 

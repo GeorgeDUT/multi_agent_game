@@ -12,10 +12,10 @@ import tensorflow as tf
 # print(sess.run(c))
 
 weight_r=[-0.5,-1,0]
-weight_b=[-1,0,0]
+weight_b=[0,-1,0]
 
-MAP_H=30
-MAP_W=30
+MAP_H=40
+MAP_W=40
 
 dis_of_red=[]
 dis_of_blue=[]
@@ -193,7 +193,7 @@ def move_game(my_map):
             blue_action.append(b)
 
         my_map.move(red_action,blue_action)
-        red,blue,done=my_map.step()
+        red, blue, red_kill, blue_kill, done=my_map.step()
         if done:
             print ('end')
 
@@ -204,7 +204,7 @@ def update():
 
 
 if __name__=="__main__":
-    my_map=WarMap4(MAP_W,MAP_H,18,18,True,True)
+    my_map=WarMap4(MAP_W,MAP_H,39,30,True,False)
     if my_map.draw_pic:
         my_map.after(10,update)
         my_map.mainloop()
