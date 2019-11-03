@@ -1,7 +1,5 @@
 """
-war_s come from war_4
-different:
-    rule red must surround blue, blue can be removed.
+move order give x,y flash map
 
 """
 
@@ -22,10 +20,10 @@ else:
 
 MAP_W = 5
 MAP_H = 5
-UNIT_PIX = 10
+UNIT_PIX = 25
 R_ARMY_NUM = 5
 B_ARMY_NUM = 5
-Block=30
+Block=0
 
 print('this is war_3: Ant world war')
 
@@ -86,6 +84,7 @@ class WarMap4(tk.Tk, object):
             pass
 
     def _init_map(self):
+        time.sleep(0.9)
         self.red_army=[]
         self.blue_army=[]
         for i in range(self.map_h):
@@ -140,108 +139,24 @@ class WarMap4(tk.Tk, object):
                 self.blue_army_draw.append(self.map.create_rectangle(x * UNIT_PIX,
                     y * UNIT_PIX, (x + 1) * UNIT_PIX,(y + 1) * UNIT_PIX,fill='blue'))
 
-    def move_one(self,action,team,id):
+    def move_one(self,x,y,team,id):
         if team==1:
-            if action=='u':
-                change_x,change_y=self.red_army[id].x, self.red_army[id].y-1
-                if change_y<0:
-                    if self.global_switch:
-                        change_y=self.map_h-1
-                    else:
-                        change_y=0
-            elif action=='d':
-                change_x, change_y=self.red_army[id].x, self.red_army[id].y+1
-                if change_y>=self.map_h:
-                    if self.global_switch:
-                        change_y=0
-                    else:
-                        change_y=self.map_h-1
-            elif action=='l':
-                change_x, change_y = self.red_army[id].x-1, self.red_army[id].y
-                if change_x< 0:
-                    if self.global_switch:
-                        change_x = self.map_w-1
-                    else:
-                        change_x=0
-            elif action=='r':
-                change_x, change_y = self.red_army[id].x+1, self.red_army[id].y
-                if change_x >= self.map_w:
-                    if self.global_switch:
-                        change_x = 0
-                    else:
-                        change_x=self.map_w-1
-            elif action == 's':
-                change_x, change_y = self.red_army[id].x , self.red_army[id].y
-            if self.env_map[change_y][change_x] != 0:
-                change_x, change_y = self.red_army[id].x, self.red_army[id].y
-
             self.env_map[self.red_army[id].y][self.red_army[id].x] = 0
-            self.env_map[change_y][change_x]=1
-            self.red_army[id].x, self.red_army[id].y = change_x, change_y
-
+            self.env_map[y][x]=1
+            self.red_army[id].x, self.red_army[id].y = x, y
         elif team==2:
-            if action=='u':
-                change_x,change_y=self.blue_army[id].x, self.blue_army[id].y-1
-                if change_y<0:
-                    if self.global_switch:
-                        change_y=self.map_h-1
-                    else:
-                        change_y=0
-            elif action=='d':
-                change_x, change_y=self.blue_army[id].x, self.blue_army[id].y+1
-                if change_y>=self.map_h:
-                    if self.global_switch:
-                        change_y=0
-                    else:
-                        change_y=self.map_h-1
-            elif action=='l':
-                change_x, change_y = self.blue_army[id].x-1, self.blue_army[id].y
-                if change_x< 0:
-                    if self.global_switch:
-                        change_x=self.map_w-1
-                    else:
-                        change_x=0
-            elif action=='r':
-                change_x, change_y = self.blue_army[id].x+1, self.blue_army[id].y
-                if change_x >= self.map_w:
-                    if self.global_switch:
-                        change_x = 0
-                    else:
-                        change_x=self.map_w-1
-            elif action=='s':
-                change_x, change_y = self.blue_army[id].x , self.blue_army[id].y
-            if self.env_map[change_y][change_x] != 0:
-                change_x, change_y = self.blue_army[id].x, self.blue_army[id].y
-
             self.env_map[self.blue_army[id].y][self.blue_army[id].x] = 0
-            self.env_map[change_y][change_x]=2
-            self.blue_army[id].x, self.blue_army[id].y = change_x, change_y
+            self.env_map[y][x]=2
+            self.blue_army[id].x, self.blue_army[id].y = x, y
 
-    def move(self,action_red,action_blue):
+    def move(self,x,y,x_b,y_b):
         # random order to move agent
-        order_red = []
-        for i in range(len(action_red)):
-            order_red.append(i)
-        order_red = random.sample(order_red, len(order_red))
-        order_blue = []
-        for i in range(len(action_blue)):
-            order_blue.append(i)
-        order_blue = random.sample(order_blue, len(order_blue))
-
-        if random.random()>0.5:
-            for i in range(self.red_num):
-                if self.red_army[order_red[i]].life=='live':
-                    self.move_one(action_red[order_red[i]],1,order_red[i])
-            for i in range(self.blue_num):
-                if self.blue_army[order_blue[i]].life=='live':
-                    self.move_one(action_blue[order_blue[i]],2,order_blue[i])
-        else:
-            for i in range(self.blue_num):
-                if self.blue_army[order_blue[i]].life=='live':
-                    self.move_one(action_blue[order_blue[i]],2,order_blue[i])
-            for i in range(self.red_num):
-                if self.red_army[order_red[i]].life=='live':
-                    self.move_one(action_red[order_red[i]],1,order_red[i])
+        time.sleep(1)
+        print('move')
+        for i in range(len(x)):
+           self.move_one(x[i],y[i],1,i)
+        for i in range(len(x_b)):
+            self.move_one(x_b[i],y_b[i],2,i)
 
     def flash_draw(self):
         if self.draw_pic:
@@ -350,7 +265,8 @@ class WarMap4(tk.Tk, object):
                     self.blue_army[i].life = 'dead'
                     self.env_map[y][x] = 0
                     blue_killed = blue_killed + 1
-                if (x == 0 and y == 0) or (x == self.map_w - 1 and y == self.map_h - 1):
+                if (x == 0 and y == 0) or (x == self.map_w - 1 and y == self.map_h - 1) or (x == 0 and y == self.map_h - 1)\
+                        or (x == self.map_w - 1 and y == 0):
                     if self.blue_army[i].win_p == 0.5:
                         self.blue_army[i].life = 'dead'
                         self.env_map[y][x] = 0

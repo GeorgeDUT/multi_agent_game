@@ -22,10 +22,10 @@ else:
 
 MAP_W = 5
 MAP_H = 5
-UNIT_PIX = 10
+UNIT_PIX = 25
 R_ARMY_NUM = 5
 B_ARMY_NUM = 5
-Block=30
+Block=0
 
 print('this is war_3: Ant world war')
 
@@ -86,6 +86,7 @@ class WarMap4(tk.Tk, object):
             pass
 
     def _init_map(self):
+        time.sleep(0.9)
         self.red_army=[]
         self.blue_army=[]
         for i in range(self.map_h):
@@ -350,7 +351,8 @@ class WarMap4(tk.Tk, object):
                     self.blue_army[i].life = 'dead'
                     self.env_map[y][x] = 0
                     blue_killed = blue_killed + 1
-                if (x == 0 and y == 0) or (x == self.map_w - 1 and y == self.map_h - 1):
+                if (x == 0 and y == 0) or (x == self.map_w - 1 and y == self.map_h - 1) or (x == 0 and y == self.map_h - 1)\
+                        or (x == self.map_w - 1 and y == 0):
                     if self.blue_army[i].win_p == 0.5:
                         self.blue_army[i].life = 'dead'
                         self.env_map[y][x] = 0
