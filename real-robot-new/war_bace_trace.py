@@ -98,7 +98,7 @@ class WarMap4(tk.Tk, object):
         # init army information
         for i in range(self.red_num):
             # x,y,id,team,life
-            a = Army(i,0,i,1,'live')
+            a = Army(i+4,0,i,1,'live')
             self.red_army.append(a)
             x,y=self.red_army[i].x,self.red_army[i].y
             self.env_map[y][x]=1
@@ -129,10 +129,24 @@ class WarMap4(tk.Tk, object):
 
         # draw agent
         for i in range(self.red_num):
-            if self.red_army[i].life=='live':
+            if self.red_army[i].life=='live' and i==0:
                 x,y=self.red_army[i].x,self.red_army[i].y
                 self.red_army_draw.append(self.map.create_rectangle(x * UNIT_PIX,
                     y * UNIT_PIX, (x + 1) * UNIT_PIX,(y + 1) * UNIT_PIX, fill='red'))
+            elif self.red_army[i].life=='live' and i==1:
+                x,y=self.red_army[i].x,self.red_army[i].y
+                self.red_army_draw.append(self.map.create_rectangle(x * UNIT_PIX,
+                    y * UNIT_PIX, (x + 1) * UNIT_PIX,(y + 1) * UNIT_PIX, fill='DeepPink'))
+            elif self.red_army[i].life == 'live' and i == 2:
+                x, y = self.red_army[i].x, self.red_army[i].y
+                self.red_army_draw.append(self.map.create_rectangle(x * UNIT_PIX,
+                                                                    y * UNIT_PIX, (x + 1) * UNIT_PIX,
+                                                                    (y + 1) * UNIT_PIX, fill='Pink'))
+            elif self.red_army[i].life == 'live' and i == 3:
+                x, y = self.red_army[i].x, self.red_army[i].y
+                self.red_army_draw.append(self.map.create_rectangle(x * UNIT_PIX,
+                                                                    y * UNIT_PIX, (x + 1) * UNIT_PIX,
+                                                                    (y + 1) * UNIT_PIX, fill='HotPink'))
         for i in range(self.blue_num):
             if self.blue_army[i].life=='live':
                 x,y=self.blue_army[i].x,self.blue_army[i].y
@@ -151,7 +165,7 @@ class WarMap4(tk.Tk, object):
 
     def move(self,x,y,x_b,y_b):
         # random order to move agent
-        time.sleep(1)
+        time.sleep(0)
         print('move')
         for i in range(len(x)):
            self.move_one(x[i],y[i],1,i)
@@ -165,13 +179,38 @@ class WarMap4(tk.Tk, object):
             for i in range(len(self.blue_army_draw)):
                 self.map.delete(self.blue_army_draw[i])
             for i in range(self.red_num):
-                if self.red_army[i].life=='live':
-                    x,y=self.red_army[i].x,self.red_army[i].y
+                # if self.red_army[i].life=='live':
+                #     x,y=self.red_army[i].x,self.red_army[i].y
+                #     self.red_army_draw.append(self.map.create_rectangle(x * UNIT_PIX,
+                #      y * UNIT_PIX, (x + 1) * UNIT_PIX,(y + 1) * UNIT_PIX, fill='red'))
+                if self.red_army[i].life == 'live' and i == 0:
+                    x, y = self.red_army[i].x, self.red_army[i].y
+                    x=(7-x)
                     self.red_army_draw.append(self.map.create_rectangle(x * UNIT_PIX,
-                     y * UNIT_PIX, (x + 1) * UNIT_PIX,(y + 1) * UNIT_PIX, fill='red'))
+                                                                        y * UNIT_PIX, (x + 1) * UNIT_PIX,
+                                                                        (y + 1) * UNIT_PIX, fill='red'))
+                elif self.red_army[i].life == 'live' and i == 1:
+                    x, y = self.red_army[i].x, self.red_army[i].y
+                    x = (7 - x)
+                    self.red_army_draw.append(self.map.create_rectangle(x * UNIT_PIX,
+                                                                        y * UNIT_PIX, (x + 1) * UNIT_PIX,
+                                                                        (y + 1) * UNIT_PIX, fill='DeepPink'))
+                elif self.red_army[i].life == 'live' and i == 2:
+                    x, y = self.red_army[i].x, self.red_army[i].y
+                    x = (7 - x)
+                    self.red_army_draw.append(self.map.create_rectangle(x * UNIT_PIX,
+                                                                        y * UNIT_PIX, (x + 1) * UNIT_PIX,
+                                                                        (y + 1) * UNIT_PIX, fill='HotPink'))
+                elif self.red_army[i].life == 'live' and i == 3:
+                    x, y = self.red_army[i].x, self.red_army[i].y
+                    x = (7 - x)
+                    self.red_army_draw.append(self.map.create_rectangle(x * UNIT_PIX,
+                                                                        y * UNIT_PIX, (x + 1) * UNIT_PIX,
+                                                                        (y + 1) * UNIT_PIX, fill='Pink'))
             for i in range(self.blue_num):
                 if self.blue_army[i].life=='live':
                     x,y=self.blue_army[i].x,self.blue_army[i].y
+                    x = (7 - x)
                     self.blue_army_draw.append(self.map.create_rectangle(x * UNIT_PIX,
                      y * UNIT_PIX, (x + 1) * UNIT_PIX,(y + 1) * UNIT_PIX, fill='blue'))
 

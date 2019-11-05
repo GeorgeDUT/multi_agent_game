@@ -33,15 +33,15 @@ def move_game(my_map):
             trace.append([my_map.red_army[0].x, my_map.red_army[0].y,
                                         my_map.red_army[1].x, my_map.red_army[1].y,
                                         my_map.red_army[2].x, my_map.red_army[2].y,
-                                        my_map.red_army[3].x, my_map.red_army[3].y,
+                                        # my_map.red_army[3].x, my_map.red_army[3].y,
                                         my_map.blue_army[0].x, my_map.blue_army[0].y]
                                        )
 
         """move action"""
         for i in range(my_map.blue_num):
-            b=np.random.choice(Action_Space)
+            # b=np.random.choice(Action_Space)
             # b=Blue_action_list_1[int(step%len(Blue_action_list_1))]
-            # b = np.random.choice(['u', 'd', 'l','l', 'r', 'r', 'r','r','r','r'])
+            b = np.random.choice(['u', 'd', 'l','l', 'r', 'r', 'r','r','r','r'])
             # b = np.random.choice(['u', 'd', 'l', 'l', 'l', 'l', 'l'])
             blue_action.append(b)
         for i in range(my_map.red_num):
@@ -55,7 +55,7 @@ def move_game(my_map):
         trace.append([my_map.red_army[0].x, my_map.red_army[0].y,
                       my_map.red_army[1].x, my_map.red_army[1].y,
                       my_map.red_army[2].x, my_map.red_army[2].y,
-                      my_map.red_army[3].x, my_map.red_army[3].y,
+                      # my_map.red_army[3].x, my_map.red_army[3].y,
                       my_map.blue_army[0].x, my_map.blue_army[0].y]
                      )
 
@@ -87,7 +87,7 @@ def update():
 
 if __name__=="__main__":
 
-    my_map=WarMap4(MAP_W,MAP_H,4,1,True,False)
+    my_map=WarMap4(MAP_W,MAP_H,3,1,True,False)
 
     if my_map.draw_pic:
         my_map.after(10,update)
