@@ -22,10 +22,10 @@ else:
 
 MAP_W = 5
 MAP_H = 5
-UNIT_PIX = 10
+UNIT_PIX = 17
 R_ARMY_NUM = 5
 B_ARMY_NUM = 5
-Block=30
+Block=170
 
 print('this is war_3: Ant world war')
 
@@ -71,8 +71,8 @@ class WarMap4(tk.Tk, object):
         # generation block
         self.block = np.zeros((Block, 2))
         for i in range(Block):
-            self.block[i, 0] = random.randint(1, self.map_w - 1)
-            self.block[i, 1] = random.randint(1, self.map_h - 2)
+            self.block[i, 0] = random.randint(0, self.map_w - 2)
+            self.block[i, 1] = random.randint(2, self.map_h - 2)
 
         self._init_map()
 
@@ -99,12 +99,18 @@ class WarMap4(tk.Tk, object):
         # init army information
         for i in range(self.red_num):
             # x,y,id,team,life
-            a = Army(i,0,i,1,'live')
+            if 0<=i<=int(self.red_num/2):
+                a = Army(i,0,i,1,'live')
+            else:
+                a = Army(i-int(self.red_num/2), 1, i, 1, 'live')
             self.red_army.append(a)
             x,y=self.red_army[i].x,self.red_army[i].y
             self.env_map[y][x]=1
         for i in range(self.blue_num):
-            a = Army(i+1,self.map_h-1,i,2,'live')
+            if 0<=i<=self.blue_num/2:
+                a = Army(i+1,self.map_h-1,i,2,'live')
+            else:
+                a = Army(i + 1-int(self.blue_num/2), self.map_h - 2, i, 2, 'live')
             self.blue_army.append(a)
             x,y=self.blue_army[i].x,self.blue_army[i].y
             self.env_map[y][x] = 2
@@ -267,6 +273,9 @@ class WarMap4(tk.Tk, object):
         # compute red win probability
         for i in range(self.red_num):
             self.red_army[i].win_p=1
+            blue = 0
+            red = 0
+            block = 0
             if self.red_army[i].life!='live':
                 pass
             else:
@@ -286,12 +295,24 @@ class WarMap4(tk.Tk, object):
                     neighbor.remove([x,y+1])
                 for s in range(len(neighbor)):
                     if self.env_map[neighbor[s][1]][neighbor[s][0]]==1:
-                        self.red_army[i].win_p=self.red_army[i].win_p+0
+                        red=red+1
                     elif self.env_map[neighbor[s][1]][neighbor[s][0]]==2:
-                        self.red_army[i].win_p = self.red_army[i].win_p - 0.25
+                        blue=blue+1
+                    elif self.env_map[neighbor[s][1]][neighbor[s][0]]==3:
+                        block=block+1
+                all_neighbor=len(neighbor)-block
+                if blue>=all_neighbor:
+                    self.red_army[i].win_p=1
+                elif red!=0 and red==blue:
+                    self.red_army[i].win_p = 0.9
+                elif red>blue:
+                    self.red_army[i].win_p = 1
         # compute blue win probability
         for i in range(self.blue_num):
             self.blue_army[i].win_p=1
+            blue=0
+            red=0
+            block=0
             if self.blue_army[i].life!='live':
                 pass
             else:
@@ -311,9 +332,43 @@ class WarMap4(tk.Tk, object):
                     neighbor2.remove([x,y+1])
                 for s in range(len(neighbor2)):
                     if self.env_map[neighbor2[s][1]][neighbor2[s][0]]==2:
-                        self.blue_army[i].win_p=self.blue_army[i].win_p+0
+                        blue=blue+1
                     elif self.env_map[neighbor2[s][1]][neighbor2[s][0]]==1:
-                        self.blue_army[i].win_p = self.blue_army[i].win_p-0.25
+                        red=red+1
+                    elif self.env_map[neighbor2[s][1]][neighbor2[s][0]]==3:
+                        block=block+1
+                all_neighbor = len(neighbor2) - block
+                if red>=all_neighbor:
+                    self.blue_army[i].win_p = 0
+                elif blue !=0 and blue==red:
+                    self.blue_army[i].win_p = 0.1
+                elif red > blue:
+                    self.blue_army[i].win_p = 1
+
+    def fight_result_pro(self):
+        red_killed,blue_killed=0,0
+        for i in range(self.red_num):
+            if self.red_army[i].life != 'live':
+                pass
+            else:
+                x, y = self.red_army[i].x, self.red_army[i].y
+                win_rate=random.uniform(0,1)
+                if win_rate>self.red_army[i].win_p:
+                    self.red_army[i].life='dead'
+                    self.env_map[y][x]=0
+                    red_killed = red_killed + 1
+
+        for i in range(self.blue_num):
+            if self.blue_army[i].life != 'live':
+                pass
+            else:
+                x, y = self.blue_army[i].x, self.blue_army[i].y
+                win_rate=random.uniform(0,1)
+                if win_rate>self.blue_army[i].win_p:
+                    self.blue_army[i].life='dead'
+                    self.env_map[y][x]=0
+                    blue_killed = blue_killed + 1
+        return red_killed, blue_killed
 
     def fight_result(self):
         red_killed,blue_killed=0,0
@@ -337,8 +392,6 @@ class WarMap4(tk.Tk, object):
                         self.red_army[i].life = 'dead'
                         self.env_map[y][x] = 0
                         red_killed = red_killed + 1
-
-
             # blue fight result
         for i in range(self.blue_num):
             if self.blue_army[i].life != 'live':
@@ -397,7 +450,7 @@ class WarMap4(tk.Tk, object):
     def step(self):
         time.sleep(0)
         self.fight()
-        red_killed,blue_killed=self.fight_result()
+        red_killed,blue_killed=self.fight_result_pro()
         red_lived, blue_lived=self.end_battle()
         self.flash_draw()
         if self.draw_pic:
