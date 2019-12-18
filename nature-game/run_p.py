@@ -6,7 +6,7 @@ each agent can product new agent.
 """
 
 from war_pp import *
-import gambit
+# import gambit
 # import matplotlib.pyplot as plt
 
 MAP_H=30

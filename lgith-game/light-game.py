@@ -5,6 +5,7 @@ model is DQN_brain
 """
 
 from war_s import *
+import random
 # import matplotlib.pyplot as plt
 
 MAP_H=40
@@ -90,18 +91,21 @@ def move_game(my_map):
     step=0.0
     s_map_list=[]
     s_map_next_list=[]
-    i = input()
     while 1:
+        print("ok")
         step=step+1
         red_action=[]
         blue_action=[]
         """move action"""
         for i in range(my_map.blue_num):
-            # b=cmt_light_blue(my_map, my_map.blue_army[i].x, my_map.blue_army[i].y)
-            b = np.random.choice(
-                    ['u', 'u', 'u', 'u', 'u', 'd', 'l', 'l',
-                     's', 's', 'd', 'r', 'r', 'l', 'l', 'l', 'l',
-                     'l', 'l', 'l','l', 'u'])
+            chance=random.uniform(0,1)
+            if chance>0:
+                b=cmt_light_blue(my_map, my_map.blue_army[i].x, my_map.blue_army[i].y)
+            else:
+                b = np.random.choice(
+                    ['u', 'u', 'u', 'u', 'u', 'd', 'u', 'u',
+                     'l', 'l', 'l', 'l', 'r', 'l', 'l', 'r', 'l',
+                     'l', 'l', 'l','l', 'l'])
             # b = np.random.choice(['u', 'd', 'l','l', 'r', 'r', 'r','r','r','r'])
             # b = np.random.choice(['u', 'd', 'l', 'l', 'l', 'l', 'l'])
             blue_action.append(b)
@@ -130,7 +134,6 @@ def update():
 
 if __name__=="__main__":
     my_map=WarMap4(MAP_W,MAP_H,50,50,True,False)
-
     if my_map.draw_pic:
         my_map.after(10,update)
         my_map.mainloop()
