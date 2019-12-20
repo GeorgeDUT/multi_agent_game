@@ -87,7 +87,7 @@ def update():
 
 if __name__=="__main__":
 
-    my_map=WarMap4(MAP_W,MAP_H,3,1,True,False)
+    my_map=WarMap4(MAP_W,MAP_H,3,3,True,False)
 
     if my_map.draw_pic:
         my_map.after(10,update)
