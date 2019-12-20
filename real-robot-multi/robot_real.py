@@ -106,6 +106,7 @@ def move_game(my_map):
                                         my_map.blue_army[2].x, my_map.blue_army[2].y,
                                         my_map.blue_army[3].x, my_map.blue_army[3].y]
                          )
+            print(trace[-1])
 
         """move action"""
         for i in range(my_map.blue_num):
@@ -118,15 +119,37 @@ def move_game(my_map):
         """move action"""
         my_map.move(red_action,blue_action)
 
-        trace.append([my_map.red_army[0].x, my_map.red_army[0].y,
-                                        my_map.red_army[1].x, my_map.red_army[1].y,
-                                        my_map.red_army[2].x, my_map.red_army[2].y,
-                                        my_map.red_army[3].x, my_map.red_army[3].y,
-                                        my_map.blue_army[0].x, my_map.blue_army[0].y,
-                                        my_map.blue_army[1].x, my_map.blue_army[1].y,
-                                        my_map.blue_army[2].x, my_map.blue_army[2].y,
-                                        my_map.blue_army[3].x, my_map.blue_army[3].y]
+        loc_x_r=[]
+        loc_y_r=[]
+        for agent_num in range (my_map.red_num):
+            if my_map.red_army[agent_num].life=='live':
+                loc_x_r.append(my_map.red_army[agent_num].x)
+                loc_y_r.append(my_map.red_army[agent_num].y)
+            else:
+                loc_x_r.append(-1)
+                loc_y_r.append(-1)
+
+        loc_x_b = []
+        loc_y_b = []
+        for agent_num in range(my_map.blue_num):
+            if my_map.blue_army[agent_num].life == 'live':
+                loc_x_b.append(my_map.blue_army[agent_num].x)
+                loc_y_b.append(my_map.blue_army[agent_num].y)
+            else:
+                loc_x_b.append(-1)
+                loc_y_b.append(-1)
+
+        trace.append([loc_x_r[0],loc_y_r[0],
+                      loc_x_r[1], loc_y_r[1],
+                      loc_x_r[2], loc_y_r[2],
+                      loc_x_r[3], loc_y_r[3],
+                      loc_x_b[0], loc_y_b[0],
+                      loc_x_b[1], loc_y_b[1],
+                      loc_x_b[2], loc_y_b[2],
+                      loc_x_b[3], loc_y_b[3],
+                      ]
                      )
+        print(trace[-1])
         reward_red, reward_blue, red_killed, blue_killed, done=my_map.step()
         if done:
             for i in range(len(trace)):
