@@ -93,7 +93,7 @@ def move_game(my_map):
     step=0
     trace=[]
     while 1:
-        line = sys.stdin.readline()
+        # line = sys.stdin.readline()
         red_action=[]
         blue_action=[]
         if step==0:
