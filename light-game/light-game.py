@@ -12,6 +12,7 @@ MAP_H=40
 MAP_W=40
 
 Action_Space=['u','d','l','r','s']
+Theo_Hold=1
 
 
 def cmt_light(my_map,x,y):
@@ -99,7 +100,7 @@ def move_game(my_map):
         """move action"""
         for i in range(my_map.blue_num):
             chance=random.uniform(0,1)
-            if chance>0:
+            if chance>Theo_Hold:
                 b=cmt_light_blue(my_map, my_map.blue_army[i].x, my_map.blue_army[i].y)
             else:
                 b = np.random.choice(
@@ -133,6 +134,7 @@ def update():
 
 
 if __name__=="__main__":
+    Theo_Hold=input()
     my_map=WarMap4(MAP_W,MAP_H,50,50,True,False)
     if my_map.draw_pic:
         my_map.after(10,update)
