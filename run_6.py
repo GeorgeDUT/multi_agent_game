@@ -177,7 +177,7 @@ def update():
     red_win,all,sum_step=0.0,0.0,0.0
     plt_red_win=[]
     plt_red_step=[]
-    for episode in range(1500):
+    for episode in range(500):
         all=all+1
         r,step=move_game(my_map)
         sum_step=sum_step+step
@@ -193,7 +193,7 @@ def update():
 
 
 if __name__=="__main__":
-    my_map=WarMap4(MAP_W,MAP_H,3,1,False,False)
+    my_map=WarMap4(MAP_W,MAP_H,3,1,True,True)
 
     Red_RL=DeepQNetwork(
         n_actions=5, n_features=my_map.red_num*2+my_map.blue_num*2,
